@@ -4,52 +4,65 @@ using UnityEngine;
 
 public class MagiCame : MonoBehaviour {
 
-    public LayerMask mask;
-
     [SerializeField] private GameObject fourcs;
+    [SerializeField] private int FilmNum;
 
-    private GameObject m_GameManager = null;
-    private GameObject m_Player;
-    private Vector3 m_Direction;
-    private Ray m_Ray;
+    private int CurrentFilmNum = 0;
+    private GameObject[] Films;
+    private GameObject GameManager = null;
+    //private GameObject Player;
+    private Vector3 Direction;
+    private Ray Ray;
 
-    private void Awake()
+    //private void Awake()
+    //{
+
+    //}
+
+    void Start ()
     {
-        m_GameManager   = GameObject.Find("GM");
-        m_Player        = GameObject.Find("Player");
-        m_Ray           = new Ray(transform.position, transform.forward.normalized);
-    }
-
-    void Start () {
-       
+        this.GameManager = GameObject.Find("GM");
+      //this.Player = GameObject.Find("Player");
+        this.Ray = new Ray(transform.position, transform.forward.normalized);
+        this.Films = new GameObject[FilmNum];
     }
 
     void Update () {
 
-        //レイ表示
-        Debug.DrawRay(m_Ray.origin, m_Ray.direction, Color.red);
-
-        if (m_GameManager.GetComponent<GameManager>().IsFPSMode)
+        //撮影部
         {
-            // Rayが衝突したコライダーの情報を得る
-            RaycastHit hit;
+            //レイ表示
+            Debug.DrawRay(this.Ray.origin, this.Ray.direction, Color.red);
 
-            // 衝突したオブジェクトの色を赤に変える
-            bool rayIsCollided = Physics.Raycast(m_Ray, out hit, 10000, mask);
-
-            if(rayIsCollided)
+            if (this.GameManager.GetComponent<GameManager>().IsFPSMode)
             {
-                hit.collider.GetComponent<MeshRenderer>().material.color = Color.red;
-            }
+                // Rayが衝突したコライダーの情報を得る
+                RaycastHit hit;
 
-            if (/*!player.m_IsMoving &&*/Input.GetKeyDown(KeyCode.Space))
-            {
-                // Rayが衝突したかどうか
-                if (rayIsCollided)
+                if (Physics.Raycast(this.Ray, out hit))
                 {
-                    // Rayの原点から衝突地点までの距離を得る
-                    float dis = hit.distance;
+                    hit.collider.GetComponent<MeshRenderer>().material.color = Color.red;
+
+                    //シャッターを切られた
+                    if (/*!player.m_IsMoving &&*/Input.GetKeyDown(KeyCode.Space))
+                    {
+                        this.Films[this.CurrentFilmNum] = Instantiate(hit.collider.gameObject, /*new Vector3()*/transform.position, Quaternion.identity);
+
+                        // Rayの原点から衝突地点までの距離を得る
+                        float dis = hit.distance;
+
+                        this.Films[this.CurrentFilmNum].SetActive(false);
+                    }
                 }
+            }
+        }
+
+        //現像部
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                this.Films[this.CurrentFilmNum].transform.position = this.transform.position;
+                this.Films[this.CurrentFilmNum].SetActive(true);
             }
         }
     }

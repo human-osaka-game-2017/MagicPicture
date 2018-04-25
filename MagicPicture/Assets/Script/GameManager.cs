@@ -20,13 +20,12 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () {
 
-        if (Input.GetKeyDown(KeyCode.Z)) ChangeFTMode();
+        if (Input.GetKeyDown(KeyCode.R)) ChangeFTMode();
     }
 
     //FPSモード/TPSモード変更処理
     void ChangeFTMode()
     {
-
         FPSCamera.SetActive(!FPSCamera.activeSelf);
         TPSCamera.SetActive(!TPSCamera.activeSelf);
         isFPSMode = !isFPSMode;

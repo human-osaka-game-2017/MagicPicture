@@ -4,8 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - a
   - b
+=======
+  - FloorTag
+  - WallTag
+  - FallTag
+  - EnemyTag
+>>>>>>> 213297a28d85650c76c16b35727734a4c0c2c156
   layers:
   - Default
   - TransparentFX

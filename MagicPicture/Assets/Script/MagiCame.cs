@@ -9,7 +9,6 @@ public class MagiCame : MonoBehaviour {
     private int currentFilmNum = 0;
     private GameObject[] films;
     private GameObject player= null;
-    //private GameObject Player;
     private Vector3 direction;
     private Ray ray;
 
@@ -21,11 +20,13 @@ public class MagiCame : MonoBehaviour {
     void Start ()
     {
         this.player = GameObject.Find("Player");
-        this.ray = new Ray(transform.position, transform.forward.normalized);
+        this.ray = new Ray(this.transform.position, this.transform.forward.normalized);
         this.films = new GameObject[kFilmNum];
     }
 
     void Update () {
+
+        this.ray.direction = this.transform.forward.normalized;
 
         //撮影部
         {
@@ -39,7 +40,7 @@ public class MagiCame : MonoBehaviour {
 
                 if (Physics.Raycast(this.ray, out hit))
                 {
-                    hit.collider.GetComponent<MeshRenderer>().material.color = Color.red;
+                    //hit.collider.GetComponent<MeshRenderer>().material.color = Color.red;
 
                     //シャッターを切られた
                     if (/*!player.m_IsMoving &&*/Input.GetKeyDown(KeyCode.Space))
@@ -59,7 +60,7 @@ public class MagiCame : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                this.films[this.currentFilmNum].transform.position = this.transform.position;
+                this.films[this.currentFilmNum].transform.position = this.transform.position + (this.transform.forward.normalized * 2);
                 this.films[this.currentFilmNum].SetActive(true);
             }
         }

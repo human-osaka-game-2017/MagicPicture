@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23328921615750126}
   m_Layer: 0
   m_Name: FallPlane
-  m_TagString: FallTag
+  m_TagString: FallGameOverTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,22 +4,29 @@ using UnityEngine;
 
 
 public class HitJudgment : MonoBehaviour {
-    
 
+    
     public static bool HitFloorFlag;
-    public static bool HitFallPlaneFlag;
+    public static bool HitFallFlag;
+    public static bool HitFallGameOverPlaneFlag;
     public static bool HitEnemyFlag;
 
-    private string FloorTagName;
-    private string FallTagName;
-    private string EnemyTagName;
+    private string      FloorTagName;
+    private string      FallTagName;
+    private string      FallGameOverTagName;    
+    private string      EnemyTagName;
+    private Collider    m_ObjectCollider;
 
 
     // Use this for initialization
     void Start () {
-        FloorTagName = "FloorTag";
-        FallTagName  = "FallTag";
-        EnemyTagName = "EnemyTag";
+        FloorTagName            = "FloorTag";
+        FallTagName             = "FallTag";
+        FallGameOverTagName     = "FallGameOverTag";
+        EnemyTagName            = "EnemyTag";
+
+        m_ObjectCollider = GetComponent<Collider>();
+        Debug.Log(m_ObjectCollider.isTrigger);
     }
 	
 	// Update is called once per frame
@@ -36,10 +43,6 @@ public class HitJudgment : MonoBehaviour {
         if (col.gameObject.tag == FloorTagName) {
             HitFloorFlag = true;
         }
-        
-        if (col.gameObject.tag == FallTagName) {
-            HitFallPlaneFlag = true;
-        }
     }
     
     void OnCollisionExit(Collision col)
@@ -47,12 +50,18 @@ public class HitJudgment : MonoBehaviour {
         if (col.gameObject.tag == FloorTagName) {
             HitFloorFlag = false;
         }
-        
-        if (col.gameObject.tag == FallTagName) {
-            HitFallPlaneFlag = false;
-        }
     }
 
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == FallGameOverTagName) {
+            HitFallGameOverPlaneFlag = true;
+
+            m_ObjectCollider.isTrigger = true;
+            Debug.Log(m_ObjectCollider.isTrigger);
+        }
+    }
 
     void OnTriggerStay(Collider col)
     {
@@ -61,6 +70,10 @@ public class HitJudgment : MonoBehaviour {
             if (col.gameObject.tag == EnemyTagName) {
                 HitEnemyFlag = true;
             }
+        }
+
+        if (col.gameObject.tag == FallTagName) {
+            HitFallFlag = true;
         }
     }
 
@@ -71,6 +84,14 @@ public class HitJudgment : MonoBehaviour {
             if (col.gameObject.tag == EnemyTagName) {
                 HitEnemyFlag = false;
             }
+        }
+
+        if (col.gameObject.tag == FallGameOverTagName) {
+            HitFallGameOverPlaneFlag = false;
+        }
+
+        if (col.gameObject.tag == FallTagName) {
+            HitFallFlag = false;
         }
     }
 }

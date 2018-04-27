@@ -55,9 +55,9 @@ public class PlayerMove : MonoBehaviour {
         // プレイヤー位置を更新(落下時無効)
         if (HitJudgment.HitFloorFlag == true) {
 
-            int pos_y = (int)m_Pos.y;                       // Y整数化
+            //int pos_y = (int)m_Pos.y;                       // Y整数化
 
-            m_Pos.y = m_NextPos.y = m_BackPos.y = pos_y;    // Y整数値代入
+            //m_Pos.y = m_NextPos.y = m_BackPos.y = pos_y;    // Y整数値代入
 
             transform.position = m_Pos;
         }
@@ -75,11 +75,11 @@ public class PlayerMove : MonoBehaviour {
     // 落下ゲームオーバー時の処理
     void FallGameOver()
     {
-        if (HitJudgment.HitFallPlaneFlag) {
+        if (HitJudgment.HitFallGameOverPlaneFlag) {
             // 画面遷移しよう
             Debug.Log("GameOver!");
 
-            HitJudgment.HitFallPlaneFlag = false;
+            HitJudgment.HitFallGameOverPlaneFlag = false;
 
             gameOverFlag = true;
         }
@@ -109,13 +109,13 @@ public class PlayerMove : MonoBehaviour {
         if (Input.GetKeyDown("w") && FrontHit.FrontHitFlag == false) {
             m_NextPos.z += 1;
         }
-        if (Input.GetKeyDown("s") && BackHit.BackHitFlag == false) {
+        else if (Input.GetKeyDown("s") && BackHit.BackHitFlag == false) {
             m_NextPos.z -= 1;
         }
-        if (Input.GetKeyDown("d") && RightHit.RightHitFlag == false) {
+        else if (Input.GetKeyDown("d") && RightHit.RightHitFlag == false) {
             m_NextPos.x += 1;
         }
-        if (Input.GetKeyDown("a") && LeftHit.LeftHitFlag == false) {
+        else if (Input.GetKeyDown("a") && LeftHit.LeftHitFlag == false) {            
             m_NextPos.x -= 1;
         }
     }

@@ -11,12 +11,13 @@ public class MagiCame : MonoBehaviour {
     {
         this.player = GameObject.Find("Player");
         this.ray = new Ray(this.transform.position, this.transform.forward.normalized);
-
     }
 
     void Update() {
 
+        //更新
         this.ray.direction = this.transform.forward.normalized;
+        this.ray.origin = this.transform.position;
 
         //撮影
         //レイ表示
@@ -29,15 +30,18 @@ public class MagiCame : MonoBehaviour {
 
             if (Physics.Raycast(this.ray, out collidedObj))
             {
-                //collidedObj.collider.GetComponent<MeshRenderer>().material.color = Color.red;
+                collidedObj.collider.GetComponent<MeshRenderer>().material.color = Color.red;
 
                 //シャッターを切られた
                 if (/*!player.m_IsMoving &&*/Input.GetKeyDown(KeyCode.Space))
                 {
-                    //float distance = collidedObj.distance;
+                    if (collidedObj.collider./*transform.root.gameObject.*/GetComponent<ObjectAttribute>().CanTake)
+                    {
+                        //float distance = collidedObj.distance;
 
-                    this.player.GetComponent<CameraSystem>().SetFilm(Instantiate
-                        (collidedObj.collider.gameObject, /*new Vector3()*/transform.position, Quaternion.identity));
+                        player.GetComponent<CameraSystem>().SetFilm(Instantiate
+                            (collidedObj.collider.gameObject, /*new Vector3()*/transform.position, Quaternion.identity));
+                    }
                 }
             }
         } 

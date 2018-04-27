@@ -4,13 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - b
-  - a
-=======
-  - a
   - FloorTag
->>>>>>> 4a9c9aefd4f0f767f408d110e3f5912034a64d12
+  - a
+  - canTake
   layers:
   - Default
   - TransparentFX

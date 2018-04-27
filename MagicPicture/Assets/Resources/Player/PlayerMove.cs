@@ -55,9 +55,9 @@ public class PlayerMove : MonoBehaviour {
         // プレイヤー位置を更新(落下時無効)
         if (HitJudgment.HitFloorFlag == true) {
 
-            int pos_y = (int)m_Pos.y;                       // Y整数化
+            //int pos_y = (int)m_Pos.y;                       // Y整数化
 
-            m_Pos.y = m_NextPos.y = m_BackPos.y = pos_y;    // Y整数値代入
+            //m_Pos.y = m_NextPos.y = m_BackPos.y = pos_y;    // Y整数値代入
 
             transform.position = m_Pos;
         }

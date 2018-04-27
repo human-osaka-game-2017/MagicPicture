@@ -6,8 +6,9 @@ TagManager:
   tags:
   - FloorTag
   - WallTag
-  - FallTag
   - EnemyTag
+  - FallGameOverTag
+  - FallTag
   layers:
   - Default
   - TransparentFX

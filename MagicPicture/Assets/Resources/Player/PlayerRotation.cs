@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
 {
-    private int         RotationDirection;
-    private bool        CantRotationFlag;
+    private int         rotationDirection;
+    private bool        cantRotationFlag;
     private float       playerEmpAngleY;
     private float       tempPlayerEmpAngleY;    
     private Vector3     m_RotationAngle;
@@ -16,15 +16,15 @@ public class PlayerRotation : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_RotationAngle = m_Rotation.eulerAngles;
-        CantRotationFlag = false;
+        m_RotationAngle     = m_Rotation.eulerAngles;
+        cantRotationFlag    = false;        
     }
 
     // Update is called once per frame
     void Update()
     {
         if (PlayerMove.isMoveng == false) {
-            CantRotationFlag = false;
+            cantRotationFlag = false;
         }
 
         if (PlayerMove.gameOverFlag == false) {
@@ -32,7 +32,7 @@ public class PlayerRotation : MonoBehaviour
                 SetPlayerRotation();
             }
             
-            if (RotationDirection == 0) {
+            if (rotationDirection == 0) {
                 SetRotationDirection();
             }
             else {
@@ -48,19 +48,23 @@ public class PlayerRotation : MonoBehaviour
     // じんわり回転方向決定
     void SetRotationDirection()
     {
-        if (PlayerMove.isMoveng == false) {
-            
-            if (Input.GetKeyDown("up")) {
-                RotationDirection = 1;
-            }
-            if (Input.GetKeyDown("down")) {
-                RotationDirection = 2;
-            }
-            if (Input.GetKeyDown("right")) {
-                RotationDirection = 3;
-            }
-            if (Input.GetKeyDown("left")) {
-                RotationDirection = 4;
+        if (HitJudgment.HitFloorFlag) {
+            if (PlayerMove.isMoveng == false) {
+                if (HitJudgment.HitFallFlag == false) {
+
+                    if (Input.GetKeyDown("up")) {
+                        rotationDirection = 1;
+                    }
+                    if (Input.GetKeyDown("down")) {
+                        rotationDirection = 2;
+                    }
+                    if (Input.GetKeyDown("right")) {
+                        rotationDirection = 3;
+                    }
+                    if (Input.GetKeyDown("left")) {
+                        rotationDirection = 4;
+                    }
+                }
             }
         }
     }
@@ -71,7 +75,7 @@ public class PlayerRotation : MonoBehaviour
     //-------------------------
     void SetPlayerRotation()
     {
-        if (CantRotationFlag == false) {
+        if (cantRotationFlag == false) {
 
             if (Input.GetKeyDown("w")) {
 
@@ -95,7 +99,7 @@ public class PlayerRotation : MonoBehaviour
             }
 
             if (PlayerMove.isMoveng) {
-                CantRotationFlag = true;
+                cantRotationFlag = true;
             }
         }
     }
@@ -107,7 +111,7 @@ public class PlayerRotation : MonoBehaviour
     {
         RotationFlag = true;
 
-        switch (RotationDirection)
+        switch (rotationDirection)
         {
             case 1:
                 PlayerRotationAll(90.0f, -3.0f);
@@ -164,7 +168,7 @@ public class PlayerRotation : MonoBehaviour
     void RotationEnd(float tempPlayerAng, float setTempPlayerAng)
     {
         if (tempPlayerEmpAngleY == tempPlayerAng) {
-            RotationDirection = 0;
+            rotationDirection = 0;
             playerEmpAngleY = tempPlayerEmpAngleY = setTempPlayerAng;
             RotationFlag = false;
         }

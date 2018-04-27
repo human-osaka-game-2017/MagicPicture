@@ -5,6 +5,8 @@ using UnityEngine;
 public class LeftHit : MonoBehaviour {
 
 
+    Vector3 m_Pos;
+
     public static bool  LeftHitFlag;
 
     private string      WallTagName;
@@ -13,12 +15,16 @@ public class LeftHit : MonoBehaviour {
     // Use this for initialization
     void Start () {
         WallTagName = "WallTag";
+
+        m_Pos = transform.position;
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        InterlockingMovement();
+
+        transform.position = m_Pos;
+    }
 
 
     void OnTriggerEnter(Collider col)
@@ -34,5 +40,20 @@ public class LeftHit : MonoBehaviour {
         if (col.gameObject.tag == WallTagName) {
             LeftHitFlag = false;
         }
+    }
+
+
+    //-------------------------------
+    // プレイヤーの位置に連動させる
+    //-------------------------------
+    void InterlockingMovement()
+    {
+        GameObject player;
+
+        player = GameObject.Find("Player");
+
+        m_Pos.x = player.transform.position.x - 1.0f;
+        m_Pos.y = player.transform.position.y;
+        m_Pos.z = player.transform.position.z;
     }
 }

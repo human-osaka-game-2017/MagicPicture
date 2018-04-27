@@ -31,6 +31,8 @@ public class CameraMove : MonoBehaviour {
 
         player = GameObject.Find("Player");
 
-        m_Pos = player.transform.position;
+        m_Pos.x = player.transform.position.x;
+        m_Pos.y = player.transform.position.y + 2.5f;
+        m_Pos.z = player.transform.position.z - 4.5f;
     }
 }

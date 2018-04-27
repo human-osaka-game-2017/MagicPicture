@@ -30,7 +30,7 @@ public class CameraMove : MonoBehaviour {
     void InterlockingMovement()
     {
         m_Pos.x = player.transform.position.x;
-        m_Pos.y = player.transform.position.y + 6.0f;  //元2.5
-        m_Pos.z = player.transform.position.z - 2.0f;  //元-4.5
+        m_Pos.y = player.transform.position.y + 4.5f;  //元2.5
+        m_Pos.z = player.transform.position.z - 3.5f;  //元-4.5
     }
 }

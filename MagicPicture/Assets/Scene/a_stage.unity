@@ -33461,6 +33461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FPSCamera: {fileID: 599508647}
   TPSCamera: {fileID: 1940301051}
+  kMaxFilm: 3
 --- !u!1 &742549044
 GameObject:
   m_ObjectHideFlags: 0

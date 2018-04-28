@@ -6,10 +6,12 @@ public class CameraMove : MonoBehaviour {
 
 
     Vector3 m_Pos;
+    GameObject player;
 
     // Use this for initialization
     void Start()
     {
+        player = GameObject.Find("Player");
         m_Pos = transform.position;
     }
 
@@ -27,10 +29,8 @@ public class CameraMove : MonoBehaviour {
     //----------------------------------------
     void InterlockingMovement()
     {
-        GameObject player;
-
-        player = GameObject.Find("Player");
-
-        m_Pos = player.transform.position;
+        m_Pos.x = player.transform.position.x;
+        m_Pos.y = player.transform.position.y + 4.5f;  //元2.5
+        m_Pos.z = player.transform.position.z - 3.5f;  //元-4.5
     }
 }

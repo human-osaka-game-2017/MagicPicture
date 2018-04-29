@@ -53,7 +53,7 @@ public class RightHit : MonoBehaviour {
         player = GameObject.Find("Player");
         
         m_Pos.x = player.transform.position.x + 1.0f;
-        m_Pos.y = player.transform.position.y;
+        m_Pos.y = player.transform.position.y +0.25f;
         m_Pos.z = player.transform.position.z;
     }
 }

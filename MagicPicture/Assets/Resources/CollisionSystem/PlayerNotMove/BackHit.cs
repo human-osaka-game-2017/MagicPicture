@@ -53,7 +53,7 @@ public class BackHit : MonoBehaviour {
         player = GameObject.Find("Player");
 
         m_Pos.x = player.transform.position.x;
-        m_Pos.y = player.transform.position.y;
+        m_Pos.y = player.transform.position.y +0.25f;//-0.25
         m_Pos.z = player.transform.position.z - 1.0f;
     }
 }

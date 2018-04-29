@@ -10,9 +10,9 @@ public class CameraSystem: MonoBehaviour {
 
     private GameObject[] films;
     private int currentFilmNum = 0;
-    public int GetCurrentFilmNum()
+    public int CurrentFilmNum
     {
-        return currentFilmNum;
+        get { return this.currentFilmNum; }
     }
 
     private bool isFPSMode = false;
@@ -38,6 +38,7 @@ public class CameraSystem: MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F))
         {
             this.films[this.currentFilmNum].transform.position = this.transform.position + (this.transform.forward.normalized * 2);
+            this.films[this.currentFilmNum].GetComponent<ObjectAttribute>().Taken();
             this.films[this.currentFilmNum].SetActive(true);
         }
 
@@ -62,18 +63,20 @@ public class CameraSystem: MonoBehaviour {
             {
                 --this.currentFilmNum;
             }
+            Debug.Log(this.currentFilmNum);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (this.currentFilmNum == this.kMaxFilm)
             {
-                this.currentFilmNum = this.kMaxFilm;
+                this.currentFilmNum = 0;
             }
             else
             {
                 ++this.currentFilmNum;
             }
+            Debug.Log(this.currentFilmNum);
         }
     }
 

@@ -21,6 +21,6 @@ public class DoorTrigger_M : MonoBehaviour {
     {
         if (other.gameObject.tag == "b")  //タグをマジカメのタグに置き換える
         doorL.transform.Translate(new Vector3(-0.5f, 0, 0));
-        doorR.transform.Translate(new Vector3(0.5f, 0, 0));
+        doorR.transform.Translate(new Vector3(1.0f, 0, 0));
     }
 }

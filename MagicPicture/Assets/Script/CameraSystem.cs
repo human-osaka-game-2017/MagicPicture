@@ -6,9 +6,11 @@ public class CameraSystem: MonoBehaviour {
 
     [SerializeField] private GameObject FPSCamera;
     [SerializeField] private GameObject TPSCamera;
-    [SerializeField] private /*const*/ int kMaxFilm;
+    [SerializeField] private int kMaxFilm;
+    [SerializeField] private int kPhantom;
 
     private GameObject[] films;
+    private GameObject[] phantoms;
     private int currentFilmNum = 0;
     public int CurrentFilmNum
     {
@@ -41,7 +43,6 @@ public class CameraSystem: MonoBehaviour {
             this.films[this.currentFilmNum].GetComponent<ObjectAttribute>().Taken();
             this.films[this.currentFilmNum].SetActive(true);
         }
-
     }
 
     public void SetFilm(GameObject filmingObj)

@@ -7,7 +7,7 @@ public class ObjectAttribute : MonoBehaviour {
     [SerializeField] private bool canTake;
     public bool CanTake
     {
-        get { return this.canTake; }
+        get { return this.canTake && IsTakenObj; }
     }
 
     private bool isTakenObj;

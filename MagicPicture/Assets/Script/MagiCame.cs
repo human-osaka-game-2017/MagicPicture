@@ -40,7 +40,7 @@ public class MagiCame : MonoBehaviour {
                         //float distance = collidedObj.distance;
 
                         player.GetComponent<CameraSystem>().SetFilm(Instantiate
-                            (collidedObj.collider.gameObject, transform.position, Quaternion.identity));
+                            (collidedObj.collider.gameObject, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity));
                     }
                 }
             }

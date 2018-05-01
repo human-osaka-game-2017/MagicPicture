@@ -33528,6 +33528,7 @@ MonoBehaviour:
   FPSCamera: {fileID: 599508647}
   TPSCamera: {fileID: 1940301051}
   kMaxFilm: 4
+  kMaxPhantom: 0
 --- !u!1 &742549044
 GameObject:
   m_ObjectHideFlags: 0

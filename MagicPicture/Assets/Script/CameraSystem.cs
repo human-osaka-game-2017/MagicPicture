@@ -44,9 +44,15 @@ public class CameraSystem: MonoBehaviour {
         //現像
         if (Input.GetKeyDown(KeyCode.F))
         {
+            Vector3 pos =
+            this.transform.position + (this.transform.forward.normalized * kPhantomDistance);
+            pos.x = ((int)(pos.x / kCoordinateUnit)) * kCoordinateUnit;
+            pos.y = this.films[this.currentFilmNum].transform.position.y;
+            pos.z = ((int)(pos.z / kCoordinateUnit)) * kCoordinateUnit;
+
             AddPhantom(Instantiate(
                 this.films[this.currentFilmNum],
-                (this.transform.position + (this.transform.forward.normalized * kPhantomDistance)),
+                pos,
                 this.films[this.currentFilmNum].transform.localRotation));
 
             this.phantoms[0].GetComponent<ObjectAttribute>().Taken();

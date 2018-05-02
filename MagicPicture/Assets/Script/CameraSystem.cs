@@ -10,6 +10,8 @@ public class CameraSystem: MonoBehaviour {
     [SerializeField] private GameObject TPSCamera;
     [SerializeField] private int kMaxFilm;
     [SerializeField] private int kMaxPhantom;
+    [SerializeField] private float kCoordinateUnit;
+    [SerializeField] private float kPhantomDistance;
 
     private GameObject[] films;
     private GameObject[] phantoms;
@@ -44,7 +46,7 @@ public class CameraSystem: MonoBehaviour {
         {
             AddPhantom(Instantiate(
                 this.films[this.currentFilmNum],
-                this.transform.position + (this.transform.forward.normalized * 2),
+                (this.transform.position + (this.transform.forward.normalized * kPhantomDistance)),
                 this.films[this.currentFilmNum].transform.localRotation));
 
             this.phantoms[0].GetComponent<ObjectAttribute>().Taken();
@@ -106,7 +108,7 @@ public class CameraSystem: MonoBehaviour {
     {
         if (this.phantoms[0] != null)
         {
-            GameObject next = film; //次に代入するものをいれるやつ
+            GameObject next = film; //次に代入するやつ
             GameObject tmp; //一時保管
 
             int count;
@@ -114,8 +116,14 @@ public class CameraSystem: MonoBehaviour {
             {
                 tmp = this.phantoms[count];
                 this.phantoms[count] = next;
-                
+                next = tmp;
+                if (tmp == null)
+                {
+                    break;
+                }
             }
+
+            Destroy(next);//nullでもエラー起きない
         }
         else
         {

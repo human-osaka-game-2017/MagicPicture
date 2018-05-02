@@ -37,7 +37,11 @@ public class CameraSystem: MonoBehaviour {
         //現像
         if (Input.GetKeyDown(KeyCode.F))
         {
-            this.films[this.currentFilmNum].transform.position = this.transform.position + (this.transform.forward.normalized * 2);
+            //todo リファクタリング
+            float tmpY = this.films[this.currentFilmNum].transform.position.y;
+            Vector3 tmp = this.transform.position + (this.transform.forward.normalized * 2);
+            tmp.y = tmpY;
+            this.films[this.currentFilmNum].transform.position = tmp;
             this.films[this.currentFilmNum].GetComponent<ObjectAttribute>().Taken();
             this.films[this.currentFilmNum].SetActive(true);
         }

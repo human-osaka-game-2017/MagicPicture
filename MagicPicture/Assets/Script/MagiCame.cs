@@ -35,12 +35,12 @@ public class MagiCame : MonoBehaviour {
                 //シャッターを切られた
                 if (/*!player.m_IsMoving &&*/Input.GetKeyDown(KeyCode.Space))
                 {
-                    if (collidedObj.collider./*transform.root.gameObject.*/GetComponent<ObjectAttribute>().CanTake)
+                    if (collidedObj.collider.GetComponent<ObjectAttribute>().CanTake)
                     {
                         //float distance = collidedObj.distance;
 
                         player.GetComponent<CameraSystem>().SetFilm(Instantiate
-                            (collidedObj.collider.gameObject, /*new Vector3()*/transform.position, Quaternion.identity));
+                            (collidedObj.collider.gameObject, collidedObj.collider.gameObject.transform.position, Quaternion.identity));
                     }
                 }
             }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraSystem2 : MonoBehaviour {
+public class fCameraSystem : MonoBehaviour {
 
     Vector3             cameraPos;
     Vector3             rotation;
@@ -74,7 +74,7 @@ public class CameraSystem2 : MonoBehaviour {
         cameraPos.y = player.transform.position.y + 1;
         cameraPos.z = player.transform.position.z;
 
-        transform.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
+        transform.rotation = Quaternion.Euler(rotation);
 
 
         if (Input.GetKey("up")) {

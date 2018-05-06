@@ -4,11 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - FallTag
-  - FallGameOverTag
   - EnemyTag
-  - WallTag
-  - FloorTag
   layers:
   - Default
   - TransparentFX

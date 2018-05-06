@@ -1,14 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 public class CameraSystem: MonoBehaviour {
 
     [SerializeField] private GameObject FPSCamera;
     [SerializeField] private GameObject TPSCamera;
-    [SerializeField] private /*const*/ int kMaxFilm;
+    [SerializeField] private int kMaxFilm;
+    [SerializeField] private int kMaxPhantom;
+    [SerializeField] private float kCoordinateUnit;
+    [SerializeField] private float kPhantomDistance;
 
     private GameObject[] films;
+    private GameObject[] phantoms;
     private int currentFilmNum = 0;
     public int CurrentFilmNum
     {
@@ -24,7 +30,8 @@ public class CameraSystem: MonoBehaviour {
 
     void Start ()
     {
-        this.films = new GameObject[kMaxFilm];
+        this.films      = new GameObject[kMaxFilm];
+        this.phantoms   = new GameObject[kMaxPhantom];
     }
 
     void Update()
@@ -37,6 +44,7 @@ public class CameraSystem: MonoBehaviour {
         //現像
         if (Input.GetKeyDown(KeyCode.F))
         {
+<<<<<<< HEAD
             //todo リファクタリング
             float tmpY = this.films[this.currentFilmNum].transform.position.y;
             Vector3 tmp = this.transform.position + (this.transform.forward.normalized * 2);
@@ -45,11 +53,32 @@ public class CameraSystem: MonoBehaviour {
             this.films[this.currentFilmNum].GetComponent<ObjectAttribute>().Taken();
             this.films[this.currentFilmNum].SetActive(true);
         }
+=======
+            Vector3 pos =
+            this.transform.position + (this.transform.forward.normalized * kPhantomDistance);
+            pos.x = ((int)(pos.x / kCoordinateUnit)) * kCoordinateUnit;
+            pos.y = this.films[this.currentFilmNum].transform.position.y;
+            pos.z = ((int)(pos.z / kCoordinateUnit)) * kCoordinateUnit;
 
+            AddPhantom(Instantiate(
+                this.films[this.currentFilmNum],
+                pos,
+                this.films[this.currentFilmNum].transform.localRotation));
+>>>>>>> 90853fd5103becbf6ea2a385144af26caa59b5d4
+
+            this.phantoms[0].GetComponent<ObjectAttribute>().Taken();
+            this.phantoms[0].SetActive(true);
+        }
     }
 
+    //param 撮影したオブジェクトのコピー
     public void SetFilm(GameObject filmingObj)
     {
+        if(this.films[this.currentFilmNum] != null)
+        {
+            Destroy(this.films[this.currentFilmNum]);
+        }
+
         this.films[this.currentFilmNum] = filmingObj;
 
         this.films[this.currentFilmNum].SetActive(false);
@@ -90,5 +119,32 @@ public class CameraSystem: MonoBehaviour {
         FPSCamera.SetActive(!FPSCamera.activeSelf);
         TPSCamera.SetActive(!TPSCamera.activeSelf);
         isFPSMode = !isFPSMode;
+    }
+
+    private void AddPhantom(GameObject film)
+    {
+        if (this.phantoms[0] != null)
+        {
+            GameObject next = film; //次に代入するやつ
+            GameObject tmp; //一時保管
+
+            int count;
+            for (count = 0; count < kMaxPhantom; ++count)
+            {
+                tmp = this.phantoms[count];
+                this.phantoms[count] = next;
+                next = tmp;
+                if (tmp == null)
+                {
+                    break;
+                }
+            }
+
+            Destroy(next);//nullでもエラー起きない
+        }
+        else
+        {
+            this.phantoms[0] = film;
+        }
     }
 }

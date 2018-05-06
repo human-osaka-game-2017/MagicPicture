@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MagiCame : MonoBehaviour {
 
+    [SerializeField] private float kMinDistance;
+    [SerializeField] private float kMaxDistance;
+
     private GameObject player = null;
     private Ray ray;
 
@@ -37,10 +40,16 @@ public class MagiCame : MonoBehaviour {
                 {
                     if (collidedObj.collider.GetComponent<ObjectAttribute>().CanTake)
                     {
-                        //float distance = collidedObj.distance;
+                        float distance = collidedObj.distance;
+                        if(kMinDistance < distance && distance < kMaxDistance)
+                        {
+                            player.GetComponent<CameraSystem>().SetFilm(Instantiate
+                                    (collidedObj.collider.gameObject,
+                                    collidedObj.collider.gameObject.transform.position,
+                                    Quaternion.identity));
+                        }
 
-                        player.GetComponent<CameraSystem>().SetFilm(Instantiate
-                            (collidedObj.collider.gameObject, collidedObj.collider.gameObject.transform.position, Quaternion.identity));
+
                     }
                 }
             }

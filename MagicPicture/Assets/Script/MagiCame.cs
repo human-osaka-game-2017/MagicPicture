@@ -49,7 +49,8 @@ public class MagiCame : MonoBehaviour {
                                     Quaternion.identity));
                         }
 
-
+                        player.GetComponent<CameraSystem>().SetFilm(Instantiate
+                            (collidedObj.collider.gameObject, collidedObj.collider.gameObject.transform.position, Quaternion.identity));
                     }
                 }
             }

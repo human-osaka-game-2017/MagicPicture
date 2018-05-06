@@ -44,6 +44,16 @@ public class CameraSystem: MonoBehaviour {
         //現像
         if (Input.GetKeyDown(KeyCode.F))
         {
+<<<<<<< HEAD
+            //todo リファクタリング
+            float tmpY = this.films[this.currentFilmNum].transform.position.y;
+            Vector3 tmp = this.transform.position + (this.transform.forward.normalized * 2);
+            tmp.y = tmpY;
+            this.films[this.currentFilmNum].transform.position = tmp;
+            this.films[this.currentFilmNum].GetComponent<ObjectAttribute>().Taken();
+            this.films[this.currentFilmNum].SetActive(true);
+        }
+=======
             Vector3 pos =
             this.transform.position + (this.transform.forward.normalized * kPhantomDistance);
             pos.x = ((int)(pos.x / kCoordinateUnit)) * kCoordinateUnit;
@@ -54,6 +64,7 @@ public class CameraSystem: MonoBehaviour {
                 this.films[this.currentFilmNum],
                 pos,
                 this.films[this.currentFilmNum].transform.localRotation));
+>>>>>>> 90853fd5103becbf6ea2a385144af26caa59b5d4
 
             this.phantoms[0].GetComponent<ObjectAttribute>().Taken();
             this.phantoms[0].SetActive(true);

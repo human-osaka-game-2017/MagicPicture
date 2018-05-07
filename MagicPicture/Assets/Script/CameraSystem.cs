@@ -60,7 +60,7 @@ public class CameraSystem: MonoBehaviour {
         }
     }
 
-    //param 撮影したオブジェクトのコピー
+    //@param 撮影したオブジェクトのコピー
     public void SetFilm(GameObject filmingObj)
     {
         if(this.films[this.currentFilmNum] != null)
@@ -106,6 +106,7 @@ public class CameraSystem: MonoBehaviour {
     private void ChangeFTMode()
     {
         FPSCamera.SetActive(!FPSCamera.activeSelf);
+        FPSCamera.GetComponent<MagiCame>().Init();
         TPSCamera.SetActive(!TPSCamera.activeSelf);
         isFPSMode = !isFPSMode;
     }

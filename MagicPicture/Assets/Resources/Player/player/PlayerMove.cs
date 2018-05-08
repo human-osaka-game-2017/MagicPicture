@@ -10,7 +10,6 @@ public class PlayerMove : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
     }
     
     // Update is called once per frame
@@ -19,12 +18,12 @@ public class PlayerMove : MonoBehaviour {
         changeVector = 0;
 
         // TPS時
-        if (!fCameraSystem.changeMode) {
+        if (!this.GetComponent<CameraSystem>().IsFPSMode) {
             TPSMove();
         }
 
         // FPS時
-        if (fCameraSystem.changeMode) {
+        if (this.GetComponent<CameraSystem>().IsFPSMode) {
             FPSMove();
         }
     }
@@ -34,6 +33,7 @@ public class PlayerMove : MonoBehaviour {
     {
         if (changeVector != 0) {
             transform.position += transform.up * playerSpeed * changeVector;
+            Camera.main.transform.Translate(transform.up * playerSpeed * changeVector);
         }
     }
 
@@ -51,17 +51,22 @@ public class PlayerMove : MonoBehaviour {
 
     void FPSMove()
     {
+        Vector3 movement = Vector3.zero;
+
         if (Input.GetKey("w")) {
-            transform.position -= transform.up * playerSpeed;
+            movement -= transform.up * playerSpeed;
         }
         if (Input.GetKey("s")) {
-            transform.position += transform.up * playerSpeed;
+            movement += transform.up * playerSpeed;
         }
         if (Input.GetKey("a")) {
-            transform.position -= transform.right * playerSpeed;
+            movement -= transform.right * playerSpeed;
         }
         if (Input.GetKey("d")) {
-            transform.position += transform.right * playerSpeed;
+            movement += transform.right * playerSpeed;
         }
+
+        this.transform.Translate(movement);
+        Camera.main.transform.Translate(movement);
     }
 }

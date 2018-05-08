@@ -36,6 +36,7 @@ public class CameraSystem: MonoBehaviour {
 
     void Update()
     {
+        //FPS/TPSの切り替え
         if (Input.GetKeyDown(KeyCode.R)) ChangeFTMode();
 
         //フィルム選択の更新

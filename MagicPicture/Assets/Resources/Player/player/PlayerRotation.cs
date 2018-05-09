@@ -20,14 +20,14 @@ public class PlayerRotation : MonoBehaviour {
     void Rotation()
     {
         if (Input.GetKey("left")) {
-            rotation.z = -1.5f;
+            rotation.y = -1.5f;
         }
         if (Input.GetKey("right")) {
-            rotation.z = 1.5f;
+            rotation.y = 1.5f;
         }
 
         if (!Input.GetKey("left") && !Input.GetKey("right")) {
-            rotation.z = 0;
+            rotation.y = 0;
         }
         
         transform.Rotate(rotation);

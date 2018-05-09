@@ -15,7 +15,7 @@ public class MagiCame : MonoBehaviour
     public void Init()
     {
         Quaternion rot = this.transform.rotation;
-        rot.x = 90.0f;
+        rot.x = 0.0f;
         this.transform.rotation = rot;
     }
 
@@ -73,8 +73,8 @@ public class MagiCame : MonoBehaviour
                                     Quaternion.identity));
                         }
 
-                        player.GetComponent<CameraSystem>().SetFilm(Instantiate
-                            (collidedObj.collider.gameObject, collidedObj.collider.gameObject.transform.position, Quaternion.identity));
+                       // player.GetComponent<CameraSystem>().SetFilm(Instantiate
+                       //     (collidedObj.collider.gameObject, collidedObj.collider.gameObject.transform.position, Quaternion.identity));
                     }
                 }
             }

@@ -32,8 +32,8 @@ public class PlayerMove : MonoBehaviour {
     void FixedUpdate()
     {
         if (changeVector != 0) {
-            transform.position += transform.up * playerSpeed * changeVector;
-            Camera.main.transform.Translate(transform.up * playerSpeed * changeVector);
+            transform.position += transform.forward * playerSpeed * changeVector;
+            //Camera.main.transform.Translate(transform.forward * playerSpeed * changeVector);
         }
     }
 
@@ -41,10 +41,10 @@ public class PlayerMove : MonoBehaviour {
     void TPSMove()
     {
         if (Input.GetKey("w")) {
-            changeVector = -1;
+            changeVector = 1;
         }
         if (Input.GetKey("s")) {
-            changeVector = 1;
+            changeVector = -1;
         }
     }
 
@@ -54,19 +54,18 @@ public class PlayerMove : MonoBehaviour {
         Vector3 movement = Vector3.zero;
 
         if (Input.GetKey("w")) {
-            movement -= transform.up * playerSpeed;
+            movement += transform.forward * playerSpeed;
         }
         if (Input.GetKey("s")) {
-            movement += transform.up * playerSpeed;
+            movement -= transform.forward * playerSpeed;
         }
         if (Input.GetKey("a")) {
-            movement -= transform.right * playerSpeed;
+            movement = transform.right * playerSpeed;
         }
         if (Input.GetKey("d")) {
             movement += transform.right * playerSpeed;
         }
 
         this.transform.Translate(movement);
-        Camera.main.transform.Translate(movement);
     }
 }

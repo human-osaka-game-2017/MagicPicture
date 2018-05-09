@@ -20,6 +20,7 @@ public class fCameraSystem : MonoBehaviour {
 
             if (!changeMode) {
                 changeMode = true;
+                transform.rotation = player.transform.rotation;
             }
             else if (changeMode) {
                 changeMode = false;
@@ -75,8 +76,7 @@ public class fCameraSystem : MonoBehaviour {
         cameraPos.z = player.transform.position.z;
 
         transform.rotation = Quaternion.Euler(rotation);
-
-
+        
         if (Input.GetKey("up")) {
             rotation.x -= 1.5f;
         }

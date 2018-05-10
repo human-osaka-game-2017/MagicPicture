@@ -28,6 +28,6 @@ public class ReturnToTitle : MonoBehaviour {
     void OnClickButton()
     {
         gameObject.SetActive(false);
-        PlayerMove.sceneDivergence = (int)Scene.e_Start;
+        //PlayerMove.sceneDivergence = (int)Scene.e_Start;
     }
 }

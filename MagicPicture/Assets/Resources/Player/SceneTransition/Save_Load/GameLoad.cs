@@ -24,6 +24,6 @@ public class GameLoad : MonoBehaviour {
     //===========================
     void OnClickButton()
     {
-        PlayerMove.sceneDivergence = (int)Scene.e_LoadGame;
+        //PlayerMove.sceneDivergence = (int)Scene.e_LoadGame;
     }
 }

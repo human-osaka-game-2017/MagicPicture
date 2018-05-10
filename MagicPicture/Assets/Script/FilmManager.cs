@@ -16,7 +16,6 @@ public class FilmManager : MonoBehaviour {
     private int currentFilmNum  = 0;
     private int prevFilmNum     = 0;
     private bool isPhantomMode      = false;
-    private bool canDevelopPhantom  = false;
 
     //public void EntryModel(string objectName)
     //{

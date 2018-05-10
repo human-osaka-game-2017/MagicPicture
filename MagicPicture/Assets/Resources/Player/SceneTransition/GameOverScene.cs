@@ -14,10 +14,10 @@ public class GameOverScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (PlayerMove.sceneDivergence == (int)Scene.e_Start) {
-            TitleScene meteortmp = Instantiate(titleScene);
-            meteortmp.gameObject.SetActive(true);
-            Destroy(gameObject);
-        }
+        //if (PlayerMove.sceneDivergence == (int)Scene.e_Start) {
+        //    TitleScene meteortmp = Instantiate(titleScene);
+        //    meteortmp.gameObject.SetActive(true);
+        //    Destroy(gameObject);
+        //}
 	}
 }

@@ -13,9 +13,10 @@ public class PlayerRotation : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (PlayerMove.sceneDivergence == (int)Scene.e_Gameing) {
-            Rotation();
-        }
+        //if (PlayerMove.sceneDivergence == (int)Scene.e_Gameing) {
+        //    Rotation();
+        //}
+        Rotation();
     }
 
 

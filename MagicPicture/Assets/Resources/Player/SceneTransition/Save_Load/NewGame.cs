@@ -24,6 +24,6 @@ public class NewGame : MonoBehaviour {
     //===========================
     void OnClickButton()
     {
-        PlayerMove.sceneDivergence = (int)Scene.e_Gameing;
+       // PlayerMove.sceneDivergence = (int)Scene.e_Gameing;
     }
 }

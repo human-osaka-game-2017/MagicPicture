@@ -11,8 +11,8 @@ public class TitleScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (PlayerMove.sceneDivergence != (int)Scene.e_Start) {
-            Destroy(gameObject);
-        }
+		//if (PlayerMove.sceneDivergence != (int)Scene.e_Start) {
+  //          Destroy(gameObject);
+  //      }
 	}
 }

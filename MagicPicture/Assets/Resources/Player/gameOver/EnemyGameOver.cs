@@ -4,34 +4,45 @@ using UnityEngine;
 
 public class EnemyGameOver : MonoBehaviour {
 
-    float rotationX;
+    [SerializeField]
+    GameOverScene gameOverScene;
 
+    public Material[] _material;
+    int notActiveCount;
+    
     // Use this for initialization
     void Start () {
-		
-	}
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(rotationX , 0, 0);
+        //if (PlayerMove.sceneDivergence == (int)Scene.e_GameOver) {
+        //    if (notActiveCount == 60) {
 
-        if (rotationX != 0) {
-            if (transform.rotation.x > 0) {
-                gameObject.SetActive(false);
-
-                Debug.Log("GameOver!");
-            }
-        }
+        //        GameOverScene meteortmp = Instantiate(gameOverScene);
+        //        meteortmp.gameObject.SetActive(true);
+        //    }
+        //    if (notActiveCount >= 1) {
+        //        notActiveCount++;
+        //    }                   
+        //}
     }
 
 
+    //===========================
+    // もし敵キャラと衝突したら
+    //===========================
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "EnemyTag"){
-            
-            if (transform.rotation.x < 0) {
-                rotationX = 2.5f;
-            }
+            //if (PlayerMove.sceneDivergence != (int)Scene.e_GameOver) {
+
+            //    // リスタート時にリセットする
+            //    notActiveCount = 1;
+            //    PlayerMove.sceneDivergence = (int)Scene.e_GameOver;
+            //}
+            GetComponent<Renderer>().material = _material[0];
         }
     }
 }

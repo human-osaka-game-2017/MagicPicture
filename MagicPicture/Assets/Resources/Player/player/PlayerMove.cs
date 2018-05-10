@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,6 @@ public class PlayerMove : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
     }
     
     // Update is called once per frame
@@ -19,12 +18,12 @@ public class PlayerMove : MonoBehaviour {
         changeVector = 0;
 
         // TPS時
-        if (!fCameraSystem.changeMode) {
+        if (!this.GetComponent<CameraSystem>().IsFPSMode) {
             TPSMove();
         }
 
         // FPS時
-        if (fCameraSystem.changeMode) {
+        if (this.GetComponent<CameraSystem>().IsFPSMode) {
             FPSMove();
         }
     }
@@ -33,7 +32,8 @@ public class PlayerMove : MonoBehaviour {
     void FixedUpdate()
     {
         if (changeVector != 0) {
-            transform.position += transform.up * playerSpeed * changeVector;
+            transform.position += transform.forward * playerSpeed * changeVector;
+            //Camera.main.transform.Translate(transform.forward * playerSpeed * changeVector);
         }
     }
 
@@ -41,27 +41,31 @@ public class PlayerMove : MonoBehaviour {
     void TPSMove()
     {
         if (Input.GetKey("w")) {
-            changeVector = -1;
+            changeVector = 1;
         }
         if (Input.GetKey("s")) {
-            changeVector = 1;
+            changeVector = -1;
         }
     }
 
 
     void FPSMove()
     {
+        Vector3 movement = Vector3.zero;
+
         if (Input.GetKey("w")) {
-            transform.position -= transform.up * playerSpeed;
+            movement += transform.forward * playerSpeed;
         }
         if (Input.GetKey("s")) {
-            transform.position += transform.up * playerSpeed;
+            movement -= transform.forward * playerSpeed;
         }
         if (Input.GetKey("a")) {
-            transform.position -= transform.right * playerSpeed;
+            movement = transform.right * playerSpeed;
         }
         if (Input.GetKey("d")) {
-            transform.position += transform.right * playerSpeed;
+            movement += transform.right * playerSpeed;
         }
+
+        this.transform.Translate(movement);
     }
 }

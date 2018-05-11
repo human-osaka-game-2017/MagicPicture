@@ -17,7 +17,6 @@ public class CameraSystem: MonoBehaviour {
 
     void Start ()
     {
-
     }
 
     void Update()

@@ -21,7 +21,7 @@ public class ObjectAttribute : MonoBehaviour {
         this.isTakenObj = true;
     }
 
-    private bool canPhantom = false;
+    private bool canPhantom = true;
     public bool CanPhantom
     {
         get { return this.canPhantom; }

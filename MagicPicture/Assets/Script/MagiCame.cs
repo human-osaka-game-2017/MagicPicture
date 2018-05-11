@@ -17,6 +17,7 @@ public class MagiCame : MonoBehaviour
     {
         Quaternion rot = this.transform.rotation;
         rot.x = 0.0f;
+        rot.z = 0.0f;
         this.transform.rotation = rot;
     }
 
@@ -26,6 +27,7 @@ public class MagiCame : MonoBehaviour
         this.player = GameObject.Find("Player");
         this.filmManager = GameObject.Find("FilmManager").GetComponent<FilmManager>();
         this.ray = new Ray(this.transform.position, this.transform.forward.normalized);
+        GameObject.Find("FilmManager").GetComponent<FilmManager>().MaxDistance = kMaxDistance - kMinDistance;
     }
 
     void Update()
@@ -69,7 +71,7 @@ public class MagiCame : MonoBehaviour
                         float distance = collidedObj.distance;
                         if (kMinDistance < distance && distance < kMaxDistance)
                         {
-                            filmManager.SetFilm(collidedObj.collider.gameObject);
+                            filmManager.SetFilm(collidedObj, this.ray.origin);
                         }
                     }
                 }

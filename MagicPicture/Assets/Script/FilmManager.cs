@@ -62,37 +62,24 @@ public class FilmManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.C))
         {
             this.isPhantomMode = !this.isPhantomMode;
+            if (!this.isPhantomMode)
+            {
+                films[currentFilmNum].ResetPos(currentFilmNum);
+            }
+            else
+            {
+                ChangeSilhouette(films[currentFilmNum].obj);
+            }
         }
 
         if (this.isPhantomMode)
         {
-            //シルエットの更新
-            silhouette = films[currentFilmNum].obj ;
-            if (silhouette != null)
+           if(prevFilmNum != currentFilmNum)
             {
-                {
-                    silhouette.GetComponent<Collider>().isTrigger = true;
-
-                    //各定点に移動
-                    Vector3 pos =
-                    magicame.transform.position + (magicame.transform.forward.normalized * kPhantomDistance);
-                    pos.x =  ((int)(pos.x / kCoordinateUnit)) * kCoordinateUnit;
-                    pos.y -= this.films[this.currentFilmNum].offset_y;
-                    pos.z =  ((int)(pos.z / kCoordinateUnit)) * kCoordinateUnit;
-
-                    silhouette.transform.position = pos;
-                }
-
-                if (prevFilmNum != currentFilmNum)
-                {
-                    //前の状態に戻す
-                    this.films[prevFilmNum].ResetPos(prevFilmNum);
-                    //マテリアルうんぬんかんぬん
-
-                    //更新
-                    //マテリアルうんぬんかんぬん
-                }
+                ChangeSilhouette(films[currentFilmNum].obj);
             }
+
+            UpdateSilhouette();
 
             prevFilmNum = currentFilmNum;
         }
@@ -110,6 +97,7 @@ public class FilmManager : MonoBehaviour {
 
         //追加時の各設定
         this.phantoms[0].GetComponent<ObjectAttribute>().Taken();
+        this.phantoms[0].transform.parent = null;
     }
 
     //@param 撮影のray
@@ -132,7 +120,7 @@ public class FilmManager : MonoBehaviour {
                 {
                     this.films[this.currentFilmNum].scale = kScaleRatio_L;
                 }
-                else if(distance <= maxDistance * kScaleThreshold_MtoL_per * 0.01)
+                else if (distance <= maxDistance * kScaleThreshold_MtoL_per * 0.01)
                 {
                     this.films[this.currentFilmNum].scale = kScaleRatio_M;
                 }
@@ -144,10 +132,42 @@ public class FilmManager : MonoBehaviour {
 
             //rotation
             {
-                //todo 分割
-                float dx = filmingObj.collider.gameObject.transform.position.x - rayOrigin.x;
-                float dy = filmingObj.collider.gameObject.transform.position.y - rayOrigin.y;
-                this.films[this.currentFilmNum].rot_y = Mathf.Atan2(dy, dx);
+                //もう少しいい書き方あるかも
+                float dx = rayOrigin.x - filmingObj.collider.gameObject.transform.position.x;
+                float dz = rayOrigin.z - filmingObj.collider.gameObject.transform.position.z;
+                float deg = Mathf.Atan2(dz, dx) * Mathf.Rad2Deg;
+                if (deg <= 22.5f || 338.5f < deg)
+                {
+                    this.films[this.currentFilmNum].rot_y = 0.0f;
+                }
+                else if (deg <= 67.5f)
+                {
+                    this.films[this.currentFilmNum].rot_y = 45.0f;
+                }
+                else if (deg <= 112.5)
+                {
+                    this.films[this.currentFilmNum].rot_y = 90.0f;
+                }
+                else if (deg <= 157.5)
+                {
+                    this.films[this.currentFilmNum].rot_y = 135.0f;
+                }
+                else if (deg <= 202.5f)
+                {
+                    this.films[this.currentFilmNum].rot_y = 180.0f;
+                }
+                else if (deg <= 247.5f)
+                {
+                    this.films[this.currentFilmNum].rot_y = 225.0f;
+                }
+                else if (deg <= 292.5f)
+                {
+                    this.films[this.currentFilmNum].rot_y = 270.0f;
+                }
+                else if (deg <= 337.5f)
+                {
+                    this.films[this.currentFilmNum].rot_y = 315.0f;
+                }
             }
         }
 
@@ -159,38 +179,61 @@ public class FilmManager : MonoBehaviour {
 
             this.films[this.currentFilmNum].obj.transform.localScale *= this.films[this.currentFilmNum].scale;
 
-            this.films[this.currentFilmNum].obj.transform.rotation = Quaternion.Euler(new Vector3(
+            this.films[this.currentFilmNum].obj.transform.localRotation *= Quaternion.Euler(new Vector3(
                 0.0f,
                 this.films[this.currentFilmNum].rot_y,
-                0.0f));
+                0.0f)) *
+                Quaternion.Inverse(player.transform.localRotation);
         }
+    }
+
+    //@param 変更するオブジェクト
+    private void ChangeSilhouette(GameObject obj)
+    {
+        if (silhouette != null)
+        {
+            //todo シルエットをリセットできるように書く
+            films[currentFilmNum].ResetPos(currentFilmNum);
+            silhouette.transform.parent = null;
+           
+            silhouette.GetComponent<Collider>().isTrigger = false;
+        }
+
+        //変更
+        silhouette = obj;
+
+        if (silhouette != null)
+        {     
+            silhouette.transform.SetParent(player.transform, false);
+
+            silhouette.GetComponent<Collider>().isTrigger = true;
+        }
+    }
+
+    private void UpdateSilhouette()
+    {
+        //各定点に移動
+        Vector3 pos =
+        magicame.transform.position + (magicame.transform.forward.normalized * kPhantomDistance);
+        pos.x = ((int)(pos.x / kCoordinateUnit)) * kCoordinateUnit;
+        pos.y -= this.films[this.currentFilmNum].offset_y;
+        pos.z = ((int)(pos.z / kCoordinateUnit)) * kCoordinateUnit;
+
+        silhouette.transform.position = pos;
     }
 
     private void UpdateCurrentFilmNum()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (this.currentFilmNum == 0)
-            {
-                this.currentFilmNum = this.kMaxFilm;
-            }
-            else
-            {
-                --this.currentFilmNum;
-            }
+            this.currentFilmNum = (--currentFilmNum + this.kMaxFilm) % this.kMaxFilm;
+
             Debug.Log(this.currentFilmNum);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (this.currentFilmNum == this.kMaxFilm)
-            {
-                this.currentFilmNum = 0;
-            }
-            else
-            {
-                ++this.currentFilmNum;
-            }
+            this.currentFilmNum = (++currentFilmNum + this.kMaxFilm) % this.kMaxFilm;
             Debug.Log(this.currentFilmNum);
         }
     }
@@ -199,7 +242,10 @@ public class FilmManager : MonoBehaviour {
     //phantomの要素番号0番に追加
     private void AddPhantom(GameObject film)
     {
-        GameObject phantom = Instantiate(film);
+        GameObject phantom = Instantiate(
+            film,
+            film.transform.position,
+            film.transform.localRotation * player.transform.localRotation);
         phantom.GetComponent<Collider>().isTrigger = false;
 
         if (this.phantoms[0] != null)

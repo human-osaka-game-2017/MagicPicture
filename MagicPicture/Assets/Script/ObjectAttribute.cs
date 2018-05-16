@@ -38,7 +38,6 @@ public class ObjectAttribute : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         canPhantom = false;
-        Debug.Log("aaaaa\n");
     }
 
     private void OnTriggerExit(Collider other)

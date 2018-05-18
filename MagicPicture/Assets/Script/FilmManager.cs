@@ -18,7 +18,7 @@ public class FilmManager : MonoBehaviour {
     public struct Film
     {
         public GameObject obj;
-        public RawImage image;
+        public Texture2D image;
         public float offset_y;
         public float rot_y;
         public float scale;
@@ -57,16 +57,14 @@ public class FilmManager : MonoBehaviour {
         magicame      = player.transform.FindChild("FPSCamera").gameObject;
         photoUICamera = GameObject.Find("PhotoUICamera").GetComponent<Camera>();
 
-        Component canvas = this.transform.FindChild("Canvas");
-
-        for (int i = 0; i < kMaxFilm; ++i)
+        //ほかに書き方あるかも
+        RawImage[] images;
+        images = this.transform.FindChild("Canvas/photo").gameObject.GetComponentsInChildren<RawImage>();
+        for (int i = 0; i < images.Length; i++)
         {
-            this.films[i].image = canvas.gameObject.AddComponent<RawImage>();
+            images[i].texture = new Texture2D((int)images[i].rectTransform.rect.width, (int)images[i].rectTransform.rect.height);
+            //films[i].image = images[i].texture as Texture2D;
         }
-        //foreach (Film n in this.films)
-        //{
-        //    n.image= this.transform.FindChild("Canvas").gameObject.AddComponent<RawImage>();
-        //}
     }
 
     void Update()
@@ -204,13 +202,18 @@ public class FilmManager : MonoBehaviour {
 
         //スクショ
         {
-            Vector3 cameraPos = Vector3.right * this.films[this.currentFilmNum].scale * 100;
-            cameraPos = Quaternion.Euler(0.0f, this.films[this.currentFilmNum].rot_y, 0.0f) * cameraPos;
-            cameraPos.x += 100 * currentFilmNum;
-            cameraPos.y = 5000;
-            photoUICamera.transform.position = cameraPos;
+            //Vector3 cameraPos = Vector3.right * this.films[this.currentFilmNum].scale * 100;
+            //cameraPos = Quaternion.Euler(0.0f, this.films[this.currentFilmNum].rot_y, 0.0f) * cameraPos;
+            //cameraPos.x += 100 * currentFilmNum;
+            //cameraPos.y = 5000;
+            //photoUICamera.transform.position = cameraPos;
+            RawImage[] images;
+            images = this.transform.FindChild("Canvas/photo").gameObject.GetComponentsInChildren<RawImage>();
+
             photoUICamera.Render();
-            this.films[this.currentFilmNum].image.texture = photoUICamera.targetTexture;
+
+            (images[this.currentFilmNum].texture as Texture2D).ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            (images[this.currentFilmNum].texture as Texture2D).Apply();
         }
     }
 

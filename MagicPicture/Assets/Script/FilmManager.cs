@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class FilmManager : MonoBehaviour {
 
@@ -18,7 +19,7 @@ public class FilmManager : MonoBehaviour {
     public struct Film
     {
         public GameObject obj;
-        public Texture2D image;
+        public RawImage image;
         public float offset_y;
         public float rot_y;
         public float scale;
@@ -53,6 +54,7 @@ public class FilmManager : MonoBehaviour {
         //RawImage img = new RawImage();
         this.films    = new Film[kMaxFilm];
         this.phantoms = new GameObject[kMaxPhantom];
+
         player        = GameObject.Find("Player");
         magicame      = player.transform.FindChild("FPSCamera").gameObject;
         photoUICamera = GameObject.Find("PhotoUICamera").GetComponent<Camera>();
@@ -62,8 +64,7 @@ public class FilmManager : MonoBehaviour {
         images = this.transform.FindChild("Canvas/photo").gameObject.GetComponentsInChildren<RawImage>();
         for (int i = 0; i < images.Length; i++)
         {
-            images[i].texture = new Texture2D((int)images[i].rectTransform.rect.width, (int)images[i].rectTransform.rect.height);
-            //films[i].image = images[i].texture as Texture2D;
+            films[i].image = images[i];
         }
     }
 
@@ -102,6 +103,16 @@ public class FilmManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.F) && this.isPhantomMode)
         {
             if(silhouette.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
         }
     }
 
@@ -202,19 +213,34 @@ public class FilmManager : MonoBehaviour {
 
         //スクショ
         {
-            //Vector3 cameraPos = Vector3.right * this.films[this.currentFilmNum].scale * 100;
-            //cameraPos = Quaternion.Euler(0.0f, this.films[this.currentFilmNum].rot_y, 0.0f) * cameraPos;
-            //cameraPos.x += 100 * currentFilmNum;
-            //cameraPos.y = 5000;
-            //photoUICamera.transform.position = cameraPos;
-            RawImage[] images;
-            images = this.transform.FindChild("Canvas/photo").gameObject.GetComponentsInChildren<RawImage>();
-
-            photoUICamera.Render();
-
-            (images[this.currentFilmNum].texture as Texture2D).ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-            (images[this.currentFilmNum].texture as Texture2D).Apply();
+            StartCoroutine("CreatePhoto");
         }
+    }
+
+    IEnumerator CreatePhoto()
+    {
+        yield return new WaitForEndOfFrame();
+
+        int width = (int)films[this.currentFilmNum].image.rectTransform.rect.width;
+        int height = (int)films[this.currentFilmNum].image.rectTransform.rect.height;
+
+        // アクティブなレンダーテクスチャをキャッシュしておく
+        RenderTexture currentRT = RenderTexture.active;
+
+        RenderTexture renderTexture = new RenderTexture(width, height, 24);
+
+        // アクティブなレンダーテクスチャを一時的にTargetに変更する
+        RenderTexture.active = renderTexture;
+
+        photoUICamera.targetTexture = renderTexture;
+
+        photoUICamera.Render();
+
+        Texture2D photo = new Texture2D(width, height);
+        photo.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        photo.Apply();
+
+        films[this.currentFilmNum].image.texture = photo;
     }
 
     //@param 変更するオブジェクト

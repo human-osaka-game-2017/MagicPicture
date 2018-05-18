@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+<<<<<<< HEAD
   - enabled: 1
     path: Assets/Scene/Bstage.unity
     guid: 541dfa00db08de3428a746221d6204e3
+=======
+>>>>>>> e9a3e4d38c3df0d5836c4cdae02c32f2e94dfb16

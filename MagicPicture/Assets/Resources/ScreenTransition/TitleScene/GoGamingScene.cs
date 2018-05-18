@@ -28,6 +28,6 @@ public class GoGamingScene : MonoBehaviour {
         // 静的変数の再設定
         PlayerMove.Reset();
 
-        SceneManager.LoadScene("Funaoka");
+        SceneManager.LoadScene("Bstage");
     }
 }

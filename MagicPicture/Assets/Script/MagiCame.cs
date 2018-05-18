@@ -8,9 +8,9 @@ public class MagiCame : MonoBehaviour
     [SerializeField] private float kMaxDistance;
     [SerializeField] private float kRotSpeedDeg;
 
-    private GameObject player = null;
+    private GameObject player       = null;
     private FilmManager filmManager = null;
-    private Vector3 rotSpeed = Vector3.zero;
+    private Vector3 rotSpeed        = Vector3.zero;
     private Ray ray;
 
     public void Init()
@@ -71,7 +71,7 @@ public class MagiCame : MonoBehaviour
                         float distance = collidedObj.distance;
                         if (kMinDistance < distance && distance < kMaxDistance)
                         {
-                            filmManager.SetFilm(collidedObj, this.ray.origin);
+                            filmManager.Take(collidedObj, this.ray.origin);
                         }
                     }
                 }

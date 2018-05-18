@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FilmManager : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class FilmManager : MonoBehaviour {
     public struct Film
     {
         public GameObject obj;
+        public RawImage image;
         public float offset_y;
         public float rot_y;
         public float scale;
@@ -36,21 +38,35 @@ public class FilmManager : MonoBehaviour {
         set { maxDistance = value; }
     }
 
-    private Film[] films          = null;
-    private GameObject[] phantoms = null;
-    private GameObject silhouette = null;
-    private GameObject player     = null;
-    private GameObject magicame   = null;
+    private Film[]       films       = null;
+    private GameObject[] phantoms    = null;
+    private GameObject   silhouette  = null;
+    private GameObject   player      = null;
+    private GameObject   magicame    = null;
+    private Camera       photoUICamera = null;
     private int currentFilmNum    = 0;
     private int prevFilmNum       = 0;
     private bool isPhantomMode    = false;
 
     void Start()
     {
+        //RawImage img = new RawImage();
         this.films    = new Film[kMaxFilm];
         this.phantoms = new GameObject[kMaxPhantom];
-        player = GameObject.Find("Player");
-        magicame = player.transform.FindChild("FPSCamera").gameObject;
+        player        = GameObject.Find("Player");
+        magicame      = player.transform.FindChild("FPSCamera").gameObject;
+        photoUICamera = GameObject.Find("PhotoUICamera").GetComponent<Camera>();
+
+        Component canvas = this.transform.FindChild("Canvas");
+
+        for (int i = 0; i < kMaxFilm; ++i)
+        {
+            this.films[i].image = canvas.gameObject.AddComponent<RawImage>();
+        }
+        //foreach (Film n in this.films)
+        //{
+        //    n.image= this.transform.FindChild("Canvas").gameObject.AddComponent<RawImage>();
+        //}
     }
 
     void Update()
@@ -101,7 +117,7 @@ public class FilmManager : MonoBehaviour {
     }
 
     //@param 撮影のray
-    public void SetFilm(/*const*/ RaycastHit filmingObj ,Vector3 rayOrigin)
+    public void Take(RaycastHit filmingObj ,Vector3 rayOrigin)
     {
         if (this.films[this.currentFilmNum].obj != null)
         {
@@ -185,6 +201,17 @@ public class FilmManager : MonoBehaviour {
                 0.0f)) *
                 Quaternion.Inverse(player.transform.localRotation);
         }
+
+        //スクショ
+        {
+            Vector3 cameraPos = Vector3.right * this.films[this.currentFilmNum].scale * 100;
+            cameraPos = Quaternion.Euler(0.0f, this.films[this.currentFilmNum].rot_y, 0.0f) * cameraPos;
+            cameraPos.x += 100 * currentFilmNum;
+            cameraPos.y = 5000;
+            photoUICamera.transform.position = cameraPos;
+            photoUICamera.Render();
+            this.films[this.currentFilmNum].image.texture = photoUICamera.targetTexture;
+        }
     }
 
     //@param 変更するオブジェクト
@@ -195,7 +222,7 @@ public class FilmManager : MonoBehaviour {
             //todo シルエットをリセットできるように書く
             films[currentFilmNum].ResetPos(currentFilmNum);
             silhouette.transform.parent = null;
-           
+            silhouette.transform.localRotation *= Quaternion.Inverse(player.transform.localRotation);
             silhouette.GetComponent<Collider>().isTrigger = false;
         }
 

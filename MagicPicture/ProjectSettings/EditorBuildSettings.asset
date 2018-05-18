@@ -23,6 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Funaoka/Funaoka.unity
     guid: 268be1af652c02a47b457c646e352802
-  - enabled: 1
-    path: Assets/Scene/Funaoka/GameOverScene.unity
-    guid: 451e2aaf830097943b8c698fa8b77e02
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000

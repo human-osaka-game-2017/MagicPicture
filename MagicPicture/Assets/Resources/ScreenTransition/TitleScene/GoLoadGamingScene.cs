@@ -37,7 +37,7 @@ public class GoLoadGamingScene : MonoBehaviour {
         PlayerMove.Reset();
 
         // ゲームのシーンを開く
-        SceneManager.LoadScene("Funaoka");
+        SceneManager.LoadScene("Bstage");
     }
 
 

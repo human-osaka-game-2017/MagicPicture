@@ -50,7 +50,7 @@ public class FilmManager : MonoBehaviour {
         this.films    = new Film[kMaxFilm];
         this.phantoms = new GameObject[kMaxPhantom];
         player = GameObject.Find("Player");
-        magicame = player.transform.FindChild("FPSCamera").gameObject;
+        magicame = player.transform.Find("FPSCamera").gameObject;
     }
 
     void Update()

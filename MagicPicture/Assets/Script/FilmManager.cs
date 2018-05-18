@@ -54,6 +54,7 @@ public class FilmManager : MonoBehaviour {
         //RawImage img = new RawImage();
         this.films    = new Film[kMaxFilm];
         this.phantoms = new GameObject[kMaxPhantom];
+
         player        = GameObject.Find("Player");
         magicame      = player.transform.FindChild("FPSCamera").gameObject;
         photoUICamera = GameObject.Find("PhotoUICamera").GetComponent<Camera>();

@@ -21,12 +21,27 @@ public class ObjectAttribute : MonoBehaviour {
         this.isTakenObj = true;
     }
 
+    private bool canPhantom = true;
+    public bool CanPhantom
+    {
+        get { return this.canPhantom; }
+    }
+
     // Use this for initialization
     void Start () {
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        canPhantom = false;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        canPhantom = true;
+    }
 }

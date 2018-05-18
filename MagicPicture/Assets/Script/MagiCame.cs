@@ -8,14 +8,16 @@ public class MagiCame : MonoBehaviour
     [SerializeField] private float kMaxDistance;
     [SerializeField] private float kRotSpeedDeg;
 
-    private GameObject player = null;
-    private Vector3 rotSpeed = Vector3.zero;
+    private GameObject player       = null;
+    private FilmManager filmManager = null;
+    private Vector3 rotSpeed        = Vector3.zero;
     private Ray ray;
 
     public void Init()
     {
         Quaternion rot = this.transform.rotation;
-        rot.x = 90.0f;
+        rot.x = 0.0f;
+        rot.z = 0.0f;
         this.transform.rotation = rot;
     }
 
@@ -23,7 +25,9 @@ public class MagiCame : MonoBehaviour
     {
         rotSpeed.x = kRotSpeedDeg;
         this.player = GameObject.Find("Player");
+        this.filmManager = GameObject.Find("FilmManager").GetComponent<FilmManager>();
         this.ray = new Ray(this.transform.position, this.transform.forward.normalized);
+        GameObject.Find("FilmManager").GetComponent<FilmManager>().MaxDistance = kMaxDistance - kMinDistance;
     }
 
     void Update()
@@ -60,21 +64,15 @@ public class MagiCame : MonoBehaviour
                 collidedObj.collider.GetComponent<MeshRenderer>().material.color = Color.red;
 
                 //シャッターを切られた
-                if (/*!player.m_IsMoving &&*/Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     if (collidedObj.collider.GetComponent<ObjectAttribute>().CanTake)
                     {
                         float distance = collidedObj.distance;
                         if (kMinDistance < distance && distance < kMaxDistance)
                         {
-                            player.GetComponent<CameraSystem>().SetFilm(Instantiate
-                                    (collidedObj.collider.gameObject,
-                                    collidedObj.collider.gameObject.transform.position,
-                                    Quaternion.identity));
+                            filmManager.Take(collidedObj, this.ray.origin);
                         }
-
-                        player.GetComponent<CameraSystem>().SetFilm(Instantiate
-                            (collidedObj.collider.gameObject, collidedObj.collider.gameObject.transform.position, Quaternion.identity));
                     }
                 }
             }

@@ -1,162 +1,90 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Scene {
-    e_Start,    // 0 = スタート時
-    e_NewGame,  // 1 = 初めから
-    e_LoadGame, // 2 = 続きから
-    e_Gameing,  // 3 = ゲーム進行中
-    e_GameOver  // 4 = ゲームオーバー遷移
-}
-
 public class PlayerMove : MonoBehaviour {
 
-    [SerializeField]
-    TitleScene titleScene;
-
-    public static int   sceneDivergence;
-    public Material[]   _material;
-
-    const float         playerSpeed = 0.05f;
-    private int         loadCount;
+    public float        playerSpeed = 0.05f;    // デフォルト = 0.05f
+    private float       changeDirectionX;
+    private float       changeDirectionZ;
+    public static bool  playStopperFlag;
+    private Rigidbody   RigidbodyComponent;
     
     // Use this for initialization
     void Start () {
-<<<<<<< HEAD
-        TitleScene meteortmp = Instantiate(titleScene);
-        meteortmp.gameObject.SetActive(true);
-=======
->>>>>>> 2f413c416e5daff3c06b2a9b1012b1e78622001c
+        RigidbodyComponent = GetComponent<Rigidbody>();
     }
-
-<<<<<<< HEAD
+    
     // Update is called once per frame
-    void Update()
-    {
-        if (sceneDivergence == (int)Scene.e_Start) {
-            transform.position = new Vector3(0, 0, 0);
-            transform.rotation = new Quaternion(0, 0, 0, 0);
-            GetComponent<Renderer>().material = _material[0];
-        }
+    void Update () {
+        
+        if (playStopperFlag) RigidbodyComponent.constraints = RigidbodyConstraints.FreezeAll;
 
-        if (sceneDivergence == (int)Scene.e_LoadGame) {
-            ExecuteLoad();
-            sceneDivergence = (int)Scene.e_Gameing;
-=======
-        // TPS時
+        if (!playStopperFlag)
+
         if (!this.GetComponent<CameraSystem>().IsFPSMode) {
-            TPSMove();
+            DirectionZ();
         }
 
         // FPS時
         if (this.GetComponent<CameraSystem>().IsFPSMode) {
-            FPSMove();
->>>>>>> 2f413c416e5daff3c06b2a9b1012b1e78622001c
+            DirectionX();
+            DirectionZ();
         }
     }
     
     void FixedUpdate()
     {
-<<<<<<< HEAD
-        if (sceneDivergence == (int)Scene.e_Gameing) {
+        if (changeDirectionX != 0) {
+            transform.position += transform.right * playerSpeed * changeDirectionX;
+        }
+        if (changeDirectionZ != 0) {
+            transform.position += transform.forward * playerSpeed * changeDirectionZ;
+        }
 
-            // TPS時
-            if (!fCameraSystem.changeMode) {
-                ForwardAndBack();
-            }
+        changeDirectionX = 0;
+        changeDirectionZ = 0;
+    }
+    
 
-            // FPS時
-            if (fCameraSystem.changeMode) {
-                ForwardAndBack();
-                RightAndLeft();
-            }
-=======
-        if (changeVector != 0) {
-            transform.position += transform.up * playerSpeed * changeVector;
-            Camera.main.transform.Translate(transform.up * playerSpeed * changeVector);
->>>>>>> 2f413c416e5daff3c06b2a9b1012b1e78622001c
+    void DirectionZ()
+    {
+        if (Input.GetKey("w")) {
+            changeDirectionZ = 1;
+        }
+        if (Input.GetKey("s")) {
+            changeDirectionZ = -1;
         }
     }
 
 
-    //===========
-    // 前後移動
-    //===========
-    void ForwardAndBack()
+    void DirectionX()
     {
-        if (Input.GetKey("w")) {
-            transform.position += transform.forward * playerSpeed;
-        }
-        if (Input.GetKey("s")) {
-            transform.position -= transform.forward * playerSpeed;
-        }
-    }
-
-
-    //===========
-    // 左右移動
-    //===========
-    void RightAndLeft()
-    {
-<<<<<<< HEAD
-=======
-        Vector3 movement = Vector3.zero;
-
-        if (Input.GetKey("w")) {
-            movement -= transform.up * playerSpeed;
-        }
-        if (Input.GetKey("s")) {
-            movement += transform.up * playerSpeed;
-        }
->>>>>>> 2f413c416e5daff3c06b2a9b1012b1e78622001c
         if (Input.GetKey("a")) {
-            movement -= transform.right * playerSpeed;
+            changeDirectionX = -1;
         }
         if (Input.GetKey("d")) {
-            movement += transform.right * playerSpeed;
+            changeDirectionX = 1;
         }
-
-        this.transform.Translate(movement);
-        Camera.main.transform.Translate(movement);
     }
 
 
-    //=======================
-    // 要素をロードする関数
-    //=======================
-    float Load(string keyName)
+    public static bool GetStopperFlag()
     {
-        return PlayerPrefs.GetFloat(keyName, -1);
+        return playStopperFlag;
     }
 
-
-    //=============
-    // ロード実行
-    //=============
-    void ExecuteLoad()
+    public static void SetStopperFlag(bool _flag)
     {
-        LoadElement();
+        playStopperFlag = _flag;
     }
 
 
     //===================
-    // ロード要素を列挙
+    // 静的変数の再設定
     //===================
-    void LoadElement()
+    public static void Reset()
     {
-        Vector3     loadPos;
-        Quaternion  loadRot;
-
-        loadPos.x = Load("savePosX");
-        loadPos.y = Load("savePosY");
-        loadPos.z = Load("savePosZ");
-        loadRot.x = Load("saveRotX");
-        loadRot.y = Load("saveRotY");
-        loadRot.z = Load("saveRotZ");
-        loadRot.w = Load("saveRotW");
-
-        transform.position = loadPos;
-        transform.rotation = loadRot;
+        playStopperFlag = false;
     }
 }

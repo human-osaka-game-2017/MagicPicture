@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour {
 
-    Vector3 rotation;
+    private Vector3 rotation;
+    public float    rotarySpeed = 1.5f;
     
     // Use this for initialization
     void Start () {
@@ -13,9 +14,17 @@ public class PlayerRotation : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (PlayerMove.sceneDivergence == (int)Scene.e_Gameing) {
-            Rotation();
-        }
+
+        if (!PlayerMove.GetStopperFlag())
+
+        Rotation();
+    }
+
+    void FixedUpdate()
+    {
+        transform.Rotate(rotation);
+
+        rotation.y = 0;
     }
 
 
@@ -25,16 +34,10 @@ public class PlayerRotation : MonoBehaviour {
     void Rotation()
     {
         if (Input.GetKey("left")) {
-            rotation.y = -1.5f;
+            rotation.y = -rotarySpeed;
         }
         if (Input.GetKey("right")) {
-            rotation.y = 1.5f;
+            rotation.y = rotarySpeed;
         }
-
-        if (!Input.GetKey("left") && !Input.GetKey("right")) {
-            rotation.y = 0;
-        }
-        
-        transform.Rotate(rotation);
     }
 }

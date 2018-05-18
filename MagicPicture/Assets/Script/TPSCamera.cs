@@ -8,7 +8,7 @@ public class TPSCamera : MonoBehaviour {
     private GameObject player = null;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         this.player = GameObject.Find("Player");
         offset = this.transform.position - player.transform.position;
     }

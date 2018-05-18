@@ -4,68 +4,87 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour {
 
-    float           changeVector;
-    const float     playerSpeed = 0.05f;
-
-
+    public float        playerSpeed = 0.05f;    // デフォルト = 0.05f
+    private float       changeDirectionX;
+    private float       changeDirectionZ;
+    public static bool  playStopperFlag;
+    private Rigidbody   RigidbodyComponent;
+    
     // Use this for initialization
     void Start () {
+        RigidbodyComponent = GetComponent<Rigidbody>();
     }
     
     // Update is called once per frame
     void Update () {
+        
+        if (playStopperFlag) RigidbodyComponent.constraints = RigidbodyConstraints.FreezeAll;
 
-        changeVector = 0;
+        if (!playStopperFlag)
 
-        // TPS時
         if (!this.GetComponent<CameraSystem>().IsFPSMode) {
-            TPSMove();
+            DirectionZ();
         }
 
         // FPS時
         if (this.GetComponent<CameraSystem>().IsFPSMode) {
-            FPSMove();
+            DirectionX();
+            DirectionZ();
         }
     }
-
-
+    
     void FixedUpdate()
     {
-        if (changeVector != 0) {
-            transform.position += transform.forward * playerSpeed * changeVector;
-            //Camera.main.transform.Translate(transform.forward * playerSpeed * changeVector);
+        if (changeDirectionX != 0) {
+            transform.position += transform.right * playerSpeed * changeDirectionX;
+        }
+        if (changeDirectionZ != 0) {
+            transform.position += transform.forward * playerSpeed * changeDirectionZ;
+        }
+
+        changeDirectionX = 0;
+        changeDirectionZ = 0;
+    }
+    
+
+    void DirectionZ()
+    {
+        if (Input.GetKey("w")) {
+            changeDirectionZ = 1;
+        }
+        if (Input.GetKey("s")) {
+            changeDirectionZ = -1;
         }
     }
 
 
-    void TPSMove()
+    void DirectionX()
     {
-        if (Input.GetKey("w")) {
-            changeVector = 1;
-        }
-        if (Input.GetKey("s")) {
-            changeVector = -1;
-        }
-    }
-
-
-    void FPSMove()
-    {
-        Vector3 movement = Vector3.zero;
-
-        if (Input.GetKey("w")) {
-            movement += transform.forward * playerSpeed;
-        }
-        if (Input.GetKey("s")) {
-            movement -= transform.forward * playerSpeed;
-        }
         if (Input.GetKey("a")) {
-            movement = transform.right * playerSpeed;
+            changeDirectionX = -1;
         }
         if (Input.GetKey("d")) {
-            movement += transform.right * playerSpeed;
+            changeDirectionX = 1;
         }
+    }
 
-        this.transform.Translate(movement);
+
+    public static bool GetStopperFlag()
+    {
+        return playStopperFlag;
+    }
+
+    public static void SetStopperFlag(bool _flag)
+    {
+        playStopperFlag = _flag;
+    }
+
+
+    //===================
+    // 静的変数の再設定
+    //===================
+    public static void Reset()
+    {
+        playStopperFlag = false;
     }
 }

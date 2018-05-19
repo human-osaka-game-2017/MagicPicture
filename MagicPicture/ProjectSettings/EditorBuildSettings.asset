@@ -6,23 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scene/PreAlpha.unity
-    guid: 064bc3a243ea2ae4aa0ca1b91c99a234
-  - enabled: 0
-    path: Assets/Scene/a_stage.unity
-    guid: dbf4209a572098b49a9aea6070515152
-  - enabled: 0
-    path: Assets/Scene/Field.unity
-    guid: 68616176d8c29bd4b92d62597a888a1b
-  - enabled: 1
     path: Assets/Scene/Funaoka/TitleScene.unity
     guid: c44b44693bcd6ce41b06d2d048c7b18c
   - enabled: 1
+    path: Assets/Scene/Bstage.unity
+    guid: 541dfa00db08de3428a746221d6204e3
+  - enabled: 1
     path: Assets/Scene/Funaoka/ClearScene.unity
     guid: bee261d631a72ef4984604b532d5227b
-  - enabled: 1
-    path: Assets/Scene/Funaoka/Funaoka.unity
-    guid: 268be1af652c02a47b457c646e352802
-  - enabled: 1
-    path: Assets/Scene/Funaoka/GameOverScene.unity
-    guid: 451e2aaf830097943b8c698fa8b77e02

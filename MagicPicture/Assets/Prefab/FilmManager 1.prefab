@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4026495914038238}
   - component: {fileID: 114937030730007254}
   m_Layer: 0
-  m_Name: FilmManager 1
+  m_Name: FilmManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -61,7 +61,7 @@ public class MagiCame : MonoBehaviour
 
             if (Physics.Raycast(this.ray, out collidedObj))
             {
-                collidedObj.collider.GetComponent<MeshRenderer>().material.color = Color.red;
+                //collidedObj.collider.GetComponent<MeshRenderer>().material.color = Color.red;
 
                 //シャッターを切られた
                 if (Input.GetKeyDown(KeyCode.Space))

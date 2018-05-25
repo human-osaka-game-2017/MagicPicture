@@ -8,7 +8,8 @@ public class GoClearScene : MonoBehaviour {
     [SerializeField]
     GameClearUI     gameClearUI;
 
-    public float    joyMotionTime;
+    public  float   joyMotionTime;
+    private bool    clearFlag;
 
     // Use this for initialization
     void Start () {
@@ -17,7 +18,15 @@ public class GoClearScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+
+        // クリア時のみに有効
+        if (clearFlag) {
+
+            // 丸ボタンを押したら演出スキップ
+            if (Input.GetButtonDown("Fire3")) {
+                SceneManager.LoadScene("ClearScene");
+            }
+        }
     }
 
 
@@ -27,7 +36,9 @@ public class GoClearScene : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Player") {
-            PlayerMove.SetStopperFlag(true);
+            PlayerCtrl.SetStopperFlag(true);
+
+            clearFlag = true;
             
             StartCoroutine("WaitGoClearScene");
         }
@@ -43,7 +54,7 @@ public class GoClearScene : MonoBehaviour {
 
         // GameClearUIをアクティブ化
         gameClearUI.gameObject.SetActive(true);
-
+        
         // モーション分待ってゲームオーバーへ
         yield return new WaitForSeconds(joyMotionTime);
 

@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class HitEnemy : MonoBehaviour {
+public class HitSpear : MonoBehaviour {
 
-    [SerializeField] GameOverScene gameOverScene;
+    [SerializeField] GameOverScene  gameOverScene;
+    [SerializeField] OnGimmickSpear onGimmickSpear;
 
     public float damageMotionTime;
-
+    
     // Use this for initialization
     void Start () {
 		
@@ -16,17 +16,24 @@ public class HitEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-    }
+		
+	}
 
-    //=================================
-    // 敵キャラとプレイヤーの衝突判定
-    //=================================
+
+    //=============================
+    // プレイヤーに槍が当たったら
+    //=============================
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.name == "Player") {
+
+            // プレイヤーを動けなくする
             PlayerCtrl.SetStopperFlag(true);
 
+            // 感圧板のisTriggerをfalseにして槍の発射を止める
+            onGimmickSpear.GetComponent<Collider>().isTrigger = false;
+
+            // ゲームオーバーUIを表示
             StartCoroutine("WaitGoGameOver");
         }
     }

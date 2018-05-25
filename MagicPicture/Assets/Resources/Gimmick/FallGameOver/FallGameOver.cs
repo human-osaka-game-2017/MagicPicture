@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class FallGameOver : MonoBehaviour {
     
-    [SerializeField]
-    GameOverScene   gameOverScene;
+    [SerializeField] GameOverScene gameOverScene;
 
     GameObject      Player;
 
@@ -26,7 +25,7 @@ public class FallGameOver : MonoBehaviour {
     void FallPlayer()
     {
         if (Player.transform.position.y < transform.position.y) {
-            PlayerMove.SetStopperFlag(true);
+            PlayerCtrl.SetStopperFlag(true);
 
             gameOverScene.gameObject.SetActive(true);
         }

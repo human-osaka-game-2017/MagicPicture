@@ -178,11 +178,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!23 &23411999114518580
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -258,7 +258,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1846108457544270}
   m_Enabled: 1
-  m_ExtensionPropertyValues: []
 --- !u!114 &114037232862576694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,7 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc81d10890d7044d8965b397d9706f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TPSCameraEmpty: {fileID: 0}
   speed: 5
+  FPS_RotSpeed: 2
 --- !u!114 &114065710731819594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -422,8 +423,8 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.6
-  m_SlopeLimit: 45
+  m_Radius: 0.495
+  m_SlopeLimit: 20
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001

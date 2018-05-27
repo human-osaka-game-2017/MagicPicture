@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class GimmickSpear : MonoBehaviour {
 
-    [SerializeField] GetSpear       Spear;
+    [SerializeField] GameObject     Spear;
     [SerializeField] OnGimmickSpear onGimmickSpear;
 
-    public  float       speed = 20;                 // デフォルト値
-    public  float       shootingInterval = 0.5f;    // デフォルト値
-    private bool        flag;
-    private bool        flag2;
-    private float       firingTimer;
-    private Vector3[]   resetPos = new Vector3[5];
-    private GetSpear[]  spear    = new GetSpear[5];
+    public  float        speed = 20;                 // デフォルト値
+    public  float        shootingInterval = 0.5f;    // デフォルト値
+    private bool         flag;
+    private bool         flag2;
+    private float        firingTimer;
+    private Vector3[]    resetPos = new Vector3[5];
+    private GameObject[] spear    = new GameObject[5];
 
 
     // Use this for initialization

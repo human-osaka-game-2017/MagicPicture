@@ -13,7 +13,7 @@ public class OpenDoor_1 : MonoBehaviour
     public  float openRange;
     public  float closeRange;
     private int   direction;
-    private float movement;
+    private float mixSpeed;
 
     // Use this for initialization
     void Start() {
@@ -29,13 +29,13 @@ public class OpenDoor_1 : MonoBehaviour
 
 
         // いろいろ含めた速度
-        movement = speed * direction * Time.deltaTime;
+        mixSpeed = speed * direction * Time.deltaTime;
 
         // ドアを止める
         StopDoor();
 
         // ドアの開閉
-        Movement(Vector3.right * movement, Vector3.left * movement);
+        Movement(Vector3.right * mixSpeed, Vector3.left * mixSpeed);
     }
 
 

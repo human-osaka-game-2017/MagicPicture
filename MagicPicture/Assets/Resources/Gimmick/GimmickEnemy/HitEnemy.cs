@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class HitEnemy : MonoBehaviour {
 
-    [SerializeField]
-    GameOverScene       gameOverScene;
+    [SerializeField] GameOverScene gameOverScene;
 
-    public float        damageMotionTime;
+    public float damageMotionTime;
 
     // Use this for initialization
     void Start () {
@@ -23,10 +22,10 @@ public class HitEnemy : MonoBehaviour {
     //=================================
     // 敵キャラとプレイヤーの衝突判定
     //=================================
-    void OnCollisionEnter(Collision col)
+    private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player") {
-            PlayerMove.SetStopperFlag(true);
+        if (col.gameObject.name == "Player") {
+            PlayerCtrl.SetStopperFlag(true);
 
             StartCoroutine("WaitGoGameOver");
         }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HitSpear : MonoBehaviour {
 
-    [SerializeField] GameOverScene  gameOverScene;
+    [SerializeField] GameOverScene  gameOverUI;
     [SerializeField] OnGimmickSpear onGimmickSpear;
 
     public float damageMotionTime;
-    
+
     // Use this for initialization
     void Start () {
 		
@@ -16,27 +16,15 @@ public class HitSpear : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
 
+		if (HitCtrl.gameOverState == (int)gameState.e_HitSpear) {
 
-    //=============================
-    // プレイヤーに槍が当たったら
-    //=============================
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.name == "Player") {
+            // 感圧板のisTriggerをtrueにして槍の発射を止める
+            onGimmickSpear.GetComponent<Collider>().isTrigger = true;
 
-            // プレイヤーを動けなくする
-            PlayerCtrl.SetStopperFlag(true);
-
-            // 感圧板のisTriggerをfalseにして槍の発射を止める
-            onGimmickSpear.GetComponent<Collider>().isTrigger = false;
-
-            // ゲームオーバーUIを表示
             StartCoroutine("WaitGoGameOver");
         }
-    }
+	}
 
 
     //===================
@@ -46,7 +34,7 @@ public class HitSpear : MonoBehaviour {
     {
         // モーション分待ってゲームオーバーへ
         yield return new WaitForSeconds(damageMotionTime);
-
-        gameOverScene.gameObject.SetActive(true);
+        
+        gameOverUI.gameObject.SetActive(true);
     }
 }

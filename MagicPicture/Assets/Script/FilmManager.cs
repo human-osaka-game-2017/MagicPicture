@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.IO;
 
 public class FilmManager : MonoBehaviour {
@@ -15,6 +16,10 @@ public class FilmManager : MonoBehaviour {
     [SerializeField] private float kScaleRatio_S;
     [SerializeField] private float kScaleRatio_M;
     [SerializeField] private float kScaleRatio_L;
+    [SerializeField] private float kFilmSpace_z;
+
+    const int kFilmSpace_x = 100;
+    const int kFilmSpace_y = 5000;
 
     public struct Film
     {
@@ -27,8 +32,8 @@ public class FilmManager : MonoBehaviour {
         public void ResetPos(int filmIndex)
         {
             obj.transform.position = new Vector3(
-                100.0f * filmIndex,
-                5000.0f,
+                kFilmSpace_x * filmIndex,
+                kFilmSpace_y,
                 0.0f);
         }
     }
@@ -126,6 +131,7 @@ public class FilmManager : MonoBehaviour {
     }
 
     //@param 撮影のray
+    //@param 撮影時のrayのスタート位置
     public void Take(RaycastHit filmingObj ,Vector3 rayOrigin)
     {
         if (this.films[this.currentFilmNum].obj != null)
@@ -213,6 +219,14 @@ public class FilmManager : MonoBehaviour {
 
         //スクショ
         {
+            //todo 別スクリプトへ
+            //カメラの移動
+            Vector3 pos;
+            pos.x = kFilmSpace_x * currentFilmNum;
+            pos.y = kFilmSpace_y;
+            pos.z = kFilmSpace_z;
+            photoUICamera.transform.position = pos;
+
             StartCoroutine("CreatePhoto");
         }
     }
@@ -280,18 +294,18 @@ public class FilmManager : MonoBehaviour {
 
     private void UpdateCurrentFilmNum()
     {
+        Func<int, int> standardizationFilmNum = nextFilmNum => (nextFilmNum + this.kMaxFilm) % this.kMaxFilm;
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            this.currentFilmNum = (--currentFilmNum + this.kMaxFilm) % this.kMaxFilm;
-
-            Debug.Log(this.currentFilmNum);
+            this.currentFilmNum = standardizationFilmNum(--currentFilmNum);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            this.currentFilmNum = (++currentFilmNum + this.kMaxFilm) % this.kMaxFilm;
-            Debug.Log(this.currentFilmNum);
+            this.currentFilmNum = standardizationFilmNum(++currentFilmNum);
         }
+        Debug.Log(this.currentFilmNum);
     }
 
     //@param film
@@ -302,6 +316,7 @@ public class FilmManager : MonoBehaviour {
             film,
             film.transform.position,
             film.transform.localRotation * player.transform.localRotation);
+
         phantom.GetComponent<Collider>().isTrigger = false;
 
         if (this.phantoms[0] != null)
@@ -321,7 +336,7 @@ public class FilmManager : MonoBehaviour {
                 }
             }
 
-            Destroy(next);//nullでもエラー起きない
+            Destroy(next);//内部でnullチェックが行われているためnullでもエラー起きない
         }
         else
         {

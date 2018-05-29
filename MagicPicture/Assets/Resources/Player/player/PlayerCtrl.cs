@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour {
     
-    public static bool playStopperFlag;   
+    public static bool playStopperFlag; 
     
+    public int   operationState;
+
     public float fwdSpeed;
     public float backSpeed;
     public float horizontalSpeed;
@@ -25,10 +27,14 @@ public class PlayerCtrl : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
-        
+    void Update()
+    {
         vertaxis = Input.GetAxis("Vertical");
-        horzaxis = Input.GetAxis("Horizontal");
+
+        // FPS時
+        if (this.GetComponent<CameraSystem>().IsFPSMode) {
+            horzaxis = Input.GetAxis("Horizontal");
+        }
     }
 
     void FixedUpdate()
@@ -41,30 +47,34 @@ public class PlayerCtrl : MonoBehaviour {
 
         if (!playStopperFlag) {
 
-            fwdVec   = transform.forward;
-            rightVec = transform.right;
+            // コントローラー
+            if (operationState == 1) {
 
-            if (!this.GetComponent<CameraSystem>().IsFPSMode) {
+                fwdVec = transform.forward;
+                rightVec = transform.right;
 
-                Rotation(TPS_RotSpeed);
+                if (!this.GetComponent<CameraSystem>().IsFPSMode) {
+
+                    Rotation(TPS_RotSpeed);
+                }
+                // FPS時
+                if (this.GetComponent<CameraSystem>().IsFPSMode) {
+
+                    Rotation(FPS_RotSpeed);
+                }
+
+                if (vertaxis > 0) verticality = fwdSpeed;   // 前移動
+                if (vertaxis < 0) verticality = backSpeed;  // 後ろ移動
+
+                // 移動
+                move = fwdVec * vertaxis * verticality + rightVec * horzaxis * horizontalSpeed;
+
+                // 移動
+                charctrl.SimpleMove(move);
+
+                // 瞬間的に回転するのはモーションブレンドでOK
+                //animctrl.SetFloat("Speed", charctrl.velocity.magnitude / Speed);    //追加
             }
-            // FPS時
-            if (this.GetComponent<CameraSystem>().IsFPSMode) {
-
-                Rotation(FPS_RotSpeed);
-            }
-            
-            if (vertaxis > 0) verticality = fwdSpeed;   // 前移動
-            if (vertaxis < 0) verticality = backSpeed;  // 後ろ移動
-            
-            // 移動
-            move = fwdVec * vertaxis * verticality + rightVec * horzaxis * horizontalSpeed;
-
-            // 移動
-            charctrl.SimpleMove(move);
-            
-            // 瞬間的に回転するのはモーションブレンドでOK
-            //animctrl.SetFloat("Speed", charctrl.velocity.magnitude / Speed);    //追加
         }
     }
     

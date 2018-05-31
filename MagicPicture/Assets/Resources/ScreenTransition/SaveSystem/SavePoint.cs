@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SavePoint : MonoBehaviour {
-
+    
     private GameObject Player;
     
     // Use this for initialization
@@ -13,25 +13,23 @@ public class SavePoint : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
 
 
-    //=============================
-    // セーブポイントとの衝突判定
-    //=============================
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Player") {            
-            PlayerPrefs.DeleteAll();        // すべてのセーブデータを削除
+        if (col.gameObject.name == "Player") {
+
+            PlayerPrefs.DeleteAll();    // すべてのセーブデータを削除
 
             SaveElement();
-            PlayerPrefs.Save();             // セーブ実行
-            
+            PlayerPrefs.Save();         // セーブ実行
+
             Destroy(gameObject);
         }
     }
-
+    
 
     //=================
     // セーブする関数

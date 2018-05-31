@@ -6,6 +6,9 @@ TagManager:
   tags:
   - EnemyTag
   - b
+  - SpearTag
+  - GameClearTag
+  - KeyObjTag
   layers:
   - Default
   - TransparentFX

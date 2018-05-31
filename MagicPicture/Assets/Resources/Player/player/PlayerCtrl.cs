@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour {
+    public static bool playStopperFlag; 
     
-    public static bool playStopperFlag;   
-    
+    public int   operationState;
+
     public float fwdSpeed;
     public float backSpeed;
     public float horizontalSpeed;

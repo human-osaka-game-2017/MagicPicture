@@ -1,0 +1,10 @@
+diff a/MagicPicture/Assets/Scene/Funaoka/Funaoka.unity b/MagicPicture/Assets/Scene/Funaoka/Funaoka.unity	(rejected hunks)
+@@ -872,7 +872,7 @@
+       objectReference: {fileID: 0}
+     - target: {fileID: 4790237098943100, guid: b4b96dc2ac0096345bc9b7bf238e9702, type: 2}
+       propertyPath: m_LocalPosition.z
+-      value: 3.88
++      value: -9.26
+       objectReference: {fileID: 0}
+     - target: {fileID: 4790237098943100, guid: b4b96dc2ac0096345bc9b7bf238e9702, type: 2}
+       propertyPath: m_LocalRotation.x

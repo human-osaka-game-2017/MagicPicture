@@ -7433,6 +7433,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTake: 0
+--- !u!114 &957616965 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114037232862576694, guid: ee2ce3c7e45f62e429ef7c49e672957c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1692878274}
+  m_Script: {fileID: 11500000, guid: bbc81d10890d7044d8965b397d9706f1, type: 3}
 --- !u!1001 &962953249
 Prefab:
   m_ObjectHideFlags: 0
@@ -13345,6 +13351,16 @@ Prefab:
         type: 2}
       propertyPath: kMaxDistance
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114053673592602054, guid: ee2ce3c7e45f62e429ef7c49e672957c,
+        type: 2}
+      propertyPath: playerCtrl
+      value: 
+      objectReference: {fileID: 957616965}
+    - target: {fileID: 114037232862576694, guid: ee2ce3c7e45f62e429ef7c49e672957c,
+        type: 2}
+      propertyPath: operationState
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}

@@ -877,6 +877,10 @@ Prefab:
       propertyPath: m_Name
       value: TPSCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 1391215598542878, guid: 3dd42c65d342d5f4d8bfdbeeac2b44c0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dd42c65d342d5f4d8bfdbeeac2b44c0, type: 2}
   m_IsPrefabParent: 0

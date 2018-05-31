@@ -20,7 +20,7 @@ public class OnGimmickSpear : MonoBehaviour {
     //===========================
     // Playerが感圧板に触れたら
     //===========================
-    private void OnTriggerStay(Collider col)
+    private void OnCollisionStay(Collision col)
     {
         if (col.gameObject.name == "Player") {
             onFlag = true;

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class HitEnemy : MonoBehaviour {
 
-    [SerializeField] GameOverScene gameOverScene;
+    [SerializeField] GameOverScene gameOverUI;
 
     public float damageMotionTime;
 
@@ -16,21 +16,12 @@ public class HitEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-    }
 
-    //=================================
-    // 敵キャラとプレイヤーの衝突判定
-    //=================================
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.name == "Player") {
-            PlayerCtrl.SetStopperFlag(true);
+        if (HitCtrl.gameOverState == (int)gameState.e_HitEnemy) {
 
             StartCoroutine("WaitGoGameOver");
         }
     }
-
 
     //===================
     // ゲームオーバーへ
@@ -39,7 +30,7 @@ public class HitEnemy : MonoBehaviour {
     {
         // モーション分待ってゲームオーバーへ
         yield return new WaitForSeconds(damageMotionTime);
-
-        gameOverScene.gameObject.SetActive(true);
+        
+        gameOverUI.gameObject.SetActive(true);
     }
 }

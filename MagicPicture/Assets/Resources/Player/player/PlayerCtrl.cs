@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour {
-
-    [SerializeField] GameObject TPSCameraEmpty;
-
+    
     public static bool playStopperFlag;   
     
-    public float speed;
+    public float fwdSpeed;
+    public float backSpeed;
+    public float horizontalSpeed;
+    public float TPS_RotSpeed;
     public float FPS_RotSpeed;
 
     private CharacterController charctrl;
@@ -26,73 +27,68 @@ public class PlayerCtrl : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         
-        vertaxis = Input.GetAxis("Vertical");
-        horzaxis = Input.GetAxis("Horizontal");
+        vertaxis = Input.GetAxis("VerticalForMove");
+        horzaxis = Input.GetAxis("HorizontalForMove");
     }
 
     void FixedUpdate()
     {
         Vector3 move        = Vector3.zero;
         Vector3 rotation    = Vector3.zero;
-        Vector3 fwdVec   = Vector3.zero;
-        Vector3 rightVec = Vector3.zero;
-        
+        Vector3 fwdVec      = Vector3.zero;
+        Vector3 rightVec    = Vector3.zero;
+        float   verticality = 0;
+
         if (!playStopperFlag) {
+
+            fwdVec   = transform.forward;
+            rightVec = transform.right;
 
             if (!this.GetComponent<CameraSystem>().IsFPSMode) {
 
-                fwdVec   = TPSCameraEmpty.transform.forward;
-                rightVec = TPSCameraEmpty.transform.right;
+                Rotation(TPS_RotSpeed);
             }
             // FPS時
             if (this.GetComponent<CameraSystem>().IsFPSMode) {
 
-                fwdVec   = transform.forward;
-                rightVec = transform.right;
-
-                FPSRotation();
+                Rotation(FPS_RotSpeed);
             }
             
-            // 移動方向
-            move = fwdVec * vertaxis + rightVec * horzaxis;
+            if (vertaxis > 0) verticality = fwdSpeed;   // 前移動
+            if (vertaxis < 0) verticality = backSpeed;  // 後ろ移動
+            
+            // 移動
+            move = fwdVec * vertaxis * verticality + rightVec * horzaxis * horizontalSpeed;
 
             // 移動
-            charctrl.SimpleMove(move * speed);
+            charctrl.SimpleMove(move);
             
-            // もし移動中なら
-            if (move.magnitude > 0) {
-
-                if (!this.GetComponent<CameraSystem>().IsFPSMode) {
-                    
-                    rotation.y = Vector3.SignedAngle(Vector3.forward, move, Vector3.up);                    
-                    transform.eulerAngles = rotation;
-                }
-
-                // 瞬間的に回転するのはモーションブレンドでOK
-                //animctrl.SetFloat("Speed", charctrl.velocity.magnitude / Speed);    //追加
-            }
+            // 瞬間的に回転するのはモーションブレンドでOK
+            //animctrl.SetFloat("Speed", charctrl.velocity.magnitude / Speed);    //追加
         }
     }
     
 
-    private void FPSRotation()
+    private void Rotation(float _rotSpeed)
     {
         // Y軸回転
-        if (Input.GetAxis("Horizontal2") != 0) {
-            if (addRotSpeed < 0.5f) addRotSpeed += 0.005f;
+        if (Input.GetAxis("HorizontalForView") != 0) {
+            if (addRotSpeed < 0.5f) {
+                addRotSpeed += 0.005f;
+            }
         }
-        if (Input.GetAxis("Horizontal2") == 0) {
+        if (Input.GetAxis("HorizontalForView") == 0) {
             addRotSpeed = 0;
         }
-        if (Input.GetAxis("Horizontal2") > 0) {
-            transform.Rotate(0, -FPS_RotSpeed * addRotSpeed, 0);
+        if (Input.GetAxis("HorizontalForView") > 0) {
+            transform.Rotate(0, -_rotSpeed * addRotSpeed, 0);
         }
-        if (Input.GetAxis("Horizontal2") < 0) {
-            transform.Rotate(0, FPS_RotSpeed * addRotSpeed, 0);
+        if (Input.GetAxis("HorizontalForView") < 0) {
+            transform.Rotate(0, _rotSpeed * addRotSpeed, 0);
         }
     }
 
-
+    
     public static bool GetStopperFlag()
     {
         return playStopperFlag;

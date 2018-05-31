@@ -15,7 +15,7 @@ public class StartSelect : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        float vertaxis = Input.GetAxis("Vertical");
+        float vertaxis = Input.GetAxis("VerticalForMove");
         
         if (vertaxis < 0) {
             GameState.SetGameState((int)state.load);
@@ -34,9 +34,9 @@ public class StartSelect : MonoBehaviour {
 
 
         // 丸ボタンを押したら
-        if (Input.GetButtonDown("Fire3")) {
+        //if (Input.GetButtonDown("Fire3")) {
 
-            SceneManager.LoadScene("Funaoka");
-        }
+        //    SceneManager.LoadScene("Funaoka");
+        //}
     }
 }

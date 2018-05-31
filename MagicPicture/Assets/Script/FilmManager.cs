@@ -38,6 +38,7 @@ public class FilmManager : MonoBehaviour {
         }
     }
 
+    //Magicameにセットしてもらう
     private float maxDistance = 0;
     public  float MaxDistance
     {
@@ -79,7 +80,7 @@ public class FilmManager : MonoBehaviour {
         UpdateCurrentFilmNum();
 
         //PhantomModeの変更
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetButtonDown("ForSilhouetteMode"))
         {
             this.isPhantomMode = !this.isPhantomMode;
             if (!this.isPhantomMode)
@@ -105,19 +106,15 @@ public class FilmManager : MonoBehaviour {
         }
 
         //現像
-        if (Input.GetKeyDown(KeyCode.F) && this.isPhantomMode)
+        if (Input.GetButtonDown("ForDevelopPhantom") && this.isPhantomMode)
         {
             if(silhouette.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        //写真、オブジェクトの回転
+        if (Input.GetButtonDown("ForRotatePicture"))
         {
             
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-
         }
     }
 
@@ -208,13 +205,15 @@ public class FilmManager : MonoBehaviour {
 
             this.films[this.currentFilmNum].ResetPos(currentFilmNum);
 
+            //this.films[this.currentFilmNum].obj.transform.SetParent(player.transform, true);
+
             this.films[this.currentFilmNum].obj.transform.localScale *= this.films[this.currentFilmNum].scale;
 
-            this.films[this.currentFilmNum].obj.transform.localRotation *= Quaternion.Euler(new Vector3(
-                0.0f,
-                this.films[this.currentFilmNum].rot_y,
-                0.0f)) *
-                Quaternion.Inverse(player.transform.localRotation);
+            //this.films[this.currentFilmNum].obj.transform.localRotation *= Quaternion.Euler(new Vector3(
+            //    0.0f,
+            //    this.films[this.currentFilmNum].rot_y,
+            //    0.0f)) *
+            //    Quaternion.Inverse(player.transform.localRotation);
         }
 
         //スクショ
@@ -273,9 +272,14 @@ public class FilmManager : MonoBehaviour {
         silhouette = obj;
 
         if (silhouette != null)
-        {     
-            silhouette.transform.SetParent(player.transform, false);
+        {
 
+            this.films[this.currentFilmNum].obj.transform.localRotation *= Quaternion.Euler(new Vector3(
+                0.0f,
+                this.films[this.currentFilmNum].rot_y,
+                0.0f));
+            silhouette.transform.SetParent(player.transform, true);
+            //silhouette.transform.parent = player.transform;
             silhouette.GetComponent<Collider>().isTrigger = true;
         }
     }
@@ -296,20 +300,22 @@ public class FilmManager : MonoBehaviour {
     {
         Func<int, int> standardizationFilmNum = nextFilmNum => (nextFilmNum + this.kMaxFilm) % this.kMaxFilm;
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetButtonDown("ForRotatePicture"))
         {
-            this.currentFilmNum = standardizationFilmNum(--currentFilmNum);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            this.currentFilmNum = standardizationFilmNum(++currentFilmNum);
+            if (Input.GetAxis("ForRotatePicture") < 0.0f)
+            {
+                this.currentFilmNum = standardizationFilmNum(--currentFilmNum);
+            }
+            else if (Input.GetAxis("ForRotatePicture") > 0.0f)
+            {
+                this.currentFilmNum = standardizationFilmNum(++currentFilmNum);
+            }
         }
         Debug.Log(this.currentFilmNum);
     }
 
-    //@param film
     //phantomの要素番号0番に追加
+    //@param film
     private void AddPhantom(GameObject film)
     {
         GameObject phantom = Instantiate(

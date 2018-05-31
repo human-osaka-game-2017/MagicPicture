@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour {
-    
     public static bool playStopperFlag; 
     
     public int   operationState;
@@ -27,14 +26,10 @@ public class PlayerCtrl : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        vertaxis = Input.GetAxis("Vertical");
-
-        // FPS時
-        if (this.GetComponent<CameraSystem>().IsFPSMode) {
-            horzaxis = Input.GetAxis("Horizontal");
-        }
+    void Update() {
+        
+        vertaxis = Input.GetAxis("VerticalForMove");
+        horzaxis = Input.GetAxis("HorizontalForMove");
     }
 
     void FixedUpdate()
@@ -47,34 +42,30 @@ public class PlayerCtrl : MonoBehaviour {
 
         if (!playStopperFlag) {
 
-            // コントローラー
-            if (operationState == 1) {
+            fwdVec   = transform.forward;
+            rightVec = transform.right;
 
-                fwdVec = transform.forward;
-                rightVec = transform.right;
+            if (!this.GetComponent<CameraSystem>().IsFPSMode) {
 
-                if (!this.GetComponent<CameraSystem>().IsFPSMode) {
-
-                    Rotation(TPS_RotSpeed);
-                }
-                // FPS時
-                if (this.GetComponent<CameraSystem>().IsFPSMode) {
-
-                    Rotation(FPS_RotSpeed);
-                }
-
-                if (vertaxis > 0) verticality = fwdSpeed;   // 前移動
-                if (vertaxis < 0) verticality = backSpeed;  // 後ろ移動
-
-                // 移動
-                move = fwdVec * vertaxis * verticality + rightVec * horzaxis * horizontalSpeed;
-
-                // 移動
-                charctrl.SimpleMove(move);
-
-                // 瞬間的に回転するのはモーションブレンドでOK
-                //animctrl.SetFloat("Speed", charctrl.velocity.magnitude / Speed);    //追加
+                Rotation(TPS_RotSpeed);
             }
+            // FPS時
+            if (this.GetComponent<CameraSystem>().IsFPSMode) {
+
+                Rotation(FPS_RotSpeed);
+            }
+            
+            if (vertaxis > 0) verticality = fwdSpeed;   // 前移動
+            if (vertaxis < 0) verticality = backSpeed;  // 後ろ移動
+            
+            // 移動
+            move = fwdVec * vertaxis * verticality + rightVec * horzaxis * horizontalSpeed;
+
+            // 移動
+            charctrl.SimpleMove(move);
+            
+            // 瞬間的に回転するのはモーションブレンドでOK
+            //animctrl.SetFloat("Speed", charctrl.velocity.magnitude / Speed);    //追加
         }
     }
     
@@ -82,18 +73,18 @@ public class PlayerCtrl : MonoBehaviour {
     private void Rotation(float _rotSpeed)
     {
         // Y軸回転
-        if (Input.GetAxis("Horizontal2") != 0) {
+        if (Input.GetAxis("HorizontalForView") != 0) {
             if (addRotSpeed < 0.5f) {
                 addRotSpeed += 0.005f;
             }
         }
-        if (Input.GetAxis("Horizontal2") == 0) {
+        if (Input.GetAxis("HorizontalForView") == 0) {
             addRotSpeed = 0;
         }
-        if (Input.GetAxis("Horizontal2") > 0) {
+        if (Input.GetAxis("HorizontalForView") > 0) {
             transform.Rotate(0, -_rotSpeed * addRotSpeed, 0);
         }
-        if (Input.GetAxis("Horizontal2") < 0) {
+        if (Input.GetAxis("HorizontalForView") < 0) {
             transform.Rotate(0, _rotSpeed * addRotSpeed, 0);
         }
     }

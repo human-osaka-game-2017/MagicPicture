@@ -27,7 +27,6 @@ GameObject:
   - component: {fileID: 114616403438220446}
   - component: {fileID: 114037232862576694}
   - component: {fileID: 114597461910987208}
-  - component: {fileID: 114053673592602054}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -160,7 +159,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1436547381807872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.721, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4145724603647498}
@@ -331,24 +330,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc81d10890d7044d8965b397d9706f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operationState: 0
   fwdSpeed: 5
   backSpeed: 1
   horizontalSpeed: 3
   TPS_RotSpeed: 10
   FPS_RotSpeed: 2
---- !u!114 &114053673592602054
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1436547381807872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee32b2b6cff1a348a74d5030556a7b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCtrl: {fileID: 114037232862576694}
 --- !u!114 &114065710731819594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -531,7 +517,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 20
-  m_StepOffset: 0.4
+  m_StepOffset: 0.5
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.01, z: 0}

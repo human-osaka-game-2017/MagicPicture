@@ -15,12 +15,12 @@ public class GoTitleButton : MonoBehaviour {
 	void Update () {
 
         // 丸ボタンを押したら演出スキップ
-        if (Input.GetButtonDown("Fire3")) {
+        //if (Input.GetButtonDown("Fire3")) {
 
-            // stateをtitleに
-            GameState.SetGameState((int)state.title);
+        //    // stateをtitleに
+        //    GameState.SetGameState((int)state.title);
 
-            SceneManager.LoadScene("TitleScene");
-        }
+        //    SceneManager.LoadScene("TitleScene");
+        //}
     }
 }

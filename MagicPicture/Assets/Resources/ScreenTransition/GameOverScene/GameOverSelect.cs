@@ -22,7 +22,7 @@ public class GameOverSelect : MonoBehaviour {
         float horzaxis = 0;
 
         if (PlayerCtrl.GetStopperFlag()) {
-            horzaxis = Input.GetAxis("Horizontal");
+            horzaxis = Input.GetAxis("HorizontalForMove");
         }
 
         // スティックを左に倒したら
@@ -42,10 +42,10 @@ public class GameOverSelect : MonoBehaviour {
 
 
         // 丸ボタンを押したら
-        if (Input.GetButtonDown("Fire3")) {
-            if (select == 1) GoQuit();
-            if (select == 2) GoLoading();
-        }
+        //if (Input.GetButtonDown("")) {
+        //    if (select == 1) GoQuit();
+        //    if (select == 2) GoLoading();
+        //}
     }
 
 

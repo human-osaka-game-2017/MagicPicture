@@ -36,19 +36,13 @@ public class MagiCame : MonoBehaviour
         this.ray.direction = this.transform.forward.normalized;
         this.ray.origin = this.transform.position;
 
-        if (Input.GetKey("up"))
-        {
-            this.transform.Rotate(-rotSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey("down"))
-        {
-            this.transform.Rotate(rotSpeed * Time.deltaTime);
-        }
+        this.transform.Rotate(rotSpeed * Input.GetAxis("VerticalForView") * Time.deltaTime);
+
         // カメラ上下回転リセット
-        if (Input.GetKeyDown("x"))
-        {
-            Init();
-        }
+        //if (Input.GetButtonDown("ForResetCameraView"))
+        //{
+        //    Init();s
+        //}
 
         //撮影
         //レイ表示
@@ -64,7 +58,7 @@ public class MagiCame : MonoBehaviour
                 //collidedObj.collider.GetComponent<MeshRenderer>().material.color = Color.red;
 
                 //シャッターを切られた
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetButtonDown("ForTakePicture"))
                 {
                     if (collidedObj.collider.GetComponent<ObjectAttribute>().CanTake)
                     {

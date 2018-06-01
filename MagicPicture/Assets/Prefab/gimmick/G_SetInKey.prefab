@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4933941805120062}
   - component: {fileID: 114927171040570456}
   - component: {fileID: 114174506975340186}
+  - component: {fileID: 114904295134204512}
   m_Layer: 0
   m_Name: G_SetInKey
   m_TagString: Untagged
@@ -243,8 +244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmp: {fileID: 114254092988262810}
   designationObj: 
-  absoluteScale: {x: 1, y: 1, z: 1}
-  rangePoint_Rot: {x: 50, y: 180, z: 0}
+  rangeScale: {x: 1, y: 1, z: 1}
+  rangePoint_Rot: {x: 50, y: 180, z: -5}
   minRange: {x: 20, y: 20, z: 10}
   maxRange: {x: 20, y: 60, z: 10}
 --- !u!114 &114254092988262810
@@ -277,6 +278,18 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267849478570554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114904295134204512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180256905853436}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}

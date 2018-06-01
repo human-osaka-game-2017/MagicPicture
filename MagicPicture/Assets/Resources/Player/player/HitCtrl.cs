@@ -36,14 +36,14 @@ public class HitCtrl : MonoBehaviour {
 
             gameOverState = (int)gameState.e_HitEnemy;
         }
-
+        
         // Spearゲームオーバー
         if (hit.gameObject.tag == "SpearTag") {
             PlayerCtrl.SetStopperFlag(true);
 
             gameOverState = (int)gameState.e_HitSpear;
         }
-
+        
         // ゲームクリア
         if (hit.gameObject.tag == "GameClearTag") {
             PlayerCtrl.SetStopperFlag(true);

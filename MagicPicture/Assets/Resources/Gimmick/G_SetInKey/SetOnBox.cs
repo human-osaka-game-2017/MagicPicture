@@ -5,7 +5,6 @@ using UnityEngine;
 public class SetOnBox : MonoBehaviour {
 
     [SerializeField] TmpProcessing tmp;
-    [SerializeField] GimmickState  g_State;
 
     public  string    designationObj;
     public  Vector3   rangeScale;
@@ -53,17 +52,11 @@ public class SetOnBox : MonoBehaviour {
 
                     // 特にオブジェの指定なし
                     if (designationObj == "") {
-                        //tmp.state = 1;
-
-                        // GimmickState Actionの呼び出し
-                        g_State.Action();
+                        tmp.state = true;
                     }
                     // オブジェの指定あり
                     if (designationObj == hitCol.collider.gameObject.name) {
-                        //tmp.state = 2;
-
-                        // GimmickState Actionの呼び出し
-                        g_State.Action();
+                        tmp.state = true;
                     }
                 }
             }

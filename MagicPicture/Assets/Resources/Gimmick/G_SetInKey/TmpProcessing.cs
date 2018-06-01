@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TmpProcessing : MonoBehaviour {
     
-    public int state;
+    public bool state;
 
     // Use this for initialization
     void Start () {
@@ -14,15 +14,10 @@ public class TmpProcessing : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (state == 1) {
+        if (state) {
             transform.Rotate(0, 5, 0);
 
-            state = 0;
-        }
-        if (state == 2) {
-            transform.Rotate(0, -10, 0);
-
-            state = 0;
+            state = false;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OnGimmickSpear : MonoBehaviour {
-
+    
     public bool onFlag;
 
 	// Use this for initialization
@@ -26,12 +26,12 @@ public class OnGimmickSpear : MonoBehaviour {
             onFlag = true;
         }
     }
-
+    
 
     //=============================
     // Playerが感圧板から離れたら
     //=============================
-    private void OnTriggerExit(Collider col)
+    private void OnCollisionExit(Collision col)
     {
         if (col.gameObject.name == "Player") {
             onFlag = false;

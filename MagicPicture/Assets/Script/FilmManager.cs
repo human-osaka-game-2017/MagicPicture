@@ -28,6 +28,8 @@ public class FilmManager : MonoBehaviour {
         public float offset_y;
         public float rot_y;
         public float scale;
+        //撮影時のプレイや―の姿勢
+        public float playerRot_y { get; set; }
 
         public void ResetPos(int filmIndex)
         {

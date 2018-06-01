@@ -6,16 +6,17 @@ public class SetOnBox : MonoBehaviour {
 
     [SerializeField] TmpProcessing tmp;
 
-    public string     designationObj;
-    public Vector3Int absoluteScale;
-    public Vector3    rangePoint_Rot;
-    public Vector3    minRange;
-    public Vector3    maxRange;
+    public  string    designationObj;
+    public  Vector3   rangeScale;
+    public  Vector3   rangePoint_Rot;
+    public  Vector3   minRange;
+    public  Vector3   maxRange;
+    private Vector3   surplus;
 
     // Use this for initialization
     void Start () {
-        Debug.Log(designationObj);
-	}
+        surplus.x = surplus.y = surplus.z = 0.25f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,45 +30,76 @@ public class SetOnBox : MonoBehaviour {
         // Rayの表示
         Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 3.0f);
 
+
         // Rayとオブジェクトが接触していたら
         if (Physics.Raycast(ray, out hitCol)) {
-
-            bool inRangeFlag = false;
             
-            Vector3 min    = rangePoint_Rot - minRange; // 最小範囲
-            Vector3 max    = rangePoint_Rot + maxRange; // 最大範囲
-            Vector3 target = hitCol.transform.rotation.eulerAngles; // Rayに接触したObj
+            Vector3 rot  = hitCol.transform.rotation.eulerAngles;
+            Vector3 minR = rangePoint_Rot - minRange; // 最小範囲
+            Vector3 maxR = rangePoint_Rot + maxRange; // 最大範囲
             
 
-            // 回転値は許容範囲内か？ Rx, Ry, Rz
-            if (!inRangeFlag) inRangeFlag = RotInRange(target.x, max.x, min.x);   // Rx
-            if (inRangeFlag)  inRangeFlag = RotInRange(target.y, max.y, min.y);   // Ry
-            if (inRangeFlag)  inRangeFlag = RotInRange(target.z, max.z, min.z);   // Rz
-            if (inRangeFlag) {                                                    // scale
-
-                Vector3    targetScale = hitCol.transform.localScale;
-                Vector3Int scaleInt = Vector3Int.zero;
-
-                // float値の整数化(一応)
-                scaleInt.x = (int)targetScale.x;
-                scaleInt.y = (int)targetScale.y;
-                scaleInt.z = (int)targetScale.z;
+            // 回転値が許容範囲内なら
+            if (InRangeRot(rot, maxR, minR)) {
+                
+                Vector3 scale = hitCol.transform.localScale;
+                Vector3 minS  = rangeScale - surplus; // 最小範囲
+                Vector3 maxS  = rangeScale + surplus; // 最大範囲
 
 
-                // スケールの許容範囲(スケールは3段階)
-                if (scaleInt == absoluteScale) {
+                // スケール値が許容範囲内なら
+                if (InRangeScale(scale, maxS, minS)) {
 
-                    // したい処理を書く
+                    // 特にオブジェの指定なし
                     if (designationObj == "") {
-                        tmp.state = 1;
+                        tmp.state = true;
                     }
+                    // オブジェの指定あり
                     if (designationObj == hitCol.collider.gameObject.name) {
-                        tmp.state = 2;
+                        tmp.state = true;
                     }
                 }
             }
         }
 	}
+
+
+    //===========================
+    // 回転値が許容範囲内か判定
+    //===========================
+    bool InRangeRot(Vector3 _rot, Vector3 _max, Vector3 _min)
+    {
+        int inCount = 0;
+        
+        if (RotInRange(_rot.x, _max.x, _min.x)) inCount++;  // Rx
+        if (RotInRange(_rot.y, _max.y, _min.y)) inCount++;  // Ry
+        if (RotInRange(_rot.z, _max.z, _min.z)) inCount++;  // Rz
+
+        if (inCount == 3) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    //===============================
+    // スケール値が許容範囲内か判定
+    //===============================
+    bool InRangeScale(Vector3 _scale, Vector3 _max, Vector3 _min)
+    {
+        int inCouont = 0;
+
+        if (InRange(_scale.x, _max.x, _min.x)) inCouont++;  // Sx
+        if (InRange(_scale.y, _max.y, _min.y)) inCouont++;  // Sy
+        if (InRange(_scale.z, _max.z, _min.z)) inCouont++;  // Sz
+
+        if (inCouont == 3) {
+            return true;
+        }
+        
+        return false;
+    }
 
 
     //=============

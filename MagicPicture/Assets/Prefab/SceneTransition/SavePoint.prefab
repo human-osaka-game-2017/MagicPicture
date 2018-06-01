@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65190247778314196}
   - component: {fileID: 114746916591715222}
   - component: {fileID: 54055510316035732}
+  - component: {fileID: 114975649288364006}
   m_Layer: 0
   m_Name: SavePoint
   m_TagString: Untagged
@@ -124,3 +125,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72471eebafc81244c8f35738119b62f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114975649288364006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362030829523786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4215435584839596}
   - component: {fileID: 33656546598126292}
   - component: {fileID: 23232083747235162}
+  - component: {fileID: 114842733328106550}
   m_Layer: 0
   m_Name: SpearBox
   m_TagString: Untagged
@@ -41,6 +42,7 @@ GameObject:
   - component: {fileID: 65518396313921286}
   - component: {fileID: 54332066033609254}
   - component: {fileID: 114577030577525690}
+  - component: {fileID: 114101033794990222}
   m_Layer: 0
   m_Name: Spear
   m_TagString: SpearTag
@@ -61,6 +63,7 @@ GameObject:
   - component: {fileID: 65834769664072852}
   - component: {fileID: 54630383280201272}
   - component: {fileID: 114690276412641372}
+  - component: {fileID: 114401437826231420}
   m_Layer: 0
   m_Name: SpearSwitchBoard
   m_TagString: Untagged
@@ -330,6 +333,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114101033794990222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794796536221650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114401437826231420
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1876643786823246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
 --- !u!114 &114429531636511128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,3 +398,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onFlag: 0
+--- !u!114 &114842733328106550
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184900468227332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0

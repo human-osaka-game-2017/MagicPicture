@@ -6,6 +6,7 @@ public class SetOnBox : MonoBehaviour {
 
     [SerializeField] TmpProcessing tmp;
 
+    public string     designationObj;
     public Vector3Int absoluteScale;
     public Vector3    rangePoint_Rot;
     public Vector3    minRange;
@@ -13,7 +14,7 @@ public class SetOnBox : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        Debug.Log(designationObj);
 	}
 	
 	// Update is called once per frame
@@ -23,7 +24,7 @@ public class SetOnBox : MonoBehaviour {
         RaycastHit hitCol;
 
         // Rayのカスタマイズ
-        Ray ray = new Ray(transform.position, transform.forward * 10);        
+        Ray ray = new Ray(transform.position, transform.up * 10);        
 
         // Rayの表示
         Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 3.0f);
@@ -36,7 +37,7 @@ public class SetOnBox : MonoBehaviour {
             Vector3 min    = rangePoint_Rot - minRange; // 最小範囲
             Vector3 max    = rangePoint_Rot + maxRange; // 最大範囲
             Vector3 target = hitCol.transform.rotation.eulerAngles; // Rayに接触したObj
-
+            
 
             // 回転値は許容範囲内か？ Rx, Ry, Rz
             if (!inRangeFlag) inRangeFlag = RotInRange(target.x, max.x, min.x);   // Rx
@@ -57,7 +58,12 @@ public class SetOnBox : MonoBehaviour {
                 if (scaleInt == absoluteScale) {
 
                     // したい処理を書く
-                    tmp.okFlag = true;
+                    if (designationObj == "") {
+                        tmp.state = 1;
+                    }
+                    if (designationObj == hitCol.collider.gameObject.name) {
+                        tmp.state = 2;
+                    }
                 }
             }
         }

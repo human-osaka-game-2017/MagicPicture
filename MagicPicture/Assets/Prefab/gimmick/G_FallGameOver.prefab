@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65308368473445390}
   - component: {fileID: 23965814357874654}
   - component: {fileID: 114543635586735202}
+  - component: {fileID: 114839578946616242}
   m_Layer: 0
   m_Name: G_FallGameOver
   m_TagString: Untagged
@@ -108,3 +109,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverScene: {fileID: 0}
+--- !u!114 &114839578946616242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958875451474596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0

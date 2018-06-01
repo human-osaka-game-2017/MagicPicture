@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TmpProcessing : MonoBehaviour {
-
-    [SerializeField] GameObject tmpBox;
-
-    public bool okFlag;
+    
+    public int state;
 
     // Use this for initialization
     void Start () {
@@ -16,10 +14,15 @@ public class TmpProcessing : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (okFlag) {
-            tmpBox.transform.Rotate(0, 5, 0);
+        if (state == 1) {
+            transform.Rotate(0, 5, 0);
 
-            okFlag = false;
+            state = 0;
+        }
+        if (state == 2) {
+            transform.Rotate(0, -10, 0);
+
+            state = 0;
         }
     }
 }

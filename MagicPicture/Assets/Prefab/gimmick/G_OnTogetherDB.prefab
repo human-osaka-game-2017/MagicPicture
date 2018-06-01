@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23310340651685834}
   - component: {fileID: 114541837007545062}
   - component: {fileID: 54903986218147408}
+  - component: {fileID: 114478753763373402}
   m_Layer: 0
   m_Name: ClosePanel
   m_TagString: Untagged
@@ -42,6 +43,7 @@ GameObject:
   - component: {fileID: 33417465728585876}
   - component: {fileID: 65227934413334308}
   - component: {fileID: 23272180902716084}
+  - component: {fileID: 114632658283480808}
   m_Layer: 0
   m_Name: ButtonFrame
   m_TagString: Untagged
@@ -75,6 +77,7 @@ GameObject:
   - component: {fileID: 33891060658171790}
   - component: {fileID: 65789758651702638}
   - component: {fileID: 23342282444171542}
+  - component: {fileID: 114043003309265370}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -94,6 +97,7 @@ GameObject:
   - component: {fileID: 65777188110019234}
   - component: {fileID: 23618378485492674}
   - component: {fileID: 114757688054882396}
+  - component: {fileID: 114189562276054956}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -113,6 +117,7 @@ GameObject:
   - component: {fileID: 65131894932934272}
   - component: {fileID: 23850600495466686}
   - component: {fileID: 114949839107084520}
+  - component: {fileID: 114855209708919942}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -131,6 +136,7 @@ GameObject:
   - component: {fileID: 33620821601858084}
   - component: {fileID: 65424677708839006}
   - component: {fileID: 23506550575604896}
+  - component: {fileID: 114978605746501310}
   m_Layer: 0
   m_Name: DoorL
   m_TagString: Untagged
@@ -149,6 +155,7 @@ GameObject:
   - component: {fileID: 33690796626528182}
   - component: {fileID: 65002343967696842}
   - component: {fileID: 23187772534875720}
+  - component: {fileID: 114809623664559798}
   m_Layer: 0
   m_Name: ButtonFrame
   m_TagString: Untagged
@@ -198,6 +205,7 @@ GameObject:
   - component: {fileID: 33867787308550102}
   - component: {fileID: 65336679213656208}
   - component: {fileID: 23328620510712754}
+  - component: {fileID: 114214177619595198}
   m_Layer: 0
   m_Name: ButtonFrame
   m_TagString: Untagged
@@ -216,6 +224,7 @@ GameObject:
   - component: {fileID: 33103557975336500}
   - component: {fileID: 65268186997346194}
   - component: {fileID: 23206701109803902}
+  - component: {fileID: 114692372885378042}
   m_Layer: 0
   m_Name: CantBack
   m_TagString: Untagged
@@ -234,6 +243,7 @@ GameObject:
   - component: {fileID: 33558406560402406}
   - component: {fileID: 65044851299324186}
   - component: {fileID: 23274308763625092}
+  - component: {fileID: 114612707738882668}
   m_Layer: 0
   m_Name: DoorR
   m_TagString: Untagged
@@ -996,6 +1006,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114043003309265370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1116947241401682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
 --- !u!114 &114140417832349900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1013,6 +1035,42 @@ MonoBehaviour:
   openRange: 2
   closeRange: 0.75
   speed: 0.5
+--- !u!114 &114189562276054956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1423143044070332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114214177619595198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785995321871400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114478753763373402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1012602610734650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
 --- !u!114 &114541837007545062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1026,6 +1084,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cantBack: {fileID: 1887558405932556}
   ctrl: {fileID: 114140417832349900}
+--- !u!114 &114612707738882668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1930988180767920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114632658283480808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1050442911541030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114692372885378042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887558405932556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
 --- !u!114 &114757688054882396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1041,6 +1135,30 @@ MonoBehaviour:
   doorL: {fileID: 1481956431276392}
   cantBack: {fileID: 1887558405932556}
   ctrl: {fileID: 114140417832349900}
+--- !u!114 &114809623664559798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516647150633484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114855209708919942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466532651647296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
 --- !u!114 &114949839107084520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1056,3 +1174,15 @@ MonoBehaviour:
   doorL: {fileID: 1481956431276392}
   cantBack: {fileID: 1887558405932556}
   ctrl: {fileID: 114140417832349900}
+--- !u!114 &114978605746501310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1481956431276392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0

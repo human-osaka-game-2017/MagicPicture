@@ -73,20 +73,8 @@ public class PlayerCtrl : MonoBehaviour {
     private void Rotation(float _rotSpeed)
     {
         // Y軸回転
-        if (Input.GetAxis("HorizontalForView") != 0) {
-            if (addRotSpeed < 0.5f) {
-                addRotSpeed += 0.005f;
-            }
-        }
-        if (Input.GetAxis("HorizontalForView") == 0) {
-            addRotSpeed = 0;
-        }
-        if (Input.GetAxis("HorizontalForView") > 0) {
-            transform.Rotate(0, -_rotSpeed * addRotSpeed, 0);
-        }
-        if (Input.GetAxis("HorizontalForView") < 0) {
-            transform.Rotate(0, _rotSpeed * addRotSpeed, 0);
-        }
+        transform.Rotate(-Vector3.up * _rotSpeed * 
+            Input.GetAxis("HorizontalForView") * Time.deltaTime);
     }
 
     

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33814374307836904}
   - component: {fileID: 23203471947562180}
   - component: {fileID: 114759048467289678}
+  - component: {fileID: 65321907362819636}
   m_Layer: 0
   m_Name: Ground 1x4
   m_TagString: Untagged
@@ -83,6 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1127278533766172}
   m_Mesh: {fileID: 4300000, guid: ee9f7ea095702e44bbd4ba41e011592d, type: 3}
+--- !u!65 &65321907362819636
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1127278533766172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000014, y: 2.0000288, z: 8.000006}
+  m_Center: {x: -0.9999995, y: -1.0000004, z: 0.0000035762787}
 --- !u!114 &114759048467289678
 MonoBehaviour:
   m_ObjectHideFlags: 1

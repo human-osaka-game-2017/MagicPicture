@@ -20,9 +20,9 @@ public class GoClearScene : MonoBehaviour {
         if (HitCtrl.gameClearFlag) {
 
             // 丸ボタンを押したら演出スキップ
-            if (Input.GetButtonDown("Fire3")) {
-                SceneManager.LoadScene("ClearScene");
-            }
+            //if (Input.GetButtonDown("Fire3")) {
+            //    SceneManager.LoadScene("ClearScene");
+            //}
 
             StartCoroutine("WaitGoClearScene");
         }

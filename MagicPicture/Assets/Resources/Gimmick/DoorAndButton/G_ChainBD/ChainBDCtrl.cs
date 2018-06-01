@@ -6,10 +6,12 @@ public class ChainBDCtrl : MonoBehaviour {
 
     [SerializeField] GameObject    doorR;
     [SerializeField] GameObject    doorL;
+    [SerializeField] GameObject    cantBack;
     [SerializeField] ChainButton_1 chainButton_1;
     [SerializeField] ChainButton_2 chainButton_2;
     [SerializeField] ChainButton_3 chainButton_3;
 
+    public bool closeFlag;
     private int openState;
 
     // Use this for initialization
@@ -35,12 +37,14 @@ public class ChainBDCtrl : MonoBehaviour {
     void FixedUpdate()
     {
         // いろいろ含めた速度
-        float mixSpeed = Time.deltaTime;
+        float mixSpeed = Time.deltaTime / 5;
 
-        if (openState == 3) {
+        // ボタンが順番に押されたらオープン
+        if (openState == 3 && !closeFlag) {
 
-            // もし3つ押して間違っていたら上に乗っているオブジェクトを
-            // どうするかを聞こう
+            // cantBackを無効化
+            cantBack.GetComponent<Collider>().isTrigger = true;
+            
             if (!chainButton_1.onButton) openState = 0;
             if (!chainButton_2.onButton) openState = 1;
             if (!chainButton_3.onButton) openState = 2;
@@ -50,7 +54,7 @@ public class ChainBDCtrl : MonoBehaviour {
                 doorL.transform.Translate(Vector3.left  * mixSpeed);
             }
         }
-        else {
+        else if (openState != 3 || closeFlag) {
             if (doorR.transform.localPosition.x > 0.75f) {
                 doorR.transform.Translate(Vector3.left  * mixSpeed);
                 doorL.transform.Translate(Vector3.right * mixSpeed);

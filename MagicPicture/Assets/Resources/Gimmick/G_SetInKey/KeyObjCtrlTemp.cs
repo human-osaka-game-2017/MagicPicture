@@ -25,11 +25,17 @@ public class KeyObjCtrlTemp : MonoBehaviour {
             transform.Translate(-0.2f, 0, 0);
         }
 
-        if (Input.GetKey("j")) {
-            transform.Rotate(0, 2, 0);
+        if (Input.GetKey("i")) {
+            transform.Rotate(2, 0, 0);
         }
         if (Input.GetKey("k")) {
+            transform.Rotate(-2, 0, 0);
+        }
+        if (Input.GetKey("j")) {
             transform.Rotate(0, -2, 0);
+        }
+        if (Input.GetKey("l")) {
+            transform.Rotate(0, 2, 0);
         }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ChainButton_1 : MonoBehaviour {
 
+    [SerializeField] ChainBDCtrl chainBDCtrl;
+
     public bool onButton;
 
     // Use this for initialization
@@ -29,6 +31,8 @@ public class ChainButton_1 : MonoBehaviour {
     {
         if (col.gameObject.name != "Player") {
             onButton = false;
+
+            chainBDCtrl.closeFlag = false;
         }
     }
 }

@@ -22,7 +22,7 @@ public class CameraSystem: MonoBehaviour {
     void Update()
     {
         //FPS/TPSの切り替え
-        if (Input.GetKeyDown(KeyCode.R)) ChangeFTMode();
+        if (Input.GetButtonDown("ForChangeViewMode")) ChangeFTMode();
     }
 
     //FPSモード/TPSモード変更処理

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33611900463133110}
   - component: {fileID: 23996774849277664}
   - component: {fileID: 65465370647435750}
+  - component: {fileID: 114101719095229380}
   m_Layer: 0
   m_Name: DoorR
   m_TagString: Untagged
@@ -40,6 +41,7 @@ GameObject:
   - component: {fileID: 33783094627504594}
   - component: {fileID: 65082297701019438}
   - component: {fileID: 23023246495060196}
+  - component: {fileID: 114317268891258230}
   m_Layer: 0
   m_Name: ButtonFrame
   m_TagString: Untagged
@@ -75,6 +77,7 @@ GameObject:
   - component: {fileID: 65588500354988406}
   - component: {fileID: 54727956412343984}
   - component: {fileID: 114427731816389798}
+  - component: {fileID: 114531144611901458}
   m_Layer: 0
   m_Name: ClosePanel
   m_TagString: Untagged
@@ -93,6 +96,7 @@ GameObject:
   - component: {fileID: 33411268941473800}
   - component: {fileID: 23092875756951204}
   - component: {fileID: 65224208415606028}
+  - component: {fileID: 114981889304464540}
   m_Layer: 0
   m_Name: DoorL
   m_TagString: Untagged
@@ -112,6 +116,7 @@ GameObject:
   - component: {fileID: 23918190019577978}
   - component: {fileID: 65880812759704894}
   - component: {fileID: 114051301960111716}
+  - component: {fileID: 114289202764668974}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -130,6 +135,7 @@ GameObject:
   - component: {fileID: 33042737664418146}
   - component: {fileID: 65130595317493550}
   - component: {fileID: 23423184226398496}
+  - component: {fileID: 114727933395467586}
   m_Layer: 0
   m_Name: CantBack
   m_TagString: Untagged
@@ -584,6 +590,42 @@ MonoBehaviour:
   speed: 1
   openRange: 2
   closeRange: 0.75
+--- !u!114 &114101719095229380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1142277650946128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114289202764668974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1892072718773366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114317268891258230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1274454073768506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
 --- !u!114 &114427731816389798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -599,3 +641,39 @@ MonoBehaviour:
   doorR_1: {fileID: 1142277650946128}
   doorL_1: {fileID: 1800324520459932}
   cantBack_1: {fileID: 1989724737634872}
+--- !u!114 &114531144611901458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450579697916302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114727933395467586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1989724737634872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0
+--- !u!114 &114981889304464540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800324520459932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTake: 0

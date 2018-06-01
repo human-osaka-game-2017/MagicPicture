@@ -7,8 +7,8 @@ using System.IO;
 
 public class FilmManager : MonoBehaviour {
 
-    [SerializeField] private int kMaxFilm;
-    [SerializeField] private int kMaxPhantom;
+    [SerializeField] private int   kMaxFilm;
+    [SerializeField] private int   kMaxPhantom;
     [SerializeField] private float kCoordinateUnit;
     [SerializeField] private float kPhantomDistance;
     [SerializeField] private float kScaleThreshold_StoM_per;
@@ -225,7 +225,7 @@ public class FilmManager : MonoBehaviour {
             pos.y = kFilmSpace_y;
             pos.z = kFilmSpace_z;
             photoUICamera.transform.position = pos;
-
+            
             StartCoroutine("CreatePhoto");
         }
     }
@@ -264,7 +264,10 @@ public class FilmManager : MonoBehaviour {
             //todo シルエットをリセットできるように書く
             films[currentFilmNum].ResetPos(currentFilmNum);
             silhouette.transform.parent = null;
-            silhouette.transform.localRotation *= Quaternion.Inverse(player.transform.localRotation);
+            silhouette.transform.localRotation *= Quaternion.Inverse(Quaternion.Euler(new Vector3(
+                0.0f,
+                this.films[this.currentFilmNum].rot_y,
+                0.0f)));
             silhouette.GetComponent<Collider>().isTrigger = false;
         }
 
@@ -273,12 +276,12 @@ public class FilmManager : MonoBehaviour {
 
         if (silhouette != null)
         {
-
-            this.films[this.currentFilmNum].obj.transform.localRotation *= Quaternion.Euler(new Vector3(
+            silhouette.transform.SetParent(player.transform, true);
+            this.films[this.currentFilmNum].obj.transform.localRotation = this.films[this.currentFilmNum].obj.transform.localRotation * Quaternion.Euler(new Vector3(
                 0.0f,
                 this.films[this.currentFilmNum].rot_y,
                 0.0f));
-            silhouette.transform.SetParent(player.transform, true);
+            //this.films[this.currentFilmNum].obj.transform.localRotation = this.films[this.currentFilmNum].obj.transform.localRotation * player.transform.localRotation;
             //silhouette.transform.parent = player.transform;
             silhouette.GetComponent<Collider>().isTrigger = true;
         }

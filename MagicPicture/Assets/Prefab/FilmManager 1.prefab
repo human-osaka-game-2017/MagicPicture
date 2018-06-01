@@ -169,8 +169,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1999476700287146}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.662, z: -0.664}
-  m_LocalScale: {x: 1, y: 0.33333334, z: 0.2}
+  m_LocalPosition: {x: -2.99, y: 0.09, z: -1.49}
+  m_LocalScale: {x: 1, y: 0.32179904, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4026495914038238}
   m_RootOrder: 0
@@ -201,10 +201,10 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: d2ec825000901694e8cebf10919e3295, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
@@ -385,11 +385,12 @@ MonoBehaviour:
   kMaxPhantom: 5
   kCoordinateUnit: 0.5
   kPhantomDistance: 5
-  kScaleThreshold_StoM_per: 35
+  kScaleThreshold_StoM_per: 10
   kScaleThreshold_MtoL_per: 80
   kScaleRatio_S: 0.5
   kScaleRatio_M: 1
   kScaleRatio_L: 2
+  kFilmSpace_z: 50
 --- !u!124 &124922779342617666
 Behaviour:
   m_ObjectHideFlags: 1

@@ -105,7 +105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1961844726023846
 GameObject:
   m_ObjectHideFlags: 1
@@ -303,7 +303,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
+  m_Size: {x: 1, y: 2.25, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!81 &81060450080883492
 AudioListener:
@@ -334,8 +334,8 @@ MonoBehaviour:
   fwdSpeed: 5
   backSpeed: 1
   horizontalSpeed: 3
-  TPS_RotSpeed: 40
-  FPS_RotSpeed: 5
+  TPS_RotSpeed: 50
+  FPS_RotSpeed: 15
 --- !u!114 &114065710731819594
 MonoBehaviour:
   m_ObjectHideFlags: 1

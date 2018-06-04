@@ -77,9 +77,9 @@ InputManager:
     positiveButton: e
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 1000
+    gravity: 3
     dead: 0.001
-    sensitivity: 1000
+    sensitivity: 3
     snap: 1
     invert: 0
     type: 0
@@ -137,7 +137,7 @@ InputManager:
     m_Name: ForRotatePicutre
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: enter
+    negativeButton: return
     positiveButton: left ctrl
     altNegativeButton: 
     altPositiveButton: 

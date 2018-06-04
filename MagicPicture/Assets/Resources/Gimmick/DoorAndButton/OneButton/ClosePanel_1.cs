@@ -41,7 +41,7 @@ public class ClosePanel_1 : MonoBehaviour {
     //===============================
     private void OnTriggerEnter(Collider col)
     {
-        if (col.transform.name == "Player") {
+        if (col.transform.name == "PlayerCol") {
             stepPanelFlag = true;
             
             // ドアに挟まれない用に戻れなくする

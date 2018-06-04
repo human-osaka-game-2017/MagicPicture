@@ -16,10 +16,10 @@ public class FilmManager : MonoBehaviour {
     [SerializeField] private float kScaleRatio_S;
     [SerializeField] private float kScaleRatio_M;
     [SerializeField] private float kScaleRatio_L;
-    [SerializeField] private float kFilmSpace_z;
+    [SerializeField] private float photoCameraRange;
 
-    const int kFilmSpace_x = 100;
-    const int kFilmSpace_y = 5000;
+    private const int filmSpace_x = 100;
+    private const int filmSpace_y = 5000;
 
     public struct Film
     {
@@ -28,14 +28,12 @@ public class FilmManager : MonoBehaviour {
         public float offset_y;
         public float rot_y;
         public float scale;
-        //撮影時のプレイや―の姿勢
-        public float playerRot_y { get; set; }
 
         public void ResetPos(int filmIndex)
         {
             obj.transform.position = new Vector3(
-                kFilmSpace_x * filmIndex,
-                kFilmSpace_y,
+                filmSpace_x * filmIndex,
+                filmSpace_y,
                 0.0f);
         }
     }
@@ -81,42 +79,50 @@ public class FilmManager : MonoBehaviour {
         //フィルム選択の更新
         UpdateCurrentFilmNum();
 
-        //PhantomModeの変更
-        if (Input.GetButtonDown("ForSilhouetteMode"))
+        if (films[currentFilmNum].obj != null)
         {
-            this.isPhantomMode = !this.isPhantomMode;
-            if (!this.isPhantomMode)
+            //PhantomModeの変更
+            if (Input.GetButtonDown("ForSilhouetteMode"))
             {
-                films[currentFilmNum].ResetPos(currentFilmNum);
-            }
-            else
-            {
-                ChangeSilhouette(films[currentFilmNum].obj);
-            }
-        }
-
-        if (this.isPhantomMode)
-        {
-           if(prevFilmNum != currentFilmNum)
-            {
-                ChangeSilhouette(films[currentFilmNum].obj);
+                this.isPhantomMode = !this.isPhantomMode;
+                if (!this.isPhantomMode)
+                {
+                    films[currentFilmNum].ResetPos(currentFilmNum);
+                }
+                else
+                {
+                    ChangeSilhouette(films[currentFilmNum].obj);
+                }
             }
 
-            UpdateSilhouette();
+            if (this.isPhantomMode)
+            {
+                if (prevFilmNum != currentFilmNum)
+                {
+                    ChangeSilhouette(films[currentFilmNum].obj);
+                }
 
-            prevFilmNum = currentFilmNum;
-        }
+                UpdateSilhouette();
 
-        //現像
-        if (Input.GetButtonDown("ForDevelopPhantom") && this.isPhantomMode)
-        {
-            if(silhouette.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
-        }
+                prevFilmNum = currentFilmNum;
+            }
 
-        //写真、オブジェクトの回転
-        if (Input.GetButtonDown("ForRotatePicture"))
-        {
-            
+            //写真、オブジェクトの回転
+            if (Input.GetButtonDown("ForRotatePicutre"))
+            {
+                films[currentFilmNum].image.transform.Rotate(new Vector3(0.0f, 0.0f, Input.GetAxisRaw("ForRotatePicutre") * 90.0f));
+                Vector3 rot = Vector3.zero;
+                rot.x = Mathf.Cos(films[currentFilmNum].rot_y * Mathf.Deg2Rad);
+                rot.y = 0.0f;
+                rot.z = Mathf.Sin(films[currentFilmNum].rot_y * Mathf.Deg2Rad);
+                films[currentFilmNum].obj.transform.Rotate(rot.normalized * 90.0f * Input.GetAxisRaw("ForRotatePicutre"), Space.Self);
+            }
+
+            //現像
+            if (Input.GetButtonDown("ForDevelopPhantom") && this.isPhantomMode)
+            {
+                if (silhouette.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
+            }
         }
     }
 
@@ -207,27 +213,24 @@ public class FilmManager : MonoBehaviour {
 
             this.films[this.currentFilmNum].ResetPos(currentFilmNum);
 
-            //this.films[this.currentFilmNum].obj.transform.SetParent(player.transform, true);
-
             this.films[this.currentFilmNum].obj.transform.localScale *= this.films[this.currentFilmNum].scale;
 
-            //this.films[this.currentFilmNum].obj.transform.localRotation *= Quaternion.Euler(new Vector3(
-            //    0.0f,
-            //    this.films[this.currentFilmNum].rot_y,
-            //    0.0f)) *
-            //    Quaternion.Inverse(player.transform.localRotation);
+            this.films[this.currentFilmNum].obj.transform.SetParent(this.player.transform, true);
         }
 
         //スクショ
         {
             //todo 別スクリプトへ
             //カメラの移動
-            Vector3 pos;
-            pos.x = kFilmSpace_x * currentFilmNum;
-            pos.y = kFilmSpace_y;
-            pos.z = kFilmSpace_z;
+            //photo用カメラ撮影位置
+            Vector3 pos = filmingObj.point - rayOrigin;
+
+            pos.Normalize();
+            pos *= photoCameraRange;
+            pos += this.films[currentFilmNum].obj.transform.position;
             photoUICamera.transform.position = pos;
-            
+            photoUICamera.transform.LookAt(this.films[currentFilmNum].obj.transform.position);
+
             StartCoroutine("CreatePhoto");
         }
     }
@@ -265,11 +268,6 @@ public class FilmManager : MonoBehaviour {
         {
             //todo シルエットをリセットできるように書く
             films[currentFilmNum].ResetPos(currentFilmNum);
-            silhouette.transform.parent = null;
-            silhouette.transform.localRotation *= Quaternion.Inverse(Quaternion.Euler(new Vector3(
-                0.0f,
-                this.films[this.currentFilmNum].rot_y,
-                0.0f)));
             silhouette.GetComponent<Collider>().isTrigger = false;
         }
 
@@ -278,13 +276,6 @@ public class FilmManager : MonoBehaviour {
 
         if (silhouette != null)
         {
-            silhouette.transform.SetParent(player.transform, true);
-            this.films[this.currentFilmNum].obj.transform.localRotation = this.films[this.currentFilmNum].obj.transform.localRotation * Quaternion.Euler(new Vector3(
-                0.0f,
-                this.films[this.currentFilmNum].rot_y,
-                0.0f));
-            //this.films[this.currentFilmNum].obj.transform.localRotation = this.films[this.currentFilmNum].obj.transform.localRotation * player.transform.localRotation;
-            //silhouette.transform.parent = player.transform;
             silhouette.GetComponent<Collider>().isTrigger = true;
         }
     }
@@ -305,13 +296,13 @@ public class FilmManager : MonoBehaviour {
     {
         Func<int, int> standardizationFilmNum = nextFilmNum => (nextFilmNum + this.kMaxFilm) % this.kMaxFilm;
 
-        if (Input.GetButtonDown("ForRotatePicture"))
+        if (Input.GetButtonDown("HorizontalForChangeFilm"))
         {
-            if (Input.GetAxis("ForRotatePicture") < 0.0f)
+            if (Input.GetAxis("HorizontalForChangeFilm") < 0.0f)
             {
                 this.currentFilmNum = standardizationFilmNum(--currentFilmNum);
             }
-            else if (Input.GetAxis("ForRotatePicture") > 0.0f)
+            else if (Input.GetAxis("HorizontalForChangeFilm") > 0.0f)
             {
                 this.currentFilmNum = standardizationFilmNum(++currentFilmNum);
             }
@@ -326,7 +317,7 @@ public class FilmManager : MonoBehaviour {
         GameObject phantom = Instantiate(
             film,
             film.transform.position,
-            film.transform.localRotation * player.transform.localRotation);
+            film.transform.rotation);
 
         phantom.GetComponent<Collider>().isTrigger = false;
 

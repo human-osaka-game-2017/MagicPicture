@@ -23,7 +23,7 @@ public class ChainClosePanel : MonoBehaviour {
     //===============================
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Player") {
+        if (col.gameObject.name == "PlayerCol") {
             ctrl.closeFlag = true;
 
             cantBack.GetComponent<Collider>().isTrigger = false;

@@ -26,26 +26,26 @@ public class HitCtrl : MonoBehaviour {
 	}
 
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    void OnTriggerEnter(Collider col)
     {
-        // セーブは別
-        
+        // セーブ、感圧板は別
+
         // Enemyゲームオーバー
-        if (hit.gameObject.tag == "EnemyTag") {
+        if (col.gameObject.tag == "EnemyTag") {
             PlayerCtrl.SetStopperFlag(true);
 
             gameOverState = (int)gameState.e_HitEnemy;
         }
 
         // Spearゲームオーバー
-        if (hit.gameObject.tag == "SpearTag") {
+        if (col.gameObject.tag == "SpearTag") {
             PlayerCtrl.SetStopperFlag(true);
-
+            
             gameOverState = (int)gameState.e_HitSpear;
         }
 
         // ゲームクリア
-        if (hit.gameObject.tag == "GameClearTag") {
+        if (col.gameObject.tag == "GameClearTag") {
             PlayerCtrl.SetStopperFlag(true);
 
             gameClearFlag = true;

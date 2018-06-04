@@ -70,7 +70,10 @@ public class GimmickSpear : MonoBehaviour {
     //=================
     private void RisetSpear(int _i)
     {
-        spear[_i].transform.rotation = transform.rotation;                  // 槍の方向をGimmickSpear(Empty)に合わせる
-        spear[_i].transform.position = transform.position + resetPos[_i];   // 槍の位置を再セット
+        spear[_i].transform.rotation = transform.rotation;  // 槍の方向をGimmickSpear(Empty)に合わせる
+
+        // 槍の位置を再セット
+        spear[_i].transform.localPosition = transform.position;
+        spear[_i].transform.Translate(resetPos[_i]);
     }
 }

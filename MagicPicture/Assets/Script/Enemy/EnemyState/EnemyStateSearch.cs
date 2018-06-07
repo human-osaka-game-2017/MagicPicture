@@ -60,9 +60,9 @@ class EnemyStateSearch : EnemyStateBase
 
     private void DecidedNextPoint()
     {
-        targetPos.x = UnityEngine.Random.Range(0.0f, 15.0f);
-        targetPos.y = UnityEngine.Random.Range(0.0f, 15.0f);
-        targetPos.z = UnityEngine.Random.Range(0.0f, 15.0f);
+        targetPos.x = UnityEngine.Random.Range(-15.0f, 15.0f);
+        targetPos.y = 0.0f;
+        targetPos.z = UnityEngine.Random.Range(-15.0f, 15.0f);
     }
 
     private bool CheckInPoint(Vector3 targetPos,Vector3 point)

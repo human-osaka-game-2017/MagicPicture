@@ -23,6 +23,7 @@ public class FilmManager : MonoBehaviour {
 
     public struct Film
     {
+        //private GameObject obj { get; set; }
         public GameObject obj;
         public RawImage image;
         public float offset_y;
@@ -108,14 +109,14 @@ public class FilmManager : MonoBehaviour {
             }
 
             //写真、オブジェクトの回転
-            if (Input.GetButtonDown("ForRotatePicutre"))
+            if (Input.GetButtonDown("ForRotatePicture"))
             {
-                films[currentFilmNum].image.transform.Rotate(new Vector3(0.0f, 0.0f, Input.GetAxisRaw("ForRotatePicutre") * 90.0f));
+                films[currentFilmNum].image.transform.Rotate(new Vector3(0.0f, 0.0f, Input.GetAxisRaw("ForRotatePicture") * 90.0f));
                 Vector3 rot = Vector3.zero;
                 rot.x = Mathf.Cos(films[currentFilmNum].rot_y * Mathf.Deg2Rad);
                 rot.y = 0.0f;
                 rot.z = Mathf.Sin(films[currentFilmNum].rot_y * Mathf.Deg2Rad);
-                films[currentFilmNum].obj.transform.Rotate(rot.normalized * 90.0f * Input.GetAxisRaw("ForRotatePicutre"), Space.Self);
+                films[currentFilmNum].obj.transform.Rotate(rot.normalized * 90.0f * Input.GetAxisRaw("ForRotatePicture"), Space.Self);
             }
 
             //現像

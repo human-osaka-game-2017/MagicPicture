@@ -35,6 +35,8 @@ class EnemyStateAttack : EnemyStateBase
     {
         this.defaultSpeed = defaultSpeed;
         this.dashSpeed = dashSpeed;
+        this.target = this.finder.FoundList[0].Obj;
+        targetPos = target.transform.position;
     }
 
     override

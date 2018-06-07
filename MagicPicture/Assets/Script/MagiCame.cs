@@ -6,11 +6,10 @@ public class MagiCame : MonoBehaviour
 {
     [SerializeField] private float kMinDistance;
     [SerializeField] private float kMaxDistance;
-    [SerializeField] private float kRotSpeedDeg;
 
     private GameObject player       = null;
     private FilmManager filmManager = null;
-    private Vector3 rotSpeed        = Vector3.zero;
+    private Vector3 rotSpeed;
     private Ray ray;
 
     public void Init()
@@ -23,7 +22,7 @@ public class MagiCame : MonoBehaviour
 
     void Start()
     {
-        rotSpeed.x = kRotSpeedDeg;
+        rotSpeed.x = this.transform.GetComponentInParent<PlayerCtrl>().rotSpeed;
         this.player = GameObject.Find("Player");
         this.filmManager = GameObject.Find("FilmManager").GetComponent<FilmManager>();
         this.ray = new Ray(this.transform.position, this.transform.forward.normalized);

@@ -7,7 +7,8 @@ using UnityEngine;
 abstract class EnemyStateBase
 {
     protected List<GameObject> targets = new List<GameObject>();
-    private Finder finder;
+
+    protected Finder finder;
 
     protected GameObject obj { get; set; }
 

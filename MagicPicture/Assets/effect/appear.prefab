@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4528963041423846}
   - component: {fileID: 198222401383640958}
   - component: {fileID: 199646903250685026}
+  - component: {fileID: 114394724871120456}
   m_Layer: 0
   m_Name: appear
   m_TagString: Untagged
@@ -194,6 +195,18 @@ MonoBehaviour:
   flashingOff: 0
   flashingOffPower: 0
   flashingOffIntensity: 1
+--- !u!114 &114394724871120456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1303622590504270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede70540864a42648bed0b6e8a53d2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 5
 --- !u!198 &198222401383640958
 ParticleSystem:
   m_ObjectHideFlags: 1

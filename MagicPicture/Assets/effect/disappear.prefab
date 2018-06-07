@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4052958453365114}
   - component: {fileID: 198949183890084322}
+  - component: {fileID: 114551163345724404}
   - component: {fileID: 199982178511858700}
   m_Layer: 0
   m_Name: disappear
@@ -225,6 +226,18 @@ MonoBehaviour:
   flashingOff: 0
   flashingOffPower: 0
   flashingOffIntensity: 1
+--- !u!114 &114551163345724404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1801613228327506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede70540864a42648bed0b6e8a53d2de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
 --- !u!198 &198384973345254504
 ParticleSystem:
   m_ObjectHideFlags: 1

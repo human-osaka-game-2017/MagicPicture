@@ -563,34 +563,6 @@ Prefab:
       propertyPath: TPSCamera
       value: 
       objectReference: {fileID: 2025110842}
-    - target: {fileID: 1846108457544270, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1911630329861718, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1804734333355290, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1545758604869476, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1436547381807872, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1472470594933232, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1961844726023846, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
   m_IsPrefabParent: 0

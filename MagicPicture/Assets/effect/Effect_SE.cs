@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Effect_SE : MonoBehaviour
 {
+    //Effect
     public GameObject E_damagePrefab;
     public GameObject E_appearPrefab;
     public GameObject E_disappearPrefab;
     public GameObject E_fitPrefab;
     public GameObject E_IntermediatePointPrefab;
 
-
+    //Sound
     public AudioClip SE_damaage;
     public AudioClip SE_appear;
     public AudioClip SE_disappear;
@@ -18,7 +19,6 @@ public class Effect_SE : MonoBehaviour
     public AudioClip SE_arrow;
     public AudioClip SE_IntermediatePoint;
     public AudioClip SE_DoorOpen;
-
 
     AudioSource audioSource;
 

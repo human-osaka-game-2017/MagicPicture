@@ -427,7 +427,7 @@ MonoBehaviour:
   cantBack: {fileID: 1759499226617032}
   closePanel: {fileID: 114517066000637350}
   speed: 0.5
-  resetFlag: 1
+  resetFlag: 0
 --- !u!114 &114719460338433416
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -125,7 +125,7 @@ MonoBehaviour:
   doorAction: {fileID: 0}
   effect: 0
   effectAction: {fileID: 0}
-  spear: 1
+  spear: 0
   spearAction: {fileID: 0}
 --- !u!114 &114829488128735946
 MonoBehaviour:

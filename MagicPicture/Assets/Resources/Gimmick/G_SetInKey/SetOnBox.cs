@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SetOnBox : MonoBehaviour {
 
-    [SerializeField] TmpProcessing   tmp;
+    [SerializeField] GameObject      nonActiveObj;
     [SerializeField] ParticleSystem  pole;
     [SerializeField] ParticleSystem  bottom;
 
@@ -53,11 +53,13 @@ public class SetOnBox : MonoBehaviour {
                 // スケール値が許容範囲内なら
                 if (InRangeScale(scale, maxS, minS)) {
 
-                    if (hitCol.collider.gameObject.tag == "KeyObjTag")
+                    // if (hitCol.collider.gameObject.tag == "KeyObjTag")
 
                     // 特にオブジェの指定なし
                     if (designationObj == "") {
-                        tmp.state = true;
+                        // tmp.state = true;
+                        nonActiveObj.SetActive(false);
+
                         if (!flag) {
                             pole.Play();
                             bottom.Stop();
@@ -66,7 +68,9 @@ public class SetOnBox : MonoBehaviour {
                     }
                     // オブジェの指定あり
                     if (designationObj == hitCol.collider.gameObject.name) {
-                        tmp.state = true;
+                        // tmp.state = true;
+                        nonActiveObj.SetActive(false);
+
                         if (!flag) {
                             pole.Play();
                             bottom.Stop();

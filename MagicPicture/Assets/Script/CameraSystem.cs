@@ -28,6 +28,7 @@ public class CameraSystem: MonoBehaviour {
     //FPSモード/TPSモード変更処理
     private void ChangeFTMode()
     {
+        SoundManager.GetInstance().Play("SE_CameraToSwitch", SoundManager.PLAYER_TYPE.NONLOOP, true);
         FPSCamera.SetActive(!FPSCamera.activeSelf);
         FPSCamera.GetComponent<MagiCame>().Init();
         TPSCamera.SetActive(!TPSCamera.activeSelf);

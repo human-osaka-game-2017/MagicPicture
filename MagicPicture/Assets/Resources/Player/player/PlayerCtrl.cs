@@ -9,7 +9,6 @@ public class PlayerCtrl : MonoBehaviour {
 
     [SerializeField] private float TPS_FwdSpeed;
     [SerializeField] private float TPS_BackSpeed;
-    [SerializeField] private float TPS_HorizontalSpeed;
     [SerializeField] private float TPS_RotSpeed;
     [SerializeField] private float FPS_FwdSpeed;
     [SerializeField] private float FPS_BackSpeed;
@@ -38,8 +37,7 @@ public class PlayerCtrl : MonoBehaviour {
     {
         get
         {
-            if (this.GetComponent<CameraSystem>().IsFPSMode) return FPS_HorizontalSpeed;
-            else return TPS_HorizontalSpeed;
+            return FPS_HorizontalSpeed;
         }
     }
 

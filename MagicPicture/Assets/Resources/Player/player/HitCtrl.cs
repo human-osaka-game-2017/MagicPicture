@@ -47,6 +47,9 @@ public class HitCtrl : MonoBehaviour {
 
         // Spearゲームオーバー
         if (col.gameObject.tag == "SpearTag") {
+
+            SoundManager.GetInstance().Play("SE_ArrowHit", SoundManager.PLAYER_TYPE.NONLOOP, true);
+
             PlayerCtrl.SetStopperFlag(true);
             
             gameState = (int)State.hitSpear;

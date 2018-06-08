@@ -34,6 +34,8 @@ public class GoClearScene : MonoBehaviour {
     //===================
     IEnumerator WaitGoClearScene()
     {
+        SoundManager.GetInstance().Play("SE_GameOver", SoundManager.PLAYER_TYPE.NONLOOP, true);
+
         // GameClearUIをアクティブ化
         gameClearUI.gameObject.SetActive(true);
         

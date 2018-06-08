@@ -11,18 +11,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scene/Tachibana/Bstage.unity
     guid: 541dfa00db08de3428a746221d6204e3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Funaoka/ClearScene.unity
     guid: bee261d631a72ef4984604b532d5227b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Funaoka/Funaoka.unity
     guid: 268be1af652c02a47b457c646e352802
   - enabled: 1
-    path: Assets/Mstage.unity
-    guid: 6e3203a507d5f0744b4876a883e83967
-  - enabled: 1
     path: Assets/Scene/Tachibana/TitleSceneM.unity
     guid: c2d71b81f75ede04c93112c9d24322e7
+  - enabled: 1
+    path: Assets/Mstage.unity
+    guid: 6e3203a507d5f0744b4876a883e83967
   - enabled: 1
     path: Assets/Scene/Tachibana/ClearSceneM.unity
     guid: 8b7617231d184944ba89de392813e1b6

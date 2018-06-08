@@ -9,7 +9,7 @@ public class StartSelect : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        pos.x = -7.5f;
+        pos.x = -1.10f;              //-8.0
 	}
 	
 	// Update is called once per frame
@@ -20,21 +20,21 @@ public class StartSelect : MonoBehaviour {
         if (vertaxis < 0) {
             GameState.SetGameState((int)state.load);
 
-            pos.y = 1.25f;
+            pos.y = -2.6f;          //1.25
 
             transform.position = pos;
         }
         if (vertaxis > 0) {
             GameState.SetGameState((int)state.beginning);
 
-            pos.y = 2.15f;
+            pos.y = -1.35f;          //3.15
 
             transform.position = pos;
         }
 
 
         //丸ボタンを押したら
-        if (Input.GetButtonDown("ForChangeViewMode"))
+        if (Input.GetButtonDown("ForSilhouetteMode"))
         {
 
             SceneManager.LoadScene("Mstage");

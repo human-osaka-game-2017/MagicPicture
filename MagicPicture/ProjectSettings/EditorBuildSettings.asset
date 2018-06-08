@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Funaoka/TitleScene.unity
     guid: c44b44693bcd6ce41b06d2d048c7b18c
   - enabled: 0
@@ -20,3 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Mstage.unity
     guid: 6e3203a507d5f0744b4876a883e83967
+  - enabled: 1
+    path: Assets/Scene/Tachibana/TitleSceneM.unity
+    guid: c2d71b81f75ede04c93112c9d24322e7

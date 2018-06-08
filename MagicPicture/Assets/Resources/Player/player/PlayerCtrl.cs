@@ -91,6 +91,7 @@ public class PlayerCtrl : MonoBehaviour {
             
             // 移動
             move = fwdVec * vertaxis * verticality + rightVec * horzaxis * horzSpeed;
+            if (move != Vector3.zero) 
 
             // 移動
             charctrl.SimpleMove(move);

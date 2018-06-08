@@ -9,6 +9,7 @@ public class MagiCame : MonoBehaviour
 
     private GameObject player       = null;
     private FilmManager filmManager = null;
+    private PermeationImage img     = null;
     private Vector3 rotSpeed;
     private Ray ray;
 
@@ -22,6 +23,7 @@ public class MagiCame : MonoBehaviour
 
     void Start()
     {
+        img = GameObject.Find("Shutter").GetComponent<PermeationImage>();
         rotSpeed.x = this.transform.GetComponentInParent<PlayerCtrl>().rotSpeed;
         this.player = GameObject.Find("Player");
         this.filmManager = GameObject.Find("FilmManager").GetComponent<FilmManager>();
@@ -59,6 +61,8 @@ public class MagiCame : MonoBehaviour
                 //シャッターを切られた
                 if (Input.GetButtonDown("ForTakePicture"))
                 {
+                    img.Init();
+
                     if (collidedObj.collider.GetComponent<ObjectAttribute>().CanTake)
                     {
                         float distance = collidedObj.distance;

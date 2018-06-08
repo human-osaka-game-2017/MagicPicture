@@ -40,6 +40,6 @@ public class GoClearScene : MonoBehaviour {
         // モーション分待ってゲームオーバーへ
         yield return new WaitForSeconds(joyMotionTime);
 
-        SceneManager.LoadScene("ClearScene");
+        SceneManager.LoadScene("ClearSceneM");
     }
 }

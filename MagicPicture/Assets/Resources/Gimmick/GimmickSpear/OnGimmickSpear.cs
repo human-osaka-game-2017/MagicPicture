@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OnGimmickSpear : MonoBehaviour {
     
-    public  bool onFlag;
+    public bool onFlag;
 
     // Use this for initialization
     void Start () {
@@ -15,7 +15,7 @@ public class OnGimmickSpear : MonoBehaviour {
 	void Update () {
 
         // Colliderを非アクティブにして矢の発射を止める
-        if (HitCtrl.gameOverState == (int)gameState.e_HitSpear) {
+        if (HitCtrl.gameState == (int)State.hitSpear) {
             onFlag = false;
             GetComponent<BoxCollider>().enabled = false;
         }

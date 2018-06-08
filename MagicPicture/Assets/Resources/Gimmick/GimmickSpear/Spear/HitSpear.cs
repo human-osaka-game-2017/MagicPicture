@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class HitEnemy : MonoBehaviour {
+public class HitSpear : MonoBehaviour {
 
-    [SerializeField] GameOverScene gameOverUI;
+    [SerializeField] GameOverScene  gameOverUI;
+    [SerializeField] OnGimmickSpear onGimmickSpear;
 
     public float damageMotionTime;
 
@@ -17,11 +17,15 @@ public class HitEnemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (HitCtrl.gameOverState == (int)gameState.e_HitEnemy) {
+		if (HitCtrl.gameState == (int)State.hitSpear) {
+
+            // 感圧板のisTriggerをtrueにして槍の発射を止める
+            onGimmickSpear.GetComponent<Collider>().isTrigger = true;
 
             StartCoroutine("WaitGoGameOver");
         }
-    }
+	}
+
 
     //===================
     // ゲームオーバーへ

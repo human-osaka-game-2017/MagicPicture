@@ -40,7 +40,7 @@ public class OpenDoorOnTogether : MonoBehaviour {
                 doorL.transform.Translate(Vector3.left  * mixSpeed);
             }
         }
-
+        
         // 正解ボタンが全て押されてなかったら、または解除
         if (ctrl.onButtonCount != ctrl.correctButtonNum) {
 

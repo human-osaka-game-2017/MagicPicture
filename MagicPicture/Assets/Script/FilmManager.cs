@@ -142,7 +142,8 @@ public class FilmManager : MonoBehaviour {
             }
 
             //現像
-            if (Input.GetButtonDown("ForDevelopPhantom") && this.isPhantomMode)
+            if ((Input.GetButtonDown("ForDevelopPhantom") || Input.GetAxisRaw("ForDevelopPhantom") == 1.0f)
+                && this.isPhantomMode)
             {
                 if (silhouette.obj.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
             }

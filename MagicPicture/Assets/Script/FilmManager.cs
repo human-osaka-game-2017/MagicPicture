@@ -155,6 +155,8 @@ public class FilmManager : MonoBehaviour {
     {
         SoundManager.GetInstance().Play("SE_PhantomPutOut", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
+        EffectManager.GetInstance().PopUp("appear", this.films[this.currentFilmNum].obj.transform.position);
+
         AddPhantom(this.films[this.currentFilmNum].obj);
 
         //追加時の各設定

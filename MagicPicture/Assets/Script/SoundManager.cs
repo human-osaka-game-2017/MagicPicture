@@ -26,7 +26,6 @@ class SoundManager
     // 再生プレイヤー
     AudioSource[] soundPlayers;
 
-    // Soundにアクセスするためのテーブル 
     Dictionary<string, AudioClip> soundTable = new Dictionary<string, AudioClip>();
 
     private SoundManager()

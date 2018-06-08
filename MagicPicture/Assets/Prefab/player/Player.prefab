@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPSCamera: {fileID: 1846108457544270}
-  TPSCamera: {fileID: 0}
+  TPSCamera: {fileID: 1545758604869476}
 --- !u!114 &114762267062396818
 MonoBehaviour:
   m_ObjectHideFlags: 1

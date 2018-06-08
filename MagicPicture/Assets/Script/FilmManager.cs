@@ -17,6 +17,8 @@ public class FilmManager : MonoBehaviour {
     [SerializeField] private float kScaleRatio_M;
     [SerializeField] private float kScaleRatio_L;
     [SerializeField] private float photoCameraRange;
+    [SerializeField, Range(0.0f, 1.0f)] private float alphaSilhouette;
+    [SerializeField, Range(0.0f, 1.0f)] private float alphaPhantom;
 
     private const int filmSpace_x = 100;
     private const int filmSpace_y = 5000;
@@ -123,12 +125,6 @@ public class FilmManager : MonoBehaviour {
 
             if (this.isPhantomMode)
             {
-                //シルエット変更
-                //if (prevFilmNum != currentFilmNum)
-                //{
-                //    ChangeSilhouette(films[currentFilmNum]);
-                //}
-
                 UpdateSilhouette();
             }
 
@@ -160,6 +156,7 @@ public class FilmManager : MonoBehaviour {
         //追加時の各設定
         this.phantoms[0].GetComponent<ObjectAttribute>().Taken();
         this.phantoms[0].transform.parent = null;
+        this.films[this.currentFilmNum].obj.GetComponent<Renderer>().material.SetColor("_Color", new Color(1, 1, 1, alphaSilhouette));
     }
 
     //@param 撮影のray
@@ -287,6 +284,9 @@ public class FilmManager : MonoBehaviour {
 
         this.films[this.currentFilmNum].image.texture = photo;
         this.films[this.currentFilmNum].image.color = Color.white;
+        Material material = this.films[this.currentFilmNum].obj.GetComponent<Renderer>().material;
+        BlendModeUtils.SetBlendMode(material, BlendModeUtils.Mode.Transparent);
+        material.SetColor("_Color", new Color(1, 1, 1, alphaSilhouette));
     }
 
     //@param 変更するオブジェクト
@@ -296,6 +296,7 @@ public class FilmManager : MonoBehaviour {
         {
             silhouette.ResetPos();
             silhouette.obj.GetComponent<Collider>().isTrigger = false;
+           //silhouette.obj.GetComponent<Renderer>().material=new Material(Shader.Find())
         }
 
         //変更

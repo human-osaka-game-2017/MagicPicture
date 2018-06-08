@@ -107,6 +107,8 @@ public class FilmManager : MonoBehaviour {
         //選択フィルム変更
         if (this.prevFilmNum != this.currentFilmNum)
         {
+            SoundManager.GetInstance().Play("SE_FilmToSwitch", SoundManager.PLAYER_TYPE.NONLOOP, true);
+
             this.films[this.prevFilmNum].image.gameObject.transform.parent.localScale = Vector3.one;
             this.films[this.currentFilmNum].image.gameObject.transform.parent.localScale = new Vector3(2.0f, 2.0f, 1.0f);
 
@@ -120,7 +122,7 @@ public class FilmManager : MonoBehaviour {
             {
                 this.isPhantomMode = !this.isPhantomMode;
                 
-                    ChangeSilhouette(films[currentFilmNum]);
+                ChangeSilhouette(films[currentFilmNum]);
             }
 
             if (this.isPhantomMode)
@@ -140,7 +142,8 @@ public class FilmManager : MonoBehaviour {
             }
 
             //現像
-            if (Input.GetButtonDown("ForDevelopPhantom") && this.isPhantomMode)
+            if ((Input.GetButtonDown("ForDevelopPhantom") || Input.GetAxisRaw("ForDevelopPhantom") == 1.0f)
+                && this.isPhantomMode)
             {
                 if (silhouette.obj.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
             }
@@ -151,6 +154,10 @@ public class FilmManager : MonoBehaviour {
 
     private void DevelopPhantom()
     {
+        SoundManager.GetInstance().Play("SE_PhantomPutOut", SoundManager.PLAYER_TYPE.NONLOOP, true);
+
+        EffectManager.GetInstance().PopUp("appear", this.films[this.currentFilmNum].obj.transform.position);
+
         AddPhantom(this.films[this.currentFilmNum].obj);
 
         //追加時の各設定

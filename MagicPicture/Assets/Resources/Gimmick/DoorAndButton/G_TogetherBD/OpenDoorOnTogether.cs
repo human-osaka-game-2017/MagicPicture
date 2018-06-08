@@ -34,6 +34,8 @@ public class OpenDoorOnTogether : MonoBehaviour {
         // 正解ボタンが全て押されたら
         if (ctrl.onButtonCount >= ctrl.correctButtonNum) {
 
+            //SoundManager.GetInstance().Play("SE_Gimmick_DoorOpen", SoundManager.PLAYER_TYPE.NONLOOP, true);
+
             // ドアを開く
             if (doorR.transform.localPosition.x < ctrl.openRange) {
                 doorR.transform.Translate(Vector3.right * mixSpeed);
@@ -43,6 +45,8 @@ public class OpenDoorOnTogether : MonoBehaviour {
         
         // 正解ボタンが全て押されてなかったら、または解除
         if (ctrl.onButtonCount != ctrl.correctButtonNum) {
+
+            //SoundManager.GetInstance().Play("SE_Gimmick_DoorOpen", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
             ctrl.closeFlag = false;
 

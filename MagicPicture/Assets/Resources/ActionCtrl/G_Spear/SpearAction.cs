@@ -57,7 +57,11 @@ public class SpearAction : MonoBehaviour {
     // 矢を飛ばす
     void ArrowFlies()
     {
-        if (actionTimer == 0) EffectFire();
+        if (actionTimer == 0)
+        {
+            SoundManager.GetInstance().Play("SE_ShootingArrow", SoundManager.PLAYER_TYPE.NONLOOP, true);
+            EffectFire();
+        }
 
         actionTimer += Time.deltaTime;
         

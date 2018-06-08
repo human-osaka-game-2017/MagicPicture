@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+//todo rename Searcher
 static class RouteSearch
 {
     //行きたい座標への最短ルートに障害物がないか判定し

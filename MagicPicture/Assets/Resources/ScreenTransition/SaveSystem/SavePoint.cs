@@ -20,6 +20,7 @@ public class SavePoint : MonoBehaviour {
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.name == "Player") {
+            SoundManager.GetInstance().Play("SE_IntermediatePoint", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
             PlayerPrefs.DeleteAll();    // すべてのセーブデータを削除
 

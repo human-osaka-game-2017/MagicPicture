@@ -43,6 +43,7 @@ public class GameOverSelect : MonoBehaviour {
 
         // 丸ボタンを押したら
         if (Input.GetButtonDown("ForSilhouetteMode")) {
+            SoundManager.GetInstance().Play("SE_Click", SoundManager.PLAYER_TYPE.NONLOOP, true);
             if (select == 1) GoQuit();
             if (select == 2) GoLoading();
         }

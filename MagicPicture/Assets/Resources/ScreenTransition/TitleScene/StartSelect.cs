@@ -36,7 +36,7 @@ public class StartSelect : MonoBehaviour {
         //丸ボタンを押したら
         if (Input.GetButtonDown("ForSilhouetteMode"))
         {
-
+            SoundManager.GetInstance().Play("SE_Click", SoundManager.PLAYER_TYPE.NONLOOP, true);
             SceneManager.LoadScene("Mstage");
         }
     }

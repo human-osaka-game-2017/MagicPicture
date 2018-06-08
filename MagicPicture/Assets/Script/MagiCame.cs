@@ -68,6 +68,7 @@ public class MagiCame : MonoBehaviour
                         float distance = collidedObj.distance;
                         if (kMinDistance < distance && distance < kMaxDistance)
                         {
+                            SoundManager.GetInstance().Play("SE_Shutter", SoundManager.PLAYER_TYPE.NONLOOP, true);
                             filmManager.Take(collidedObj, this.ray.origin);
                         }
                     }

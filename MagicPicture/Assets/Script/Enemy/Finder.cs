@@ -15,6 +15,10 @@ public class Finder : MonoBehaviour
 
     private SphereCollider sphereCollider = null;
     private List<FoundData> foundList = new List<FoundData>();
+    public List<FoundData> FoundList
+    {
+        get { return foundList; }
+    }
 
     public float SearchRadius
     {
@@ -156,7 +160,7 @@ public class Finder : MonoBehaviour
     }
 
 
-    private class FoundData
+    public class FoundData
     {
         public FoundData(GameObject argObj)
         {

@@ -299,13 +299,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kMaxFilm: 4
   kMaxPhantom: 5
-  kCoordinateUnit: 0.5
-  kPhantomDistance: 5
-  kScaleThreshold_StoM_per: 10
+  kCoordinateUnit: 1
+  kPhantomDistance: 5.5
+  kScaleThreshold_StoM_per: 35
   kScaleThreshold_MtoL_per: 80
   kScaleRatio_S: 0.5
-  kScaleRatio_M: 1
-  kScaleRatio_L: 2
+  kScaleRatio_M: 0.8
+  kScaleRatio_L: 1.1
   photoCameraRange: 10
   alphaSilhouette: 0.5
   alphaPhantom: 0.99

@@ -33,10 +33,11 @@ public class StartSelect : MonoBehaviour {
         }
 
 
-        // 丸ボタンを押したら
-        //if (Input.GetButtonDown("Fire3")) {
+        //丸ボタンを押したら
+        if (Input.GetButtonDown("ForChangeViewMode"))
+        {
 
-        //    SceneManager.LoadScene("Funaoka");
-        //}
+            SceneManager.LoadScene("Mstage");
+        }
     }
 }

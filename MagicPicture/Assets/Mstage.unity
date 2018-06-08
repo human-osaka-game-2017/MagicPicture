@@ -11037,6 +11037,36 @@ Prefab:
       propertyPath: TPSCamera
       value: 
       objectReference: {fileID: 486798051}
+    - target: {fileID: 114037232862576694, guid: ee2ce3c7e45f62e429ef7c49e672957c,
+        type: 2}
+      propertyPath: TPS_HorizontalSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114037232862576694, guid: ee2ce3c7e45f62e429ef7c49e672957c,
+        type: 2}
+      propertyPath: TPS_BackSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114037232862576694, guid: ee2ce3c7e45f62e429ef7c49e672957c,
+        type: 2}
+      propertyPath: TPS_FwdSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114037232862576694, guid: ee2ce3c7e45f62e429ef7c49e672957c,
+        type: 2}
+      propertyPath: FPS_FwdSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114037232862576694, guid: ee2ce3c7e45f62e429ef7c49e672957c,
+        type: 2}
+      propertyPath: FPS_BackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114037232862576694, guid: ee2ce3c7e45f62e429ef7c49e672957c,
+        type: 2}
+      propertyPath: FPS_HorizontalSpeed
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
   m_IsPrefabParent: 0

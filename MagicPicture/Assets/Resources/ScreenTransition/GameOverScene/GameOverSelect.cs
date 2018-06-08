@@ -42,10 +42,10 @@ public class GameOverSelect : MonoBehaviour {
 
 
         // 丸ボタンを押したら
-        //if (Input.GetButtonDown("")) {
-        //    if (select == 1) GoQuit();
-        //    if (select == 2) GoLoading();
-        //}
+        if (Input.GetButtonDown("ForSilhouetteMode")) {
+            if (select == 1) GoQuit();
+            if (select == 2) GoLoading();
+        }
     }
 
 
@@ -55,7 +55,7 @@ public class GameOverSelect : MonoBehaviour {
         GameState.SetGameState((int)state.load);
 
         // 再読み込みでsceneリセットかつロード
-        SceneManager.LoadScene("Funaoka");
+        SceneManager.LoadScene("Mstage");
     }
 
     private void GoQuit()

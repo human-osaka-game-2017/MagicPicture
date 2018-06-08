@@ -14,13 +14,13 @@ public class GoTitleButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        // 丸ボタンを押したら演出スキップ
-        //if (Input.GetButtonDown("Fire3")) {
+        // Aボタンを押したら演出スキップ
+        if (Input.GetButtonDown("ForSilhouetteMode")) {
 
-        //    // stateをtitleに
-        //    GameState.SetGameState((int)state.title);
+            // stateをtitleに
+            GameState.SetGameState((int)state.title);
 
-        //    SceneManager.LoadScene("TitleScene");
-        //}
+            SceneManager.LoadScene("TitleSceneM");
+        }
     }
 }

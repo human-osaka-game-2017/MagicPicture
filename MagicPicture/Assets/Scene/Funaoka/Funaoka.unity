@@ -762,7 +762,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4480006355394606, guid: ac8256e390580844d958b31cc674a8b1, type: 2}
       propertyPath: m_RootOrder
-      value: 28
+      value: 27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac8256e390580844d958b31cc674a8b1, type: 2}
@@ -1153,7 +1153,7 @@ Transform:
   m_Children:
   - {fileID: 623737768}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: -30, y: 90, z: 0}
 --- !u!1001 &1219275912
 Prefab:
@@ -1937,6 +1937,22 @@ Prefab:
       propertyPath: m_Name
       value: GameOverUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1133270917413682, guid: e2c7bc55dd3f1434b9b1cdf04eafaf09, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591597677746388, guid: e2c7bc55dd3f1434b9b1cdf04eafaf09, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436532233545328, guid: e2c7bc55dd3f1434b9b1cdf04eafaf09, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758110979397794, guid: e2c7bc55dd3f1434b9b1cdf04eafaf09, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2c7bc55dd3f1434b9b1cdf04eafaf09, type: 2}
   m_IsPrefabParent: 0
@@ -2041,6 +2057,10 @@ Prefab:
     - target: {fileID: 224719778224946214, guid: 64869d7a7253b014cab57b76f62f9da2,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1126890103711628, guid: 64869d7a7253b014cab57b76f62f9da2, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2418,18 +2438,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 1404433586729998, guid: d1a9d51e7dec2464db3830318927518c, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114174506975340186, guid: d1a9d51e7dec2464db3830318927518c,
         type: 2}
       propertyPath: nonActiveObj
       value: 
       objectReference: {fileID: 1277866559}
-    m_RemovedComponents:
-    - {fileID: 114927171040570456, guid: d1a9d51e7dec2464db3830318927518c, type: 2}
-    - {fileID: 114254092988262810, guid: d1a9d51e7dec2464db3830318927518c, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1a9d51e7dec2464db3830318927518c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1892858609

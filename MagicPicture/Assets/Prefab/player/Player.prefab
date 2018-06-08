@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114762267062396818}
   - component: {fileID: 114616403438220446}
   - component: {fileID: 114037232862576694}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 224486121636214456}
   - component: {fileID: 222192380429476338}
   - component: {fileID: 114855019694974152}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,8 +62,8 @@ GameObject:
   - component: {fileID: 124910453185598400}
   - component: {fileID: 81060450080883492}
   - component: {fileID: 114852084129786358}
-  m_Layer: 0
-  m_Name: TPSCamera 1
+  m_Layer: 9
+  m_Name: TPSCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 65853274168897062}
   - component: {fileID: 54865922612909844}
   - component: {fileID: 114899698684108168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 124003506734042214}
   - component: {fileID: 81437194856853170}
   - component: {fileID: 114539920876704316}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FPSCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4253538211317774}
   - component: {fileID: 114065710731819594}
   - component: {fileID: 114557148050327926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 223287585740351520}
   - component: {fileID: 114906771201827698}
   - component: {fileID: 114220793740309358}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,10 +389,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   operationState: 0
-  fwdSpeed: 5
-  backSpeed: 1
-  horizontalSpeed: 3
+  TPS_FwdSpeed: 10
+  TPS_BackSpeed: 10
+  TPS_HorizontalSpeed: 10
   TPS_RotSpeed: 50
+  FPS_FwdSpeed: 1
+  FPS_BackSpeed: 1
+  FPS_HorizontalSpeed: 1
   FPS_RotSpeed: 15
 --- !u!114 &114065710731819594
 MonoBehaviour:
@@ -437,7 +440,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kMinDistance: 0
   kMaxDistance: 10
-  kRotSpeedDeg: 10
 --- !u!114 &114557148050327926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -468,7 +470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPSCamera: {fileID: 1846108457544270}
-  TPSCamera: {fileID: 0}
+  TPSCamera: {fileID: 1545758604869476}
 --- !u!114 &114762267062396818
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,11 +7,50 @@ public class PlayerCtrl : MonoBehaviour {
     
     public int   operationState;
 
-    public float fwdSpeed;
-    public float backSpeed;
-    public float horizontalSpeed;
-    public float TPS_RotSpeed;
-    public float FPS_RotSpeed;
+    [SerializeField] private float TPS_FwdSpeed;
+    [SerializeField] private float TPS_BackSpeed;
+    [SerializeField] private float TPS_HorizontalSpeed;
+    [SerializeField] private float TPS_RotSpeed;
+    [SerializeField] private float FPS_FwdSpeed;
+    [SerializeField] private float FPS_BackSpeed;
+    [SerializeField] private float FPS_HorizontalSpeed;
+    [SerializeField] private float FPS_RotSpeed;
+
+    public float fwdSpeed
+    {
+        get
+        {
+            if (this.GetComponent<CameraSystem>().IsFPSMode) return FPS_FwdSpeed;
+            else return TPS_FwdSpeed;
+        }
+    }
+
+    public float backSpeed
+    {
+        get
+        {
+            if (this.GetComponent<CameraSystem>().IsFPSMode) return FPS_BackSpeed;
+            else return TPS_BackSpeed;
+        }
+    }
+
+    public float horzSpeed
+    {
+        get
+        {
+            if (this.GetComponent<CameraSystem>().IsFPSMode) return FPS_HorizontalSpeed;
+            else return TPS_HorizontalSpeed;
+        }
+    }
+
+    public float rotSpeed
+    {
+        get
+        {
+            if (this.GetComponent<CameraSystem>().IsFPSMode) return FPS_RotSpeed;
+            else return TPS_RotSpeed;
+        }
+    }
 
     private CharacterController charctrl;
     private float vertaxis;
@@ -45,21 +84,13 @@ public class PlayerCtrl : MonoBehaviour {
             fwdVec   = transform.forward;
             rightVec = transform.right;
 
-            if (!this.GetComponent<CameraSystem>().IsFPSMode) {
-
-                Rotation(TPS_RotSpeed);
-            }
-            // FPS時
-            if (this.GetComponent<CameraSystem>().IsFPSMode) {
-
-                Rotation(FPS_RotSpeed);
-            }
+            Rotation(rotSpeed);
             
             if (vertaxis > 0) verticality = fwdSpeed;   // 前移動
             if (vertaxis < 0) verticality = backSpeed;  // 後ろ移動
             
             // 移動
-            move = fwdVec * vertaxis * verticality + rightVec * horzaxis * horizontalSpeed;
+            move = fwdVec * vertaxis * verticality + rightVec * horzaxis * horzSpeed;
 
             // 移動
             charctrl.SimpleMove(move);

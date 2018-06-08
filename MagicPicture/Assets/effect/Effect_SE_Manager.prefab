@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1853028396471552}
+  m_IsPrefabParent: 1
+--- !u!1 &1853028396471552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4632188952284110}
+  - component: {fileID: 114636592764757688}
+  m_Layer: 0
+  m_Name: Effect_SE_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4632188952284110
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853028396471552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114636592764757688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853028396471552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a765eaa779366f942b1987d1ed326f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  E_damagePrefab: {fileID: 0}
+  E_appearPrefab: {fileID: 1303622590504270, guid: 189614bbb4cdbbc4c973043d6b26b4e8,
+    type: 2}
+  E_disappearPrefab: {fileID: 1801613228327506, guid: bf0b02f411087374fb49f8e3cce4e2f7,
+    type: 2}
+  E_fitPrefab: {fileID: 1136979250678300, guid: 066d40b60f5747548a0a7363ba770009,
+    type: 2}
+  E_IntermediatePointPrefab: {fileID: 1029588058133202, guid: 660cb1fb10f3eb24f810f2d5943aaf4f,
+    type: 2}
+  SE_damaage: {fileID: 8300000, guid: dcf5e6a80f5b50b44a34c0e3a766499d, type: 3}
+  SE_appear: {fileID: 8300000, guid: 35c6345d8c9894449af050d51c70f784, type: 3}
+  SE_disappear: {fileID: 8300000, guid: 607d7dec24beef84b90c7d42f0395be2, type: 3}
+  SE_fit: {fileID: 8300000, guid: 122ceef10aabbdd479fa37d44e276cc3, type: 3}
+  SE_arrow: {fileID: 8300000, guid: 8b41b00d89edfee4b99df1c2955c0da7, type: 3}
+  SE_IntermediatePoint: {fileID: 8300000, guid: 61bf5148e1aa02544a55c21623973d58,
+    type: 3}
+  SE_DoorOpen: {fileID: 8300000, guid: 9766f76dcfb947c4abfc95d3628f72e7, type: 3}

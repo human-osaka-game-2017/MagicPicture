@@ -131,7 +131,7 @@ public class FilmManager : MonoBehaviour {
             }
 
             //写真、オブジェクトの回転
-            if (Input.GetButtonDown("ForRotatePicture"))
+            if (AxisStateManager.GetInstance().GetAxisDown("ForRotatePicture") != 0)
             {
                 films[currentFilmNum].image.transform.Rotate(new Vector3(0.0f, 0.0f, Input.GetAxisRaw("ForRotatePicture") * 90.0f));
                 Vector3 rot = Vector3.zero;
@@ -142,7 +142,7 @@ public class FilmManager : MonoBehaviour {
             }
 
             //現像
-            if ((Input.GetButtonDown("ForDevelopPhantom") || Input.GetAxisRaw("ForDevelopPhantom") == 1.0f)
+            if ((Input.GetButtonDown("ForDevelopPhantom") || AxisStateManager.GetInstance().GetAxisDown("ForDevelopPhantom") == 1)
                 && this.isPhantomMode)
             {
                 if (silhouette.obj.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
@@ -334,19 +334,15 @@ public class FilmManager : MonoBehaviour {
     private void UpdateCurrentFilmNum()
     {
         Func<int, int> standardizationFilmNum = nextFilmNum => (nextFilmNum + this.kMaxFilm) % this.kMaxFilm;
-
-        if (Input.GetButtonDown("HorizontalForChangeFilm"))
+        
+        if (AxisStateManager.GetInstance().GetAxisDown("HorizontalForChangeFilm") == 1.0f)
         {
-            if (Input.GetAxis("HorizontalForChangeFilm") < 0.0f)
-            {
-                this.currentFilmNum = standardizationFilmNum(--currentFilmNum);
-            }
-            else if (Input.GetAxis("HorizontalForChangeFilm") > 0.0f)
-            {
-                this.currentFilmNum = standardizationFilmNum(++currentFilmNum);
-            }
+            this.currentFilmNum = standardizationFilmNum(--currentFilmNum);
         }
-        Debug.Log(this.currentFilmNum);
+        else if (AxisStateManager.GetInstance().GetAxisDown("HorizontalForChangeFilm") == -1.0f)
+        {
+            this.currentFilmNum = standardizationFilmNum(++currentFilmNum);
+        }
     }
 
     //phantomの要素番号0番に追加

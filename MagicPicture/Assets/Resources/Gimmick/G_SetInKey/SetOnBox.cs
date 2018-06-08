@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SetOnBox : MonoBehaviour {
 
-    [SerializeField] TmpProcessing tmp;
+    [SerializeField] TmpProcessing   tmp;
+    [SerializeField] ParticleSystem  pole;
+    [SerializeField] ParticleSystem  bottom;
 
     public  string    designationObj;
     public  Vector3   rangeScale;
@@ -12,9 +14,11 @@ public class SetOnBox : MonoBehaviour {
     public  Vector3   minRange;
     public  Vector3   maxRange;
     private Vector3   surplus;
+    bool flag;
 
     // Use this for initialization
     void Start () {
+        pole.Stop();
         surplus.x = surplus.y = surplus.z = 0.25f;
     }
 	
@@ -29,8 +33,7 @@ public class SetOnBox : MonoBehaviour {
 
         // Rayの表示
         Debug.DrawRay(ray.origin, ray.direction * 10, Color.red, 3.0f);
-
-
+        
         // Rayとオブジェクトが接触していたら
         if (Physics.Raycast(ray, out hitCol)) {
             
@@ -50,13 +53,25 @@ public class SetOnBox : MonoBehaviour {
                 // スケール値が許容範囲内なら
                 if (InRangeScale(scale, maxS, minS)) {
 
+                    if (hitCol.collider.gameObject.tag == "KeyObjTag")
+
                     // 特にオブジェの指定なし
                     if (designationObj == "") {
                         tmp.state = true;
+                        if (!flag) {
+                            pole.Play();
+                            bottom.Stop();
+                            flag = true;
+                        }
                     }
                     // オブジェの指定あり
                     if (designationObj == hitCol.collider.gameObject.name) {
                         tmp.state = true;
+                        if (!flag) {
+                            pole.Play();
+                            bottom.Stop();
+                            flag = true;
+                        }
                     }
                 }
             }

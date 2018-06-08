@@ -2,46 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum gameState
+enum State
 {
-    e_None,
-    e_HitEnemy,
-    e_HitSpear
+    none,
+    hitEnemy,
+    hitSpear
 }
 
 public class HitCtrl : MonoBehaviour {
-    
-    public static int  gameOverState;
-    public static bool gameClearFlag;
+
+    [SerializeField] GameOverScene gameOverUI;
+
+    public  static int  gameState;
+    public  static bool gameClearFlag;
+    public  float       waitEnemy;
+    public  float       waitSpear;
+    private float       damageWait;
 
     // Use this for initialization
     void Start () {
-        gameOverState = (int)gameState.e_None;
+        gameState = (int)State.none;
         gameClearFlag = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
+        if (gameState != (int)State.none) {
+            StartCoroutine("WaitGoGameOver");
+        }
 	}
-
-
+    
     void OnTriggerEnter(Collider col)
     {
-        // セーブ、感圧板は別
+        // 画面遷移系
 
         // Enemyゲームオーバー
         if (col.gameObject.tag == "EnemyTag") {
             PlayerCtrl.SetStopperFlag(true);
 
-            gameOverState = (int)gameState.e_HitEnemy;
+            gameState = (int)State.hitEnemy;
+            damageWait = waitEnemy;
         }
 
         // Spearゲームオーバー
         if (col.gameObject.tag == "SpearTag") {
             PlayerCtrl.SetStopperFlag(true);
             
-            gameOverState = (int)gameState.e_HitSpear;
+            gameState = (int)State.hitSpear;
+            GetComponent<Collider>().isTrigger = false;
+            damageWait = waitSpear;
         }
 
         // ゲームクリア
@@ -50,5 +60,16 @@ public class HitCtrl : MonoBehaviour {
 
             gameClearFlag = true;
         }
+    }
+
+
+    //-------------------
+    // ゲームオーバーへ
+    IEnumerator WaitGoGameOver()
+    {
+        // モーション分待ってゲームオーバーへ
+        yield return new WaitForSeconds(damageWait);
+
+        gameOverUI.gameObject.SetActive(true);
     }
 }

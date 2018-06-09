@@ -295,6 +295,11 @@ Prefab:
       propertyPath: m_FontData.m_FontSize
       value: 26
       objectReference: {fileID: 0}
+    - target: {fileID: 114520092264483768, guid: 64869d7a7253b014cab57b76f62f9da2,
+        type: 2}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f16d69dbcaa9aeb458f948373427e32a, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 64869d7a7253b014cab57b76f62f9da2, type: 2}
   m_IsPrefabParent: 0

@@ -8,7 +8,7 @@ class EnemyStateAttack : EnemyStateBase
 {
     //敵を見失ってもしばらくはそこにいるだろうで動く
     //完全に見失うまでのカウント
-    private const int lostTime = 180;
+    /*[SerializeField]*/ private float lostTime = 3;
     private bool isMissing = false;
     private Vector3 targetPos;
     private GameObject target;

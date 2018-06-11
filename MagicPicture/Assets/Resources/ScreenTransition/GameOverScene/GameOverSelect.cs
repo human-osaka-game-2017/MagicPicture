@@ -56,7 +56,7 @@ public class GameOverSelect : MonoBehaviour {
         GameState.SetGameState((int)state.load);
 
         // 再読み込みでsceneリセットかつロード
-        SceneManager.LoadScene("Mstage");
+        SceneManager.LoadScene("MstageRetake");
     }
 
     private void GoQuit()

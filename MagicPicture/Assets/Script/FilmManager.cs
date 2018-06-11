@@ -27,10 +27,7 @@ public class FilmManager : MonoBehaviour {
     {
         public Film(int index)
         {
-            farawaySpace = new Vector3(
-                filmSpace_x * index,
-                filmSpace_y,
-                0.0f);
+            SetIndex(index);
         }
         
         public void SetIndex(int index)
@@ -269,7 +266,7 @@ public class FilmManager : MonoBehaviour {
             //カメラの移動
             //photo用カメラ撮影位置
             Vector3 pos = filmingObj.point - rayOrigin;
-
+            pos.Scale(new Vector3(1, 0, 1));
             pos.Normalize();
             pos *= photoCameraRange;
             pos += this.films[currentFilmNum].obj.transform.position;

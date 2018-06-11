@@ -14,9 +14,9 @@ static class RouteSearch
     //@param myPos      現在の自分の座標
     public static Vector3 ObtainNextPos(Vector3 targetPos, Vector3 myPos)
     {
-        Vector3 ret = Vector3.zero;
+        Vector3 ret = targetPos;
 
-        Vector3 direction = targetPos - targetPos;
+        Vector3 direction = targetPos - myPos;
         RaycastHit onHitRay;
         if (Physics.Raycast(
             myPos,

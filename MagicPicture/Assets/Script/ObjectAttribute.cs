@@ -38,10 +38,12 @@ public class ObjectAttribute : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         canPhantom = false;
+        Debug.Log("enter" + this.gameObject.ToString());
     }
 
     private void OnTriggerExit(Collider other)
     {
         canPhantom = true;
+        Debug.Log("exit" + this.gameObject.ToString());
     }
 }

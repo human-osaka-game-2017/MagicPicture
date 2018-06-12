@@ -27,10 +27,7 @@ public class FilmManager : MonoBehaviour {
     {
         public Film(int index)
         {
-            farawaySpace = new Vector3(
-                filmSpace_x * index,
-                filmSpace_y,
-                0.0f);
+            SetIndex(index);
         }
         
         public void SetIndex(int index)
@@ -96,7 +93,6 @@ public class FilmManager : MonoBehaviour {
         }
 
         silhouette = films[currentFilmNum];
-        this.films[this.currentFilmNum].image.gameObject.transform.parent.localScale = new Vector3(2.0f, 2.0f, 1.0f);
     }
 
     void Update()
@@ -109,8 +105,24 @@ public class FilmManager : MonoBehaviour {
         {
             SoundManager.GetInstance().Play("SE_FilmToSwitch", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
+            int influenceNum = this.currentFilmNum - this.prevFilmNum;
+            int direction = influenceNum / Math.Abs(influenceNum);
+
+            float halfSize = this.films[this.currentFilmNum].image.GetComponentInParent<RectTransform>().sizeDelta.x / 2;
+
+            //縮小、移動
             this.films[this.prevFilmNum].image.gameObject.transform.parent.localScale = Vector3.one;
+            this.films[this.prevFilmNum].image.transform.parent.position += new Vector3(halfSize * -direction, 0, 0);
+
+            //移動
+            for (int i = this.prevFilmNum + direction ; i != currentFilmNum; i += direction)
+            {
+                this.films[i].image.transform.parent.position += new Vector3(this.films[i].image.GetComponentInParent<RectTransform>().sizeDelta.x * -direction, 0, 0);
+            }
+
+            //拡大、移動
             this.films[this.currentFilmNum].image.gameObject.transform.parent.localScale = new Vector3(2.0f, 2.0f, 1.0f);
+            this.films[this.currentFilmNum].image.transform.parent.position += new Vector3(halfSize * -direction, 0, 0);
 
             ChangeSilhouette(films[currentFilmNum]);
         }
@@ -163,7 +175,7 @@ public class FilmManager : MonoBehaviour {
         //追加時の各設定
         this.phantoms[0].GetComponent<ObjectAttribute>().Taken();
         this.phantoms[0].transform.parent = null;
-        this.films[this.currentFilmNum].obj.GetComponent<Renderer>().material.SetColor("_Color", new Color(1, 1, 1, alphaSilhouette));
+        this.phantoms[0].GetComponent<Renderer>().material.SetColor("_Color", new Color(1, 1, 1, alphaPhantom));
     }
 
     //@param 撮影のray
@@ -251,11 +263,10 @@ public class FilmManager : MonoBehaviour {
 
         //スクショ
         {
-            //todo 別スクリプトへ
             //カメラの移動
             //photo用カメラ撮影位置
             Vector3 pos = filmingObj.point - rayOrigin;
-
+            pos.Scale(new Vector3(1, 0, 1));
             pos.Normalize();
             pos *= photoCameraRange;
             pos += this.films[currentFilmNum].obj.transform.position;
@@ -292,7 +303,7 @@ public class FilmManager : MonoBehaviour {
         this.films[this.currentFilmNum].image.texture = photo;
         this.films[this.currentFilmNum].image.color = Color.white;
         Material material = this.films[this.currentFilmNum].obj.GetComponent<Renderer>().material;
-        BlendModeUtils.SetBlendMode(material, BlendModeUtils.Mode.Transparent);
+        BlendModeUtils.SetBlendMode(material, BlendModeUtils.Mode.Fade);
         material.SetColor("_Color", new Color(1, 1, 1, alphaSilhouette));
     }
 
@@ -303,7 +314,6 @@ public class FilmManager : MonoBehaviour {
         {
             silhouette.ResetPos();
             silhouette.obj.GetComponent<Collider>().isTrigger = false;
-           //silhouette.obj.GetComponent<Renderer>().material=new Material(Shader.Find())
         }
 
         //変更
@@ -329,6 +339,7 @@ public class FilmManager : MonoBehaviour {
         pos.z = ((int)(pos.z / kCoordinateUnit)) * kCoordinateUnit;
 
         silhouette.obj.transform.position = pos;
+        silhouette.obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     private void UpdateCurrentFilmNum()

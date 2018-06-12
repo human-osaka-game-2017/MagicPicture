@@ -38,10 +38,6 @@ class EnemyStateBreaktime : EnemyStateBase
         {
             ret = EnemyAI.STATE.SEARCH;
         }
-        else
-        {
-            timeElapsed = 0.0f;
-        }
 
         return ret;
     }

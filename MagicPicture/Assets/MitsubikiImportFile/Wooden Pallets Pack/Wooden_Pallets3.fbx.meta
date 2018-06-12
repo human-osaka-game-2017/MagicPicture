@@ -4,8 +4,21 @@ timeCreated: 18446744011573954816
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: woodenpallets1
+    400000: //RootNode
+    400002: woodenpallets1
+    2300000: woodenpallets1
+    3300000: woodenpallets1
     4300000: woodenpallets1
-  externalObjects: {}
+    7400000: Default Take
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_001__final_tga
+    second: {fileID: 2100000, guid: 65e544d9225747f44ba6cb7b13a25550, type: 2}
   materials:
     importMaterials: 1
     materialName: 3

@@ -10,6 +10,56 @@ timeCreated: 18446744011573954816
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
+    100000: Barrel
+    100002: Base
+    100004: BigCrate
+    100006: //RootNode
+    100008: Lid
+    100010: LowPolyBarrel
+    100012: LowPolyBigCrate
+    100014: LowPolyCrates
+    100016: LowPolyLid
+    100018: LowPolyMediumCrate
+    100020: LowPolySmallCrate
+    100022: MediumCrate
+    100024: SmallCrate
+    400000: Barrel
+    400002: Base
+    400004: BigCrate
+    400006: //RootNode
+    400008: Lid
+    400010: LowPolyBarrel
+    400012: LowPolyBigCrate
+    400014: LowPolyCrates
+    400016: LowPolyLid
+    400018: LowPolyMediumCrate
+    400020: LowPolySmallCrate
+    400022: MediumCrate
+    400024: SmallCrate
+    2300000: Barrel
+    2300002: Base
+    2300004: BigCrate
+    2300006: Lid
+    2300008: LowPolyBarrel
+    2300010: LowPolyBigCrate
+    2300012: LowPolyCrates
+    2300014: LowPolyLid
+    2300016: LowPolyMediumCrate
+    2300018: LowPolySmallCrate
+    2300020: MediumCrate
+    2300022: SmallCrate
+    3300000: Barrel
+    3300002: Base
+    3300004: BigCrate
+    3300006: Lid
+    3300008: LowPolyBarrel
+    3300010: LowPolyBigCrate
+    3300012: LowPolyCrates
+    3300014: LowPolyLid
+    3300016: LowPolyMediumCrate
+    3300018: LowPolySmallCrate
+    3300020: MediumCrate
+    3300022: SmallCrate
     4300000: LowPolyBarrel
     4300002: LowPolyMediumCrate
     4300004: LowPolySmallCrate
@@ -22,7 +72,20 @@ ModelImporter:
     4300018: Base
     4300020: Lid
     4300022: CrateBase
-  externalObjects: {}
+    4300024: LowPolyCrates
+    7400000: Default Take
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CratesMaterial
+    second: {fileID: 2100000, guid: 4f8b90026c3d5bf4c99b398475fe6f05, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LowPolyCrates
+    second: {fileID: 2100000, guid: 7a38ffcf6a1998d4ba875cdf9dd56d14, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

@@ -5,18 +5,23 @@ using UnityEngine;
 enum state
 {
     title,
-    beginning,
-    load
+    load,
+    play,
+    death,
+    clear
 }
 
 public class GameState : MonoBehaviour {
-    
-    public static int gameState;
+
+    public bool       debugState;
+    public static int state;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        // 自分のシーンでplayから始めるための処理
+        // タイトルシーンから始める場合コメントアウト化
+        if (debugState) state = 2;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -24,13 +29,13 @@ public class GameState : MonoBehaviour {
 	}
 
 
-    public static int GetGameState()
+    public static int GetState()
     {
-        return gameState;
+        return state;
     }
 
-    public static void SetGameState(int _set)
+    public static void SetState(int _set)
     {
-        gameState = _set;
+        state = _set;
     }
 }

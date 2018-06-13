@@ -6,11 +6,11 @@ public class FlySpearCtrl : MonoBehaviour {
 
     private bool    hitOtherFlag;
     private Vector3 keepVec;
-    private Vector3 fixedPos;
+    private Vector3 defaultPos;
 
     // Use this for initialization
     void Start () {
-        fixedPos = transform.localPosition;
+        defaultPos = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -35,11 +35,13 @@ public class FlySpearCtrl : MonoBehaviour {
 
     virtual public void Reset()
     {
-        transform.localPosition = fixedPos;
+        transform.localPosition = defaultPos;
         hitOtherFlag = false;
     }
-
-    void OnTriggerStay() {
+    
+    void OnCollisionEnter()
+    {
+        SoundManager.GetInstance().Play("SE_ArrowHit", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
         keepVec = transform.localPosition;
         hitOtherFlag = true;

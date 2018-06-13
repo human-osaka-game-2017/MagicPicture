@@ -18,7 +18,7 @@ public class PlayerAnimCtrl : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         
-        if (HitCtrl.gameState == (int)State.none) {
+        if (GameState.state == (int)state.play) {
 
             float time;
 

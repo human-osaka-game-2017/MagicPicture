@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class PlayerLoadingData : MonoBehaviour {
     
-    private Vector3             PlayerLoadPos;
-    private Quaternion          PlayerLoadRot;
-    private CharacterController charctrl;
+    private Vector3    loadPos;
+    private Quaternion loadRot;
 
     // Use this for initialization
     void Start () {
-
-        charctrl = GetComponent<CharacterController>();
-
-        if (GameState.GetGameState() == (int)state.load) {
-
+        
+        if (GameState.GetState() == (int)state.load) {
+            
             // ロードする要素を呼び出し
             LoadElement();
+            
+            transform.position = loadPos;
+            transform.rotation = loadRot;
 
-            charctrl.transform.position = PlayerLoadPos;
-            charctrl.transform.rotation = PlayerLoadRot;
-
-            PlayerCtrl.playStopperFlag = false;
+            GameState.state = (int)state.play;
         }
     }
 	
@@ -31,26 +28,23 @@ public class PlayerLoadingData : MonoBehaviour {
     }
 
 
-    //=======================
+    //-----------------------
     // 要素をロードする関数
-    //=======================
-    private float Load(string keyName)
+    float Load(string keyName)
     {
         return PlayerPrefs.GetFloat(keyName, -1);
     }
-
-
-    //===================
+    
+    //-------------------
     // ロード要素を列挙
-    //===================
-    private void LoadElement()
+    void LoadElement()
     {
-        PlayerLoadPos.x = Load("savePosX");
-        PlayerLoadPos.y = Load("savePosY");
-        PlayerLoadPos.z = Load("savePosZ");
-        PlayerLoadRot.x = Load("saveRotX");
-        PlayerLoadRot.y = Load("saveRotY");
-        PlayerLoadRot.z = Load("saveRotZ");
-        PlayerLoadRot.w = Load("saveRotW");
+        loadPos.x = Load("savePosX");
+        loadPos.y = Load("savePosY");
+        loadPos.z = Load("savePosZ");
+        loadRot.x = Load("saveRotX");
+        loadRot.y = Load("saveRotY");
+        loadRot.z = Load("saveRotZ");
+        loadRot.w = Load("saveRotW");
     }
 }

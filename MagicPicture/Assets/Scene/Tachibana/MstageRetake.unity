@@ -3481,7 +3481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73efbbd14d8909348a8341a5ddb60cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canTake: 1
+  canTake: 0
 --- !u!54 &233473654
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3495,7 +3495,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!23 &233473655
 MeshRenderer:
@@ -14799,7 +14799,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4299226386403552, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1436547381807872, guid: ee2ce3c7e45f62e429ef7c49e672957c, type: 2}
       propertyPath: m_Name
@@ -23009,7 +23009,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 93356e4ce00f51f41aa9edf13781ba5e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a923bb304c26a5f459841b7dccc07798, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -23577,7 +23577,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1459409654
 Prefab:

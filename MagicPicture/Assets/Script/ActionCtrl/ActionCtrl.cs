@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class ActionCtrl : MonoBehaviour {
 
-    [SerializeField] bool                door;
-    [SerializeField] public DoorAction   doorAction;
+    [SerializeField] bool                 door;
+    [SerializeField] private DoorAction   doorAction;
 
-    [SerializeField] bool                effect;
-    [SerializeField] public EffectAction effectAction;
+    [SerializeField] bool                 effect;
+    [SerializeField] private EffectAction effectAction;
 
-    [SerializeField] bool                spear;
-    [SerializeField] public SpearAction  spearAction;
+    [SerializeField] bool                 spear;
+    [SerializeField] private SpearAction  spearAction;
+
+    [SerializeField] bool                 wall;
+    [SerializeField] private WallAction   wallAction;
+
+    [SerializeField] bool                 notActive;
+    [SerializeField] private ActiveAction actionActive;
+
 
     private bool playOnceFlag;
     
@@ -40,6 +47,12 @@ public class ActionCtrl : MonoBehaviour {
         if (spear) {
             spearAction.Shot();
         }
+        if (wall) {
+            wallAction.RotWall();
+        }
+        if (notActive) {
+            actionActive.NotActive();
+        }
     }
 
     virtual public void Reset()
@@ -50,6 +63,9 @@ public class ActionCtrl : MonoBehaviour {
         if (effect) {
             playOnceFlag = false;
             effectAction.EffectStop();
+        }
+        if (wall) {
+            wallAction.RotReset();
         }
         if (spear) {
             spearAction.Stop();

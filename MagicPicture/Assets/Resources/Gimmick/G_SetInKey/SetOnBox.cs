@@ -52,12 +52,10 @@ public class SetOnBox : MonoBehaviour {
 
                 // スケール値が許容範囲内なら
                 if (InRangeScale(scale, maxS, minS)) {
-
-                    // if (hitCol.collider.gameObject.tag == "KeyObjTag")
-
+                    
                     // 特にオブジェの指定なし
                     if (designationObj == "") {
-                        // tmp.state = true;
+
                         nonActiveObj.SetActive(false);
 
                         if (!flag) {
@@ -68,7 +66,7 @@ public class SetOnBox : MonoBehaviour {
                     }
                     // オブジェの指定あり
                     if (designationObj == hitCol.collider.gameObject.name) {
-                        // tmp.state = true;
+
                         nonActiveObj.SetActive(false);
 
                         if (!flag) {

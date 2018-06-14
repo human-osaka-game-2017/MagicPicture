@@ -30,7 +30,7 @@ public class StartSelector : MonoBehaviour {
             transform.localPosition = pos;
         }
         if (select == 1) {
-            pos.y = -143;
+            pos.y = -145;
             transform.localPosition = pos;
         }
 

@@ -40,11 +40,11 @@ GameObject:
   - component: {fileID: 33920326767666164}
   - component: {fileID: 23854999697059154}
   - component: {fileID: 65048328826298994}
-  - component: {fileID: 114665453766785820}
+  - component: {fileID: 114850601794767100}
   - component: {fileID: 114059424316413508}
   m_Layer: 0
   m_Name: Spear
-  m_TagString: SpearTag
+  m_TagString: DeathTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,11 +78,11 @@ GameObject:
   - component: {fileID: 33803675848513846}
   - component: {fileID: 23189635781288318}
   - component: {fileID: 65769684985261256}
-  - component: {fileID: 114482508815473692}
+  - component: {fileID: 114043711233919760}
   - component: {fileID: 114418346583823266}
   m_Layer: 0
   m_Name: Spear (1)
-  m_TagString: SpearTag
+  m_TagString: DeathTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,11 +149,11 @@ GameObject:
   - component: {fileID: 33932771864038332}
   - component: {fileID: 23078602221437338}
   - component: {fileID: 65260500413811258}
-  - component: {fileID: 114684391038519650}
+  - component: {fileID: 114295081444357026}
   - component: {fileID: 114330044949360470}
   m_Layer: 0
   m_Name: Spear (2)
-  m_TagString: SpearTag
+  m_TagString: DeathTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 65520806281466424}
   - component: {fileID: 65542462518425016}
   - component: {fileID: 65482527689370326}
-  - component: {fileID: 114755634793761630}
+  - component: {fileID: 114591811841522546}
   m_Layer: 0
   m_Name: G_Spear
   m_TagString: Untagged
@@ -225,11 +225,11 @@ GameObject:
   - component: {fileID: 33654745528722416}
   - component: {fileID: 23887869774936006}
   - component: {fileID: 65304467387751484}
-  - component: {fileID: 114202436447301628}
+  - component: {fileID: 114698414865984872}
   - component: {fileID: 114083923291733860}
   m_Layer: 0
   m_Name: Spear (3)
-  m_TagString: SpearTag
+  m_TagString: DeathTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,11 +260,11 @@ GameObject:
   - component: {fileID: 33745413569622628}
   - component: {fileID: 23753034191892930}
   - component: {fileID: 65646399041483528}
-  - component: {fileID: 114110653291918764}
+  - component: {fileID: 114533256080345956}
   - component: {fileID: 114326407758943666}
   m_Layer: 0
   m_Name: Spear (4)
-  m_TagString: SpearTag
+  m_TagString: DeathTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -722,7 +722,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1093767292794938}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 1}
@@ -746,7 +746,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1664132621697852}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 1}
@@ -758,7 +758,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1902455684048672}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 1}
@@ -806,7 +806,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1930765653622810}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 1}
@@ -818,11 +818,22 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361513517440206}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114043711233919760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361513517440206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f493fcd46a1b55f42b99d932ddf74376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114059424316413508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -847,17 +858,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTake: 0
---- !u!114 &114110653291918764
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1930765653622810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90988ca476c5fa04ab03048f4da0d566, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114112589260997712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -870,15 +870,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTake: 0
---- !u!114 &114202436447301628
+--- !u!114 &114295081444357026
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902455684048672}
+  m_GameObject: {fileID: 1664132621697852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90988ca476c5fa04ab03048f4da0d566, type: 3}
+  m_Script: {fileID: 11500000, guid: f493fcd46a1b55f42b99d932ddf74376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114326407758943666
@@ -929,17 +929,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTake: 0
---- !u!114 &114482508815473692
+--- !u!114 &114533256080345956
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1361513517440206}
+  m_GameObject: {fileID: 1930765653622810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90988ca476c5fa04ab03048f4da0d566, type: 3}
+  m_Script: {fileID: 11500000, guid: f493fcd46a1b55f42b99d932ddf74376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114591811841522546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703363296719456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca5bcc41ab1983a439224b5c91717aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Spear:
+  - {fileID: 114850601794767100}
+  - {fileID: 114043711233919760}
+  - {fileID: 114295081444357026}
+  - {fileID: 114698414865984872}
+  - {fileID: 114533256080345956}
+  fire:
+  - {fileID: 198162403741950544}
+  - {fileID: 198552341795466780}
+  - {fileID: 198540890718437416}
+  - {fileID: 198212155681207686}
+  - {fileID: 198128990970027136}
+  interval: 0.5
+  speed: 20
 --- !u!114 &114600582846762442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -952,53 +977,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTake: 0
---- !u!114 &114665453766785820
+--- !u!114 &114698414865984872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1093767292794938}
+  m_GameObject: {fileID: 1902455684048672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90988ca476c5fa04ab03048f4da0d566, type: 3}
+  m_Script: {fileID: 11500000, guid: f493fcd46a1b55f42b99d932ddf74376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114684391038519650
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1664132621697852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90988ca476c5fa04ab03048f4da0d566, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114755634793761630
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1703363296719456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d415e9a41f38b54f83fbd502ce4ead2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Spear:
-  - {fileID: 114665453766785820}
-  - {fileID: 114482508815473692}
-  - {fileID: 114684391038519650}
-  - {fileID: 114202436447301628}
-  - {fileID: 114110653291918764}
-  fire:
-  - {fileID: 198162403741950544}
-  - {fileID: 198552341795466780}
-  - {fileID: 198540890718437416}
-  - {fileID: 198212155681207686}
-  - {fileID: 198128990970027136}
-  interval: 1
-  speed: 20
 --- !u!114 &114805490845628592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1035,6 +1024,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTake: 0
+--- !u!114 &114850601794767100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093767292794938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f493fcd46a1b55f42b99d932ddf74376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198128990970027136
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -14563,7 +14563,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1407009535
+  randomSeed: -644068762
   InitialModule:
     serializedVersion: 3
     enabled: 1

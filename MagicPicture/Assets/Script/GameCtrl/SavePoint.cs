@@ -46,14 +46,14 @@ public class SavePoint : MonoBehaviour {
     //===================
     void SaveElement()
     {
-        Save("savePosX", Player.transform.position.x);
-        Save("savePosY", Player.transform.position.y);
-        Save("savePosZ", Player.transform.position.z);
+        Save("savePosX", this.transform.position.x);
+        Save("savePosY", this.transform.position.y);
+        Save("savePosZ", this.transform.position.z);
         Save("saveRotX", Player.transform.rotation.x);
         Save("saveRotY", Player.transform.rotation.y);
         Save("saveRotZ", Player.transform.rotation.z);
         Save("saveRotW", Player.transform.rotation.w);
-
+        
         // マジカメなどの情報もOK
     }
 }

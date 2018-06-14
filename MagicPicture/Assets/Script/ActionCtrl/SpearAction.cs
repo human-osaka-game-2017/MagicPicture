@@ -24,15 +24,18 @@ public class SpearAction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (HitCtrl.gameState == (int)State.hitSpear) {
-            fireFlag = false;
-        }
+
     }
 
     void FixedUpdate()
     {
-        if (!stopFlag) {
-            ArrowFlies();
+        if (GameState.state == (int)state.play) {
+            if (!stopFlag) {
+                ArrowFlies();
+            }
+        }
+        else {
+            Reset(); // play中じゃなかったらリセット(gameOver時)
         }
     }
 

@@ -75,6 +75,8 @@ public class Finder : MonoBehaviour
     {
         Vector3 targetPosition = target.transform.position;
         Vector3 myPosition = transform.position;
+        //目の位置に補正
+        myPosition.y += 1;
 
         Vector3 myPositionXZ = Vector3.Scale(myPosition, new Vector3(1.0f, 0.0f, 1.0f));
         Vector3 targetPositionXZ = Vector3.Scale(targetPosition, new Vector3(1.0f, 0.0f, 1.0f));

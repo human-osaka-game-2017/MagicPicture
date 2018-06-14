@@ -16,6 +16,8 @@ class EnemyStateAttack : EnemyStateBase
     private float timeElapsed = 0.0f;
     private Vector3 nextPoint;
     private float dashSpeed;
+    private float dashRotSpeed;
+
     protected float speed
     {
         get
@@ -31,7 +33,23 @@ class EnemyStateAttack : EnemyStateBase
         }
     }
 
-    public EnemyStateAttack(GameObject obj, Finder finder, float defaultSpeed, float dashSpeed) : base(obj, finder, defaultSpeed)
+    protected float rotSpeed
+    {
+        get
+        {
+            if ((targetPos - this.obj.transform.position).magnitude < dashDistance)
+            {
+                return dashRotSpeed;
+            }
+            else
+            {
+                return defaultRotSpeed;
+            }
+        }
+    }
+
+    public EnemyStateAttack(GameObject obj, Finder finder, float defaultSpeed, float dashSpeed, float defaultRotSpeed, float dashRotSpeed) : 
+        base(obj, finder, defaultSpeed, defaultRotSpeed)
     {
         this.defaultSpeed = defaultSpeed;
         this.dashSpeed = dashSpeed;
@@ -50,6 +68,11 @@ class EnemyStateAttack : EnemyStateBase
     protected void Lost(GameObject foundObject)
     {
         isMissing = true;
+    }
+
+    override
+    public void Collision(GameObject other)
+    {
     }
 
     override
@@ -73,10 +96,52 @@ class EnemyStateAttack : EnemyStateBase
 
         Vector3 nextPoint = RouteSearch.ObtainNextPos(targetPos, this.obj.transform.position);
 
-        Vector3 movement = nextPoint - this.obj.transform.position;
-        movement = movement.normalized * speed * Time.deltaTime;
+        //todo 基底クラスで移動処理をまとめる
+        Vector2 pointDir = new Vector2(nextPoint.x, nextPoint.z) - new Vector2(this.obj.transform.position.x, this.obj.transform.position.z);
+        Vector2 forward = new Vector2(this.obj.transform.forward.x, this.obj.transform.forward.z);
+
+        float cosTheta = Vector2.Dot(pointDir.normalized, forward.normalized);
+
+        float sinTheta = Cal.Cross2D(pointDir.normalized, forward.normalized);
+
+        float deg = 0;
+
+        if (sinTheta < 0)
+        {
+            deg = Mathf.LerpAngle(-defaultSpeed * Time.deltaTime, 0.0f, -Mathf.Acos(cosTheta)) * Mathf.Rad2Deg;
+        }
+        else if (sinTheta > 0)
+        {
+            deg = Mathf.LerpAngle(0.0f, defaultSpeed * Time.deltaTime, Mathf.Acos(cosTheta)) * Mathf.Rad2Deg;
+        }
+
+        this.obj.transform.Rotate(new Vector3(0, deg, 0));
+        Vector3 movement = this.obj.transform.forward * defaultSpeed * Time.deltaTime;
 
         this.obj.transform.position += movement;
+
+        ////todo 基底クラスで移動処理をまとめる
+        //Vector2 dir = new Vector2(nextPoint.x, nextPoint.z) - new Vector2(this.obj.transform.position.x, this.obj.transform.position.z);
+        ////float PosToNextPoint_deg = Vector2.Angle(Vector2.right, dir);
+        //float PosToNextPoint_deg = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        ////float forward_deg = Vector2.Angle(Vector2.right, new Vector2(this.obj.transform.forward.x, this.obj.transform.forward.z));
+        //float forward_deg = Mathf.Atan2(this.obj.transform.forward.y, this.obj.transform.forward.x) * Mathf.Rad2Deg;
+
+        //float deg;
+        //if(Math.Abs(PosToNextPoint_deg- forward_deg) > rotSpeed * Time.deltaTime)
+        //{
+        //    deg = (PosToNextPoint_deg - forward_deg) / Math.Abs(PosToNextPoint_deg - forward_deg) * defaultRotSpeed * Time.deltaTime;
+        //}
+        //else
+        //{
+        //    deg = PosToNextPoint_deg - forward_deg;
+        //}
+
+        //this.obj.transform.Rotate(new Vector3(0, deg, 0)); 
+        //Vector3 movement = this.obj.transform.forward * speed * Time.deltaTime;
+
+        //this.obj.transform.position += movement;
 
         return ret;
     }

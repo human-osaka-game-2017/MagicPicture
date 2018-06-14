@@ -11,7 +11,8 @@ class EnemyStateBreaktime : EnemyStateBase
 
     EnemyAI.STATE nextState = EnemyAI.STATE.BREAKTIME;
 
-    public EnemyStateBreaktime(GameObject obj, Finder finder, float defaultSpeed, float breakInterval) : base(obj, finder, defaultSpeed)
+    public EnemyStateBreaktime(GameObject obj, Finder finder, float defaultSpeed, float defaultRotSpeed, float breakInterval) : 
+        base(obj, finder, defaultSpeed, defaultRotSpeed)
     {
         this.breakInterval = breakInterval;
     }
@@ -24,6 +25,11 @@ class EnemyStateBreaktime : EnemyStateBase
 
     override
     protected void Lost(GameObject foundObject)
+    {
+    }
+
+    override
+    public void Collision(GameObject other)
     {
     }
 

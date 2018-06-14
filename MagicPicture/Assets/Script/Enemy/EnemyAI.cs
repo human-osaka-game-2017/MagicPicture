@@ -6,6 +6,8 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float defaultSpeed;
     [SerializeField] private float dashSpeed;
+    [SerializeField] private float defaultRotSpeed;
+    [SerializeField] private float dashRotSpeed;
     [SerializeField] private float breakInterval;
     [SerializeField] private int actionNum;
 
@@ -23,8 +25,10 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        this.factory = new EnemyStateFactory(this.gameObject, this.GetComponentInChildren<Finder>(), this.defaultSpeed,
-            this.dashSpeed, this.breakInterval, this.actionNum);
+        this.factory = new EnemyStateFactory(this.gameObject, this.GetComponentInChildren<Finder>(),
+            this.defaultSpeed, this.dashSpeed,
+            this.defaultRotSpeed, this.dashRotSpeed,
+            this.breakInterval, this.actionNum);
 
         this.state = this.factory.Create(this.currentStateId);
     }
@@ -40,4 +44,8 @@ public class EnemyAI : MonoBehaviour
         this.prevStateId = this.currentStateId;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        this.state.Collision(collision.gameObject);
+    }
 }

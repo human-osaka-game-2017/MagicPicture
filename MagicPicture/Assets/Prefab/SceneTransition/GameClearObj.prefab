@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33734035854528836}
   - component: {fileID: 65187564780654310}
   - component: {fileID: 23901087822583142}
-  - component: {fileID: 114333249301521882}
   - component: {fileID: 114728074433003258}
   m_Layer: 0
   m_Name: GameClearObj
@@ -97,19 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.45, y: 1, z: 0.45}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114333249301521882
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1912291802305464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33cc5cec56402d344a376b0369fc1de1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameClearUI: {fileID: 0}
-  joyMotionTime: 2
 --- !u!114 &114728074433003258
 MonoBehaviour:
   m_ObjectHideFlags: 1

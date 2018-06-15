@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class ScrollUV : MonoBehaviour {
 
-    public float    scrollSpeed = 0.01f;
-    public Renderer rend;
+    public float    scrollSpeed;
+    public Renderer render;
 
     void Start()
     {
-        rend = GetComponent<Renderer>();
+        render = GetComponent<Renderer>();
     }
 
     void FixedUpdate()
     {
         float offset = Time.time * scrollSpeed;
-        rend.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
+        render.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
     }
-
 }

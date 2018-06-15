@@ -13,16 +13,24 @@ public class ExternalFactor : MonoBehaviour {
     public  bool cantOnFlag;
     public  bool hitStepFlag;
     private bool onFloor;
+    private int  resetTimer;
 
     // Use this for initialization
     void Start () {
-
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-	}
+        resetTimer++;
+
+        // loadしてplayに入るとture～～～なのでfalseにする
+        if (resetTimer < 60) { // 時間指定は遷移系考慮
+            cantOnFlag  = false;
+            hitStepFlag = false;
+        }
+    }
 
     void FixedUpdate()
     {

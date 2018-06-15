@@ -19,39 +19,24 @@ public class CloseTrigger : MonoBehaviour {
 		
 	}
 
+    void FixedUpdate() {
+
+        if (closeFlag) {
+            doorAction.Close();     // ドアを閉めるを呼ぶ
+        }
+    }
 
     //---------------------------
     // Playerが感圧板に触れたら
-    void OnTriggerStay(Collider col)
+    void OnTriggerEnter(Collider col)
     {
-        closeFlag = true;           // ドアを開けれないようにする
-        doorAction.Close();         // ドアを閉める        
-        cantBack.SetActive(true);   // 通れないようにする(挟まり防止)
+        closeFlag = true;   // ドアを開けれないようにする
     }
 
-    void OnCollision(Collision col)
+    //---------------------------------
+    // Player以外でも感圧板に触れたら
+    void OnCollisionEnter(Collision col)
     {
         closeFlag = true;
-        doorAction.Close();
-        cantBack.SetActive(true);
-    }
-
-
-    //-----------------------------
-    // Playerが感圧板から離れたら
-    void OnTriggerExit(Collider col)
-    {
-        if (doorAction.resetFlag)
-
-        closeFlag = false;          // ドアを開けれるようにする
-        cantBack.SetActive(false);  // 通れるようにする
-    }
-
-    void OnCollisionExit(Collision col)
-    {
-        if (doorAction.resetFlag)
-
-        closeFlag = false;
-        cantBack.SetActive(false);
     }
 }

@@ -5,15 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Tachibana/TitleSceneM.unity
     guid: c2d71b81f75ede04c93112c9d24322e7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Tachibana/ClearSceneM.unity
     guid: 8b7617231d184944ba89de392813e1b6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Tachibana/MstageRetake.unity
     guid: 9a890a108ed73364b88bee6bc3d14d9f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Funaoka/Funaoka.unity
     guid: 268be1af652c02a47b457c646e352802
+  - enabled: 1
+    path: Assets/Scene/shiraishi/test.unity
+    guid: ec500e6755663c044b47de7cca67d175

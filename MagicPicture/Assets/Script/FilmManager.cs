@@ -174,8 +174,10 @@ public class FilmManager : MonoBehaviour {
         AddPhantom(this.films[this.currentFilmNum].obj);
 
         //追加時の各設定
-        this.phantoms[0].GetComponent<ObjectAttribute>().Taken();
-        this.phantoms[0].transform.parent = null;
+        this.phantoms[0].transform.SetParent(null, true);
+        this.phantoms[0].GetComponent<Collider>().isTrigger = false;
+        this.phantoms[0].GetComponent<Rigidbody>().useGravity = true;
+        this.phantoms[0].layer = LayerMask.NameToLayer("Default");
         this.phantoms[0].GetComponent<Renderer>().material.SetColor("_Color", new Color(1, 1, 1, alphaPhantom));
     }
 
@@ -260,6 +262,10 @@ public class FilmManager : MonoBehaviour {
             this.films[this.currentFilmNum].obj.transform.localScale *= this.films[this.currentFilmNum].scale;
 
             this.films[this.currentFilmNum].obj.transform.SetParent(this.player.transform, true);
+            this.films[this.currentFilmNum].obj.GetComponent<Collider>().isTrigger = true;
+            this.films[this.currentFilmNum].obj.GetComponent<Rigidbody>().useGravity = false;
+            this.films[this.currentFilmNum].obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            this.films[this.currentFilmNum].obj.layer = LayerMask.NameToLayer("Ignore Raycast");
         }
 
         //スクショ
@@ -314,17 +320,12 @@ public class FilmManager : MonoBehaviour {
         if (silhouette.obj != null)
         {
             silhouette.ResetPos();
-            silhouette.obj.GetComponent<Collider>().isTrigger = false;
         }
 
         //変更
         silhouette = film;
 
-        if (silhouette.obj != null)
-        {
-            silhouette.obj.GetComponent<Collider>().isTrigger = true;
-        }
-        else
+        if (silhouette.obj == null)
         {
             this.isPhantomMode = false;
         }
@@ -340,7 +341,6 @@ public class FilmManager : MonoBehaviour {
         pos.z = ((int)(pos.z / kCoordinateUnit)) * kCoordinateUnit;
 
         silhouette.obj.transform.position = pos;
-        silhouette.obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     private void UpdateCurrentFilmNum()
@@ -357,6 +357,17 @@ public class FilmManager : MonoBehaviour {
         }
     }
 
+    public void DeletePhantom(GameObject phantom)
+    {
+        if (phantom == null) return;
+
+        //エフェクト
+
+        //音声
+
+        Destroy(phantom);
+    }
+
     //phantomの要素番号0番に追加
     //@param film
     private void AddPhantom(GameObject film)
@@ -366,7 +377,7 @@ public class FilmManager : MonoBehaviour {
             film.transform.position,
             film.transform.rotation);
 
-        phantom.GetComponent<Collider>().isTrigger = false;
+        phantom.GetComponent<ObjectAttribute>().Taken(); ;
 
         if (this.phantoms[0] != null)
         {
@@ -385,7 +396,7 @@ public class FilmManager : MonoBehaviour {
                 }
             }
 
-            Destroy(next);//内部でnullチェックが行われているためnullでもエラー起きない
+            DeletePhantom(next);
         }
         else
         {

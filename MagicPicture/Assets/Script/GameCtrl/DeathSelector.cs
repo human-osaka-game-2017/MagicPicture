@@ -18,19 +18,19 @@ public class DeathSelector : MonoBehaviour {
 
         float horizontal = Input.GetAxis("HorizontalForMove");
 
-        if (horizontal > 0) {
+        if (horizontal < 0) {
             select = 0;
         }
-        if (horizontal < 0) {
+        if (horizontal > 0) {
             select = 1;
         }
 
         if (select == 0) {
-            pos.x = 20;
+            pos.x = -300;
             transform.localPosition = pos;
         }
         if (select == 1) {
-            pos.x = -330;
+            pos.x = 60;
             transform.localPosition = pos;
         }
 

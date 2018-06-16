@@ -131,7 +131,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4992371917766004, guid: ca82697c7bb08a04592e6040746faca7, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4992371917766004, guid: ca82697c7bb08a04592e6040746faca7, type: 2}
       propertyPath: m_LocalRotation.x
@@ -160,6 +160,11 @@ Prefab:
     - target: {fileID: 114746916591715222, guid: ca82697c7bb08a04592e6040746faca7,
         type: 2}
       propertyPath: Player
+      value: 
+      objectReference: {fileID: 180849222}
+    - target: {fileID: 114746916591715222, guid: ca82697c7bb08a04592e6040746faca7,
+        type: 2}
+      propertyPath: player
       value: 
       objectReference: {fileID: 180849222}
     m_RemovedComponents: []
@@ -607,6 +612,11 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 180849222}
+    - target: {fileID: 114746916591715222, guid: ca82697c7bb08a04592e6040746faca7,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 180849222}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca82697c7bb08a04592e6040746faca7, type: 2}
   m_IsPrefabParent: 0
@@ -824,7 +834,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4992371917766004, guid: ca82697c7bb08a04592e6040746faca7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -1.84
       objectReference: {fileID: 0}
     - target: {fileID: 4992371917766004, guid: ca82697c7bb08a04592e6040746faca7, type: 2}
       propertyPath: m_LocalPosition.y
@@ -832,7 +842,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4992371917766004, guid: ca82697c7bb08a04592e6040746faca7, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2
+      value: -5.47
       objectReference: {fileID: 0}
     - target: {fileID: 4992371917766004, guid: ca82697c7bb08a04592e6040746faca7, type: 2}
       propertyPath: m_LocalRotation.x
@@ -854,15 +864,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114746916591715222, guid: ca82697c7bb08a04592e6040746faca7,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 180849222}
     - target: {fileID: 1362030829523786, guid: ca82697c7bb08a04592e6040746faca7, type: 2}
       propertyPath: m_Name
       value: SavePoint 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114746916591715222, guid: ca82697c7bb08a04592e6040746faca7,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 180849222}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca82697c7bb08a04592e6040746faca7, type: 2}
   m_IsPrefabParent: 0
@@ -1262,7 +1272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1221951673
 Light:
   m_ObjectHideFlags: 0

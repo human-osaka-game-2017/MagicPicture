@@ -305,9 +305,9 @@ MonoBehaviour:
   kScaleRatio_S: 0.5
   kScaleRatio_M: 0.8
   kScaleRatio_L: 1.1
-  photoCameraRange: 10
-  alphaSilhouette: 0.5
-  alphaPhantom: 1
+  photoCameraRange: 7
+  alphaSilhouette: 0.4
+  alphaPhantom: 0.72
 --- !u!114 &114168840956736496
 MonoBehaviour:
   m_ObjectHideFlags: 1

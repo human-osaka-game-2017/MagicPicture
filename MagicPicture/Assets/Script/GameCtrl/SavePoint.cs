@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class SavePoint : MonoBehaviour {
     
-    [SerializeField] GameObject Player;
-    
-    private string myName;
-    private bool   startOKFlag;
-    private float  startTimer;
+    [SerializeField] GameObject player;
+    private string     myName;
+    private bool       startOKFlag;
+    private float      startTimer;
     
 
     // Use this for initialization
     void Start () {
-        
+        //player = GameObject.Find("Player");
     }
 	
 	// Update is called once per frame
@@ -27,11 +26,13 @@ public class SavePoint : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        // playになった瞬間はsave機能と効果音停止
-        if (startOKFlag)
+        // playになった瞬間は効果音停止
+        
+        if (col.gameObject.name == player.name) {
 
-        if (col.gameObject.name == Player.name) {
-            SoundManager.GetInstance().Play("SE_IntermediatePoint", SoundManager.PLAYER_TYPE.NONLOOP, true);
+            if (startOKFlag) {
+                SoundManager.GetInstance().Play("SE_IntermediatePoint", SoundManager.PLAYER_TYPE.NONLOOP, true);
+            }
 
             myName = gameObject.name;
 
@@ -65,10 +66,10 @@ public class SavePoint : MonoBehaviour {
         SaveFloat("savePosX", this.transform.position.x);
         SaveFloat("savePosY", this.transform.position.y);
         SaveFloat("savePosZ", this.transform.position.z);
-        SaveFloat("saveRotX", Player.transform.rotation.x);
-        SaveFloat("saveRotY", Player.transform.rotation.y);
-        SaveFloat("saveRotZ", Player.transform.rotation.z);
-        SaveFloat("saveRotW", Player.transform.rotation.w);
+        SaveFloat("saveRotX", player.transform.rotation.x);
+        SaveFloat("saveRotY", player.transform.rotation.y);
+        SaveFloat("saveRotZ", player.transform.rotation.z);
+        SaveFloat("saveRotW", player.transform.rotation.w);
         SaveString("saveSavePoint", myName);
 
         // マジカメなどの情報もOK

@@ -4,25 +4,36 @@ using UnityEngine;
 
 public class SavePoint : MonoBehaviour {
     
-    private GameObject Player;
+    [SerializeField] GameObject Player;
     
+    private string myName;
+    private bool   startOKFlag;
+    private float  startTimer;
+    
+
     // Use this for initialization
     void Start () {
-        Player = GameObject.Find("Player");
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
-	}
+        if (startTimer < 1.0f) {
+            startTimer += Time.deltaTime;
+        }
+        else startOKFlag = true;
+    }
 
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Player") {
+        // playになった瞬間はsave機能と効果音停止
+        if (startOKFlag)
+
+        if (col.gameObject.name == Player.name) {
             SoundManager.GetInstance().Play("SE_IntermediatePoint", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
-            PlayerPrefs.DeleteAll();    // すべてのセーブデータを削除
+            myName = gameObject.name;
 
             SaveElement();
             PlayerPrefs.Save();         // セーブ実行
@@ -35,9 +46,14 @@ public class SavePoint : MonoBehaviour {
     //=================
     // セーブする関数
     //=================
-    void Save(string keyName, float fSave)
+    void SaveFloat(string keyName, float fSave)
     {
         PlayerPrefs.SetFloat(keyName, fSave);
+    }
+
+    void SaveString(string keyName, string sSave)
+    {
+        PlayerPrefs.SetString(keyName, sSave);
     }
 
 
@@ -46,14 +62,15 @@ public class SavePoint : MonoBehaviour {
     //===================
     void SaveElement()
     {
-        Save("savePosX", this.transform.position.x);
-        Save("savePosY", this.transform.position.y);
-        Save("savePosZ", this.transform.position.z);
-        Save("saveRotX", Player.transform.rotation.x);
-        Save("saveRotY", Player.transform.rotation.y);
-        Save("saveRotZ", Player.transform.rotation.z);
-        Save("saveRotW", Player.transform.rotation.w);
-        
+        SaveFloat("savePosX", this.transform.position.x);
+        SaveFloat("savePosY", this.transform.position.y);
+        SaveFloat("savePosZ", this.transform.position.z);
+        SaveFloat("saveRotX", Player.transform.rotation.x);
+        SaveFloat("saveRotY", Player.transform.rotation.y);
+        SaveFloat("saveRotZ", Player.transform.rotation.z);
+        SaveFloat("saveRotW", Player.transform.rotation.w);
+        SaveString("saveSavePoint", myName);
+
         // マジカメなどの情報もOK
     }
 }

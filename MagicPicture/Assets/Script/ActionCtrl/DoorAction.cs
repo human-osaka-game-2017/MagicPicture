@@ -8,10 +8,10 @@ public class DoorAction : MonoBehaviour {
     [SerializeField] GameObject   doorL;
     [SerializeField] GameObject   cantBack;
     [SerializeField] CloseTrigger closePanel;
+    [SerializeField] float        minRange;
+    [SerializeField] float        maxRange;
     [SerializeField] float        speed;
-
-    public  bool    resetFlag;  // trueなら感圧板から離れた後でもOpenが有効(falseなら無効)
-    private float   doorPosX;
+    
     private Vector3 speedVec;
 
     // Use this for initialization
@@ -21,7 +21,6 @@ public class DoorAction : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        doorPosX = doorR.transform.localPosition.x;
         speedVec = Vector3.right * speed * Time.deltaTime;
     }
 
@@ -30,17 +29,19 @@ public class DoorAction : MonoBehaviour {
     // 開く
     virtual public void Open()
     {
-        if (!closePanel.closeFlag)
+        float doorPosX = doorR.transform.localPosition.x;
 
-        if (doorPosX < 2) {
+        if (!closePanel.closeFlag)
+            
+        if (doorPosX < maxRange) {
             doorR.transform.Translate(speedVec);
             doorL.transform.Translate(-speedVec);
         }
         else {
             // 開きすぎた分
-            Adjust(2);
+            Adjust(maxRange);
         }
-        
+
         // 通れるようにする
         cantBack.SetActive(false);
     }
@@ -49,13 +50,15 @@ public class DoorAction : MonoBehaviour {
     // 閉じる
     virtual public void Close()
     {
-        if (doorPosX > 0.75f) {
+        float doorPosX = doorR.transform.localPosition.x;
+
+        if (doorPosX > minRange) {
             doorR.transform.Translate(-speedVec);
             doorL.transform.Translate(speedVec);
         }
         else {
             // 閉じすぎた分
-            Adjust(0.75f);
+            Adjust(minRange);
         }
 
         // 通れないようにする(挟まり防止)

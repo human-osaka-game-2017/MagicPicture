@@ -12,7 +12,8 @@ public class SavePoint : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //player = GameObject.Find("Player");
+        // saveのパスを表示
+        Debug.Log(Application.persistentDataPath);
     }
 	
 	// Update is called once per frame

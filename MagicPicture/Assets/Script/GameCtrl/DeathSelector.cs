@@ -47,7 +47,7 @@ public class DeathSelector : MonoBehaviour {
         GameState.SetState((int)state.load);
 
         // 再読み込みでsceneリセットかつロード
-        SceneManager.LoadScene("Funaoka");
+        SceneManager.LoadScene("Mstage2");
     }
 
     void GoQuit()

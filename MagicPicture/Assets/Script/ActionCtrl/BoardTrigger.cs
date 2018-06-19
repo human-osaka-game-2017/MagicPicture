@@ -18,9 +18,11 @@ public class BoardTrigger : MonoBehaviour {
 
     //-------------------
     // 感圧板を踏んだら
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider col)
     {
-        actionCtrl.Action();
+        if (col.gameObject.name == "Player") {
+            actionCtrl.Action();
+        }
     }
 
     void OnCollisionEnter(Collision other)
@@ -30,9 +32,11 @@ public class BoardTrigger : MonoBehaviour {
 
     //---------------------
     // 感圧板から離れたら
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider col)
     {
-        actionCtrl.Reset();
+        if (col.gameObject.name == "Player") {
+            actionCtrl.Reset();
+        }
     }
 
     void OnCollisionExit(Collision other)

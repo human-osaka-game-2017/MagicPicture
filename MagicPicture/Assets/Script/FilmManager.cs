@@ -128,6 +128,15 @@ public class FilmManager : MonoBehaviour {
             ChangeSilhouette(films[currentFilmNum]);
         }
 
+        //phantom全消し
+        if (Input.GetButtonDown("ForDeleteAllPhantom"))
+        {
+            foreach(var phantom in this.phantoms)
+            {
+                DeletePhantom(phantom);
+            }
+        }
+
         if (films[currentFilmNum].obj != null)
         {
             //PhantomModeの変更

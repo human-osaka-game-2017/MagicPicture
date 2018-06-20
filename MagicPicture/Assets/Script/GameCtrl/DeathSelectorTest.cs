@@ -47,7 +47,7 @@ public class DeathSelectorTest : MonoBehaviour {
         GameState.SetState((int)state.load);
 
         // 再読み込みでsceneリセットかつロード
-        SceneManager.LoadScene("KinouTest");
+        SceneManager.LoadScene("Mstage3");
     }
 
     void GoQuit()

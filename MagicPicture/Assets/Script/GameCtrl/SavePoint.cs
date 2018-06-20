@@ -12,7 +12,7 @@ public class SavePoint : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //player = GameObject.Find("Player");
+
     }
 	
 	// Update is called once per frame

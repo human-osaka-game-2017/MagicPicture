@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.AI;
 
 abstract class EnemyStateBase
 {
@@ -12,8 +13,7 @@ abstract class EnemyStateBase
 
     protected GameObject obj { get; set; }
 
-    protected float defaultSpeed;
-    protected float defaultRotSpeed;
+    protected NavMeshAgent navMeshAgent;
 
     abstract public EnemyAI.STATE Update();
 
@@ -23,12 +23,11 @@ abstract class EnemyStateBase
 
     abstract public void Collision(GameObject other);
 
-    public EnemyStateBase(GameObject thisObj, Finder argFinder, float defaultSpeed, float defaultRotSpeed)
+    public EnemyStateBase(GameObject thisObj, Finder argFinder)
     {
         this.obj = thisObj;
+        this.navMeshAgent = this.obj.GetComponent<NavMeshAgent>();
         this.finder = argFinder;
-        this.defaultSpeed = defaultSpeed;
-        this.defaultRotSpeed = defaultRotSpeed;
         this.finder.onFound += OnFound;
         this.finder.onLost += OnLost;
     }

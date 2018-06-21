@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.AI;
 
 class EnemyStateSearch : EnemyStateBase
 {
@@ -13,9 +14,10 @@ class EnemyStateSearch : EnemyStateBase
     private /*const*/ Vector3 pointSize = new Vector3(5.0f, 0.0f, 5.0f);
     private /*const*/ int actionNum;
 
-   public EnemyStateSearch(GameObject obj, Finder finder, float defaultSpeed, float defaultRotSpeed, int actionNum) : 
-        base(obj, finder, defaultSpeed, defaultRotSpeed)
+   public EnemyStateSearch(GameObject obj, Finder finder, int actionNum) : 
+        base(obj, finder)
     {
+        this.navMeshAgent = this.obj.GetComponent<NavMeshAgent>();
         this.actionNum = actionNum;
         targetPos = new Vector3();
         DecidedNextPoint();
@@ -55,32 +57,34 @@ class EnemyStateSearch : EnemyStateBase
             ret = EnemyAI.STATE.BREAKTIME;
         }
 
+        navMeshAgent.SetDestination(targetPos);
+
         //Vector3 nextPoint = RouteSearch.ObtainNextPos(targetPos, this.obj.transform.position);
-        Vector3 nextPoint = targetPos;
+        //Vector3 nextPoint = targetPos;
 
         //todo 基底クラスで移動処理をまとめる
-        Vector2 pointDir = new Vector2(nextPoint.x, nextPoint.z) - new Vector2(this.obj.transform.position.x, this.obj.transform.position.z);
-        Vector2 forward = new Vector2(this.obj.transform.forward.x, this.obj.transform.forward.z);
+        //Vector2 pointDir = new Vector2(nextPoint.x, nextPoint.z) - new Vector2(this.obj.transform.position.x, this.obj.transform.position.z);
+        //Vector2 forward = new Vector2(this.obj.transform.forward.x, this.obj.transform.forward.z);
 
-        float cosTheta = Vector2.Dot(pointDir.normalized, forward.normalized);
+        //float cosTheta = Vector2.Dot(pointDir.normalized, forward.normalized);
 
-        float sinTheta = Cal.Cross2D(pointDir.normalized, forward.normalized);
+        //float sinTheta = Cal.Cross2D(pointDir.normalized, forward.normalized);
 
-        float deg = 0;
+        //float deg = 0;
 
-        if (sinTheta < 0)
-        {
-            deg = Mathf.LerpAngle(-defaultSpeed * Time.deltaTime, 0.0f, -Mathf.Acos(cosTheta)) * Mathf.Rad2Deg;
-        }
-        else if (sinTheta > 0)
-        {
-            deg = Mathf.LerpAngle(0.0f, defaultSpeed * Time.deltaTime, Mathf.Acos(cosTheta)) * Mathf.Rad2Deg;
-        }
+        //if (sinTheta < 0)
+        //{
+        //    deg = Mathf.LerpAngle(-defaultSpeed * Time.deltaTime, 0.0f, -Mathf.Acos(cosTheta)) * Mathf.Rad2Deg;
+        //}
+        //else if (sinTheta > 0)
+        //{
+        //    deg = Mathf.LerpAngle(0.0f, defaultSpeed * Time.deltaTime, Mathf.Acos(cosTheta)) * Mathf.Rad2Deg;
+        //}
 
-        this.obj.transform.Rotate(new Vector3(0, deg, 0));
-        Vector3 movement = this.obj.transform.forward * defaultSpeed * Time.deltaTime;
+        //this.obj.transform.Rotate(new Vector3(0, deg, 0));
+        //Vector3 movement = this.obj.transform.forward * defaultSpeed * Time.deltaTime;
 
-        this.obj.transform.position += movement;
+        //this.obj.transform.position += movement;
 
         return ret;
     }

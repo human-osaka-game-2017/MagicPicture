@@ -15,8 +15,8 @@ public class Pauser : MonoBehaviour
 
     private void Start()
     {
-        targets = this.transform.FindChild("Pause").GetComponentsInChildren<Behaviour>();
-        operatingInstructionImg = this.transform.FindChild("Canvas").gameObject;
+        targets = this.transform.Find("Pause").GetComponentsInChildren<Behaviour>();
+        operatingInstructionImg = this.transform.Find("Canvas").gameObject;
     }
 
     private void Update()

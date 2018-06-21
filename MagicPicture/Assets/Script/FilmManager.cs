@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.IO;
+using UnityEngine.AI;
 
 public class FilmManager : MonoBehaviour {
 
@@ -128,6 +129,15 @@ public class FilmManager : MonoBehaviour {
             ChangeSilhouette(films[currentFilmNum]);
         }
 
+        //phantom全消し
+        if (Input.GetButtonDown("ForDeleteAllPhantom"))
+        {
+            foreach(var phantom in this.phantoms)
+            {
+                DeletePhantom(phantom);
+            }
+        }
+
         if (films[currentFilmNum].obj != null)
         {
             //PhantomModeの変更
@@ -179,6 +189,8 @@ public class FilmManager : MonoBehaviour {
         this.phantoms[0].GetComponent<Rigidbody>().useGravity = true;
         this.phantoms[0].layer = LayerMask.NameToLayer("Default");
         this.phantoms[0].GetComponent<Renderer>().material.SetColor("_Color", new Color(1, 1, 1, alphaPhantom));
+        this.phantoms[0].AddComponent<NavMeshObstacle>();
+        this.phantoms[0].GetComponent<NavMeshObstacle>().carving = true;
     }
 
     //@param 撮影のray

@@ -34,10 +34,10 @@ public class MagiCame : MonoBehaviour
         this.transform.Rotate(rotSpeed * Input.GetAxis("VerticalForView") * Time.deltaTime);
 
         // カメラ上下回転リセット
-        //if (Input.GetButtonDown("ForResetCameraView"))
-        //{
-        //    Init();
-        //}
+        if (Input.GetButtonDown("ForResetCameraView"))
+        {
+            Init();
+        }
 
         //撮影
         // Rayが衝突したコライダーの情報を得る

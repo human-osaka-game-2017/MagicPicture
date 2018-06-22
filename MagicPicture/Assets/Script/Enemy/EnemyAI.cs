@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private float defaultSpeed;
     [SerializeField] private float dashSpeed;
-    [SerializeField] private float defaultRotSpeed;
     [SerializeField] private float dashRotSpeed;
     [SerializeField] private float breakInterval;
     [SerializeField] private int actionNum;
@@ -26,8 +24,8 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         this.factory = new EnemyStateFactory(this.gameObject, this.GetComponentInChildren<Finder>(),
-            this.defaultSpeed, this.dashSpeed,
-            this.defaultRotSpeed, this.dashRotSpeed,
+            this.dashSpeed,
+            this.dashRotSpeed,
             this.breakInterval, this.actionNum);
 
         this.state = this.factory.Create(this.currentStateId);

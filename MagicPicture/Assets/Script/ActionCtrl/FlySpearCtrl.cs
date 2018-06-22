@@ -39,11 +39,14 @@ public class FlySpearCtrl : MonoBehaviour {
         hitOtherFlag = false;
     }
     
-    void OnCollisionEnter()
+    void OnTriggerEnter(Collider col)
     {
-        SoundManager.GetInstance().Play("SE_ArrowHit", SoundManager.PLAYER_TYPE.NONLOOP, true);
+        // 現像前のobjectに当たってもスルー(layerの2)
+        if (col.gameObject.layer != 2) {
+            SoundManager.GetInstance().Play("SE_ArrowHit", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
-        keepVec = transform.localPosition;
-        hitOtherFlag = true;
+            keepVec = transform.localPosition;
+            hitOtherFlag = true;
+        }
     }
 }

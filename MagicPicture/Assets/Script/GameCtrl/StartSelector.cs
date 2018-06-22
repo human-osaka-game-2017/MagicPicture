@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class StartSelector : MonoBehaviour {
 
+    [SerializeField] private float[] elemHeight;
+
     private int     select;
+    private bool    actionFlag;
     private Vector3 pos;
+    
 
     // Use this for initialization
     void Start () {
@@ -15,31 +19,36 @@ public class StartSelector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        
         float verticality = Input.GetAxis("VerticalForMove");
-
-        if (verticality > 0) {
-            select = 0;
-        }
-        if (verticality < 0) {
-            select = 1;
-        }
-
-        if (select == 0) {
-            pos.y = -90;
-            transform.localPosition = pos;
-        }
-        if (select == 1) {
-            pos.y = -145;
-            transform.localPosition = pos;
+        
+        if (!actionFlag) {
+            if (verticality < 0) {
+                if (select < 2) select++;
+            }
+            if (verticality > 0) {
+                if (select > 0) select--;
+            }
         }
 
+        // Selectorが動きすぎないように制御
+        if (verticality != 0) actionFlag = true;
+        if (verticality == 0) actionFlag = false;
+        
+
+        if (select == 0) pos.y = elemHeight[0]; // -90f
+        if (select == 1) pos.y = elemHeight[1]; // -142f
+        if (select == 2) pos.y = elemHeight[2]; // -180f
+
+        transform.localPosition = pos;
+        
         if (Input.GetButtonDown("ForSilhouetteMode")) {
 
             SoundManager.GetInstance().Play("SE_Click", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
             if (select == 0) GoPlay();
             if (select == 1) GoLoading();
+            if (select == 2) GoQuit();
         }
     }
 
@@ -60,5 +69,11 @@ public class StartSelector : MonoBehaviour {
 
         // 再読み込みでsceneリセットかつロード
         SceneManager.LoadScene("Funaoka");
+    }
+
+    void GoQuit()
+    {
+        // アプリケーション終了
+        Application.Quit();
     }
 }

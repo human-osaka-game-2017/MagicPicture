@@ -68,6 +68,14 @@ public class ExternalFactor : MonoBehaviour {
         }
     }
 
+    void OnTriggerEnter(Collider col)
+    {
+        // ゲームオーバーへ
+        if (col.gameObject.tag == "DeathTag") {
+            StartCoroutine("WaitGoGameOver");
+        }
+    }
+
 
     //-------------------
     // ゲームオーバーへ

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveAction : MonoBehaviour {
+public class NotActiveAction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -16,9 +16,9 @@ public class ActiveAction : MonoBehaviour {
 
 
     //-----------------
-    // アクティブ化
-    virtual public void Active()
+    // 非アクティブ化
+    virtual public void NotActive()
     {
-        gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

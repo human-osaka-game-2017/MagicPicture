@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class ActionCtrl : MonoBehaviour {
 
-    [SerializeField] bool                 door;
-    [SerializeField] private DoorAction   doorAction;
+    [SerializeField] bool                    door;
+    [SerializeField] private DoorAction      doorAction;
+                                             
+    [SerializeField] bool                    effect;
+    [SerializeField] private EffectAction    effectAction;
+                                             
+    [SerializeField] bool                    spear;
+    [SerializeField] private SpearAction     spearAction;
+                                             
+    [SerializeField] bool                    wall;
+    [SerializeField] private WallAction      wallAction;
 
-    [SerializeField] bool                 effect;
-    [SerializeField] private EffectAction effectAction;
+    [SerializeField] bool                    active;
+    [SerializeField] private ActiveAction    activeAction;
 
-    [SerializeField] bool                 spear;
-    [SerializeField] private SpearAction  spearAction;
-
-    [SerializeField] bool                 wall;
-    [SerializeField] private WallAction   wallAction;
-
-    [SerializeField] bool                 notActive;
-    [SerializeField] private ActiveAction actionActive;
-
+    [SerializeField] bool                    notActive;
+    [SerializeField] private NotActiveAction notActiveAction;
+    
 
     private bool playOnceFlag;
-    
-    // 非アクティブ
-    // 道わけ
+
 
     // Use this for initialization
     void Start () {
@@ -50,8 +51,11 @@ public class ActionCtrl : MonoBehaviour {
         if (wall) {
             wallAction.RotWall();
         }
+        if (active) {
+            activeAction.Active();
+        }
         if (notActive) {
-            actionActive.NotActive();
+            notActiveAction.NotActive();
         }
     }
 

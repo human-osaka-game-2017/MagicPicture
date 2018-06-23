@@ -100,7 +100,7 @@ public class ExternalFactor : MonoBehaviour {
         // モーション分待ってゲームクリアへ
         yield return new WaitForSeconds(clearWait);
 
-        SceneManager.LoadScene("ClearSceneM");
+        SceneManager.LoadScene("MasterClear");
     }
 
 

@@ -59,7 +59,7 @@ public class StartSelector : MonoBehaviour {
         GameState.SetState((int)state.load);
 
         // 再読み込みでsceneリセットかつロード
-        SceneManager.LoadScene("Funaoka");
+        SceneManager.LoadScene("MasterMain");
     }
 
     void GoPlay()
@@ -68,7 +68,7 @@ public class StartSelector : MonoBehaviour {
         GameState.SetState((int)state.play);
 
         // 再読み込みでsceneリセットかつロード
-        SceneManager.LoadScene("Funaoka");
+        SceneManager.LoadScene("MasterMain");
     }
 
     void GoQuit()

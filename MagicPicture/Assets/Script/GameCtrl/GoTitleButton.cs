@@ -20,7 +20,7 @@ public class GoTitleButton : MonoBehaviour {
             // stateをtitleに
             GameState.SetState((int)state.title);
 
-            SceneManager.LoadScene("TitleSceneM");
+            SceneManager.LoadScene("MasterTitle");
         }
     }
 }

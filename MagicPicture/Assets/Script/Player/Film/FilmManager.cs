@@ -8,6 +8,7 @@ using UnityEngine.AI;
 
 public class FilmManager : MonoBehaviour {
 
+    [SerializeField] private GameObject guideEffect;
     [SerializeField] private int   kMaxFilm;
     [SerializeField] private int   kMaxPhantom;
     [SerializeField] private float kCoordinateUnit;
@@ -70,7 +71,7 @@ public class FilmManager : MonoBehaviour {
     private Camera          photoUICamera   = null;
     private int currentFilmNum    = 0;
     private int prevFilmNum       = 0;
-    private bool isPhantomMode    = false;
+    private bool isSilhouetteMode    = false;
 
     void Start()
     {
@@ -140,15 +141,15 @@ public class FilmManager : MonoBehaviour {
 
         if (films[currentFilmNum].obj != null)
         {
-            //PhantomModeの変更
+            //SilhouetteModeの変更
             if (Input.GetButtonDown("ForSilhouetteMode"))
             {
-                this.isPhantomMode = !this.isPhantomMode;
-                
+                this.isSilhouetteMode = !this.isSilhouetteMode;
+                this.guideEffect.SetActive(!this.guideEffect.activeSelf);
                 ChangeSilhouette(films[currentFilmNum]);
             }
 
-            if (this.isPhantomMode)
+            if (this.isSilhouetteMode)
             {
                 UpdateSilhouette();
             }
@@ -166,7 +167,7 @@ public class FilmManager : MonoBehaviour {
 
             //現像
             if ((Input.GetButtonDown("ForDevelopPhantom") || AxisStateManager.GetInstance().GetAxisDown("ForDevelopPhantom") == 1)
-                && this.isPhantomMode)
+                && this.isSilhouetteMode)
             {
                 if (silhouette.obj.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
             }
@@ -314,7 +315,8 @@ public class FilmManager : MonoBehaviour {
 
         if (silhouette.obj == null)
         {
-            this.isPhantomMode = false;
+            this.isSilhouetteMode = false;
+            this.guideEffect.SetActive(false);
         }
     }
 
@@ -328,6 +330,7 @@ public class FilmManager : MonoBehaviour {
         pos.z = ((int)(pos.z / kCoordinateUnit)) * kCoordinateUnit;
 
         silhouette.obj.transform.position = pos;
+        guideEffect.transform.position = pos;
     }
 
     private void UpdateCurrentFilmNum()
@@ -349,7 +352,7 @@ public class FilmManager : MonoBehaviour {
         if (phantom == null) return;
 
         //エフェクト
-
+        EffectManager.GetInstance().PopUp("disappear", phantom.transform.position);
         //音声
 
         Destroy(phantom);

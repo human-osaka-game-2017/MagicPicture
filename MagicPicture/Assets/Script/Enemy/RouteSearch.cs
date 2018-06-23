@@ -23,7 +23,7 @@ static class RouteSearch
             direction.normalized,
             out onHitRay,
             direction.magnitude,
-            int.MaxValue ^ (LayerMask.NameToLayer("player") | LayerMask.NameToLayer("Ignore Raycast"))))
+            ~(LayerMask.NameToLayer("player") | LayerMask.NameToLayer("Ignore Raycast"))))
         {
             //四隅との距離を算出
             //todo 関数化

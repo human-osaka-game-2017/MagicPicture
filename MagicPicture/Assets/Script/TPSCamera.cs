@@ -15,10 +15,10 @@ public class TPSCamera : MonoBehaviour {
         public Obstacle(GameObject gameObject)
         {
             this.gameObj = gameObject;
-            this.mesh = new Mesh();
+            this.material = new Material(this.gameObj.GetComponent<Renderer>().material);
         }
         public GameObject gameObj { get; set; }
-        public Mesh mesh { get; set; }
+        public Material material { get; set; }
 
         public bool Equals(Obstacle obj) { return gameObj == obj.gameObj; }
 
@@ -39,13 +39,16 @@ public class TPSCamera : MonoBehaviour {
 
     void Update()
     {
+        GameObject obj = GameObject.Find("Player");
+
         RaycastHit[] hitColliders = null;
         Vector3 vec = (this.player.transform.position - this.transform.position);
+        vec *= 0.8f;
         hitColliders = Physics.RaycastAll(
             this.transform.position,
             vec.normalized,
             vec.magnitude,
-            int.MaxValue ^ LayerMask.NameToLayer("player"));
+            ~LayerMask.GetMask("player"));
 
         //このフレームの障害物List作成
         List<Obstacle> obstacleList = new List<Obstacle>();
@@ -56,10 +59,21 @@ public class TPSCamera : MonoBehaviour {
         }
 
         //新たに追加された障害物(meshを透過するobj)
-        var exceptList = obstacleList.Except<Obstacle>(this.prevObstacleList);
-        foreach (var obstacle in exceptList)
+        var newObstacleList = obstacleList.Except<Obstacle>(this.prevObstacleList);
+        newObstacleList.ToList<Obstacle>().ForEach(i =>
         {
-            //obstacle.mesh = obstacle.gameObj.GetComponent<Mesh>();
-        }
+            Material material = i.gameObj.GetComponent<Renderer>().material;
+            BlendModeUtils.SetBlendMode(material, BlendModeUtils.Mode.Fade);
+            material.SetColor("_Color", new Color(1, 1, 1, 0));
+        });
+
+        //障害物じゃなくなったobject
+        var exceptList = this.prevObstacleList.Except<Obstacle>(obstacleList);
+        exceptList.ToList<Obstacle>().ForEach(i =>
+        {
+            i.gameObj.GetComponent<Renderer>().material = i.material;
+        });
+
+        this.prevObstacleList = obstacleList;
     }
 }

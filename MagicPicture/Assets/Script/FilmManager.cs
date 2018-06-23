@@ -226,42 +226,17 @@ public class FilmManager : MonoBehaviour {
 
             //rotation
             {
-                //もう少しいい書き方あるかも
-                float dx = rayOrigin.x - filmingObj.collider.gameObject.transform.position.x;
-                float dz = rayOrigin.z - filmingObj.collider.gameObject.transform.position.z;
-                float deg = Mathf.Atan2(dz, dx) * Mathf.Rad2Deg;
-                if (deg <= 22.5f || 338.5f < deg)
+                Vector2 vec = new Vector2(rayOrigin.x, rayOrigin.z) - new Vector2(filmingObj.collider.gameObject.transform.position.x, filmingObj.collider.gameObject.transform.position.z);
+                Vector2 objFwd = new Vector2(filmingObj.collider.gameObject.transform.forward.x, (filmingObj.collider.gameObject.transform.forward.z));
+                float dot_deg = Vector2.Dot(vec, objFwd) * Mathf.Rad2Deg;
+                float cross = Cal.Cross2D(vec, objFwd);
+                if (cross < 0)
                 {
-                    this.films[this.currentFilmNum].rot_y = 0.0f;
+                    dot_deg = -dot_deg;
                 }
-                else if (deg <= 67.5f)
-                {
-                    this.films[this.currentFilmNum].rot_y = 45.0f;
-                }
-                else if (deg <= 112.5)
-                {
-                    this.films[this.currentFilmNum].rot_y = 90.0f;
-                }
-                else if (deg <= 157.5)
-                {
-                    this.films[this.currentFilmNum].rot_y = 135.0f;
-                }
-                else if (deg <= 202.5f)
-                {
-                    this.films[this.currentFilmNum].rot_y = 180.0f;
-                }
-                else if (deg <= 247.5f)
-                {
-                    this.films[this.currentFilmNum].rot_y = 225.0f;
-                }
-                else if (deg <= 292.5f)
-                {
-                    this.films[this.currentFilmNum].rot_y = 270.0f;
-                }
-                else if (deg <= 337.5f)
-                {
-                    this.films[this.currentFilmNum].rot_y = 315.0f;
-                }
+                double unitOfDegree = 45;//8等分
+                this.films[this.currentFilmNum].rot_y = Convert.ToSingle((Math.Floor(Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg + dot_deg + (unitOfDegree / 2) / unitOfDegree)) * unitOfDegree);
+
             }
         }
 

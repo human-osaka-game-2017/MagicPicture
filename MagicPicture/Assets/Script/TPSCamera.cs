@@ -10,7 +10,7 @@ public class TPSCamera : MonoBehaviour {
     //その障害物のメッシュを透過する
     //playerが見えるようになったら
     //メッシュを元に戻す
-    private struct Obstacle : IEquatable<Obstacle>
+    private class Obstacle : IEquatable<Obstacle>
     {
         public Obstacle(GameObject gameObject)
         {
@@ -22,7 +22,7 @@ public class TPSCamera : MonoBehaviour {
 
         public bool Equals(Obstacle obj) { return gameObj == obj.gameObj; }
 
-        public override bool Equals(object obj) { return this.Equals(obj as Obstacle?); }
+        public override bool Equals(object obj) { return this.Equals(obj as Obstacle); }
     }
 
     private GameObject player = null;
@@ -42,10 +42,15 @@ public class TPSCamera : MonoBehaviour {
         GameObject obj = GameObject.Find("Player");
 
         RaycastHit[] hitColliders = null;
-        Vector3 vec = (this.player.transform.position - this.transform.position);
-        vec *= 0.8f;
-        hitColliders = Physics.RaycastAll(
+        Vector3 playerPos = new Vector3(
+            this.player.transform.position.x,
+            this.player.transform.position.y + 0.5f,
+            this.player.transform.position.z);
+        Vector3 vec = (playerPos - this.transform.position);
+        Debug.DrawRay(this.transform.position, vec, Color.red);
+        hitColliders = Physics.SphereCastAll(
             this.transform.position,
+            0.3f,
             vec.normalized,
             vec.magnitude,
             ~LayerMask.GetMask("player"));
@@ -54,7 +59,13 @@ public class TPSCamera : MonoBehaviour {
         List<Obstacle> obstacleList = new List<Obstacle>();
         foreach (var hitCollider in hitColliders)
         {
-            Obstacle hitObj  = new Obstacle(hitCollider.collider.gameObject);
+            Obstacle hitObj = this.prevObstacleList.Find(i => i.gameObj == hitCollider.collider.gameObject);
+            
+            if(hitObj == null)
+            {
+                hitObj = new Obstacle(hitCollider.collider.gameObject);
+            }
+
             obstacleList.Add(hitObj);
         }
 

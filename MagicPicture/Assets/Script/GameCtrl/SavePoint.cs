@@ -32,6 +32,7 @@ public class SavePoint : MonoBehaviour {
 
             if (startOKFlag) {
                 SoundManager.GetInstance().Play("SE_IntermediatePoint", SoundManager.PLAYER_TYPE.NONLOOP, true);
+                EffectManager.GetInstance().PopUp("IntermediatePoint", this.transform.position);
             }
 
             myName = gameObject.name;

@@ -59,6 +59,8 @@ public class TPSCamera : MonoBehaviour {
         List<Obstacle> obstacleList = new List<Obstacle>();
         foreach (var hitCollider in hitColliders)
         {
+            if (hitCollider.collider.gameObject.GetComponent<Renderer>().material == null) continue;
+
             Obstacle hitObj = this.prevObstacleList.Find(i => i.gameObj == hitCollider.collider.gameObject);
             
             if(hitObj == null)

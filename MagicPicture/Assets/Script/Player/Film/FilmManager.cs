@@ -113,19 +113,18 @@ public class FilmManager : MonoBehaviour {
             float halfSize = this.films[this.currentFilmNum].image.GetComponentInParent<RectTransform>().sizeDelta.x / 2;
 
             //縮小、移動
-            //RectTransform prevParentTranceform = this.films[this.prevFilmNum].image.GetComponentInParent<RectTransform>();
             this.films[this.prevFilmNum].image.transform.parent.localScale = Vector3.one;
-            this.films[this.prevFilmNum].image.transform.parent.position += new Vector3(halfSize * -direction, 0, 0);
+            this.films[this.prevFilmNum].image.transform.parent.localPosition += new Vector3(halfSize * -direction, 0, 0);
 
             //移動
             for (int i = this.prevFilmNum + direction ; i != currentFilmNum; i += direction)
             {
-                this.films[i].image.transform.parent.position += new Vector3(this.films[i].image.GetComponentInParent<RectTransform>().sizeDelta.x * -direction, 0, 0);
+                this.films[i].image.transform.parent.localPosition += new Vector3(this.films[i].image.GetComponentInParent<RectTransform>().sizeDelta.x * -direction, 0, 0);
             }
 
             //拡大、移動
             this.films[this.currentFilmNum].image.transform.parent.localScale = new Vector3(2.0f, 2.0f, 1.0f);
-            this.films[this.currentFilmNum].image.transform.parent.position += new Vector3(halfSize * -direction, 0, 0);
+            this.films[this.currentFilmNum].image.transform.parent.localPosition += new Vector3(halfSize * -direction, 0, 0);
 
             ChangeSilhouette(films[currentFilmNum]);
         }

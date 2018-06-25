@@ -9,6 +9,7 @@ public class ObjectAttribute : MonoBehaviour {
     }
 
     private bool isTakenObj;
+    public bool IsTakenObj { get { return isTakenObj; } }
     public void Taken()
     {
         this.isTakenObj = true;

@@ -2,8 +2,8 @@
 
 public class Pauser : MonoBehaviour
 {
-    Behaviour[] targets;
-    GameObject operatingInstructionImg;
+    private Behaviour[] targets;
+    private GameObject img;
     private bool isPausing = false;
 
     //描画をさせてから止めるため
@@ -13,7 +13,7 @@ public class Pauser : MonoBehaviour
     private void Start()
     {
         targets = this.transform.Find("Pause").GetComponentsInChildren<Behaviour>();
-        operatingInstructionImg = this.transform.Find("Canvas").gameObject;
+        img = this.transform.Find("Canvas").gameObject;
     }
 
     private void Update()
@@ -39,12 +39,12 @@ public class Pauser : MonoBehaviour
             wasPushedButton = true;
             if (this.isPausing)
             {
-                operatingInstructionImg.SetActive(false);
+                img.SetActive(false);
 
             }
             else
             {
-                operatingInstructionImg.SetActive(true);
+                img.SetActive(true);
 
             }
         }

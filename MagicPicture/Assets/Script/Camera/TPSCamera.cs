@@ -26,10 +26,6 @@ public class TPSCamera : MonoBehaviour {
 
     private GameObject player = null;
     private List<Obstacle> prevObstacleList = new List<Obstacle>();
-    private List<Obstacle> PrevObstacleList
-    {
-        get { return prevObstacleList; }
-    }
 
     void Start()
     {

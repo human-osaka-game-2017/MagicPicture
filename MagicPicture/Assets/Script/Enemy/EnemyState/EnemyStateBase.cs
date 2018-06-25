@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 abstract class EnemyStateBase
 {
-    protected List<GameObject> targets = new List<GameObject>();
+    private List<GameObject> targets = new List<GameObject>();
+    protected List<GameObject> Targets
+    {
+        get { return targets; }
+    }
 
-    protected Finder finder;
+    protected Finder Finder { get; set; }
 
-    protected GameObject obj { get; set; }
+    protected GameObject Obj { get; set; }
 
-    protected NavMeshAgent navMeshAgent;
+    protected NavMeshAgent NavAgent { get; set; }
 
     abstract public EnemyAI.STATE Update();
 
@@ -23,32 +24,32 @@ abstract class EnemyStateBase
 
     abstract public void Collision(GameObject other);
 
-    public EnemyStateBase(GameObject thisObj, Finder argFinder)
+    public EnemyStateBase(GameObject obj, Finder finder)
     {
-        this.obj = thisObj;
-        this.navMeshAgent = this.obj.GetComponent<NavMeshAgent>();
-        this.finder = argFinder;
-        this.finder.onFound += OnFound;
-        this.finder.onLost += OnLost;
+        this.Obj = obj;
+        this.NavAgent = this.Obj.GetComponent<NavMeshAgent>();
+        this.Finder = finder;
+        this.Finder.onFound += OnFound;
+        this.Finder.onLost += OnLost;
     }
 
     public void Destroy()
     {
-        this.finder.onFound -= OnFound;
-        this.finder.onLost -= OnLost;
+        this.Finder.onFound -= OnFound;
+        this.Finder.onLost -= OnLost;
     }
 
     private void OnFound(GameObject foundObject)
     {
-        this.targets.Add(foundObject);
+        this.Targets.Add(foundObject);
         Found(foundObject);
     }
 
     private void OnLost(GameObject lostObject)
     {
-        this.targets.Remove(lostObject);
+        this.Targets.Remove(lostObject);
 
-        if (this.targets.Count == 0)
+        if (this.Targets.Count == 0)
         {
             Lost(lostObject);
         }

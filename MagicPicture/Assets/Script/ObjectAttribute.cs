@@ -5,15 +5,10 @@ public class ObjectAttribute : MonoBehaviour {
     [SerializeField] private bool canTake;
     public bool CanTake
     {
-        get { return (this.canTake && !this.IsTakenObj); }
+        get { return (this.canTake && !this.isTakenObj); }
     }
 
-    private bool isTakenObj = false;
-    public bool IsTakenObj
-    {
-        get { return this.isTakenObj; }
-        //set
-    }
+    private bool isTakenObj;
     public void Taken()
     {
         this.isTakenObj = true;
@@ -25,11 +20,9 @@ public class ObjectAttribute : MonoBehaviour {
         get { return this.canPhantom; }
     }
 
-    // Use this for initialization
     void Start () {
     }
 	
-	// Update is called once per frame
 	void Update () {
     }
 

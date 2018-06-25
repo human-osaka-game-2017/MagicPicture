@@ -2,14 +2,14 @@
 
 public class FoundData
 {
-    public FoundData(GameObject argObj)
+    public FoundData(GameObject obj)
     {
-        Obj = argObj;
+        Obj = obj;
     }
 
     public GameObject Obj { get; private set; }
 
-    private bool isCurrentFound/* { get; private set; }*/ = false;
+    private bool isCurrentFound = false;
     public bool IsCurrentFound()
     {
         return isCurrentFound;

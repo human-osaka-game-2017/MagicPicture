@@ -13,7 +13,7 @@ public class Finder : MonoBehaviour
         get { return searchAngle; }
     }
 
-    private SphereCollider sphereCollider = null;
+    private SphereCollider sphereCollider;
     private List<FoundData> foundList = new List<FoundData>();
     public List<FoundData> FoundList
     {

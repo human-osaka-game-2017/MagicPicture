@@ -10,7 +10,6 @@ public class BlendModeUtils/* : MonoBehaviour*/
         Transparent,
     }
 
-
     public static void SetBlendMode(Material material, Mode blendMode)
     {
         switch (blendMode)

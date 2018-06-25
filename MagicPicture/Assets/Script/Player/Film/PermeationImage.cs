@@ -7,7 +7,7 @@ public class PermeationImage : MonoBehaviour {
     [SerializeField] float val;
 
     private RawImage image;
-    private float currentAlpha = 0.0f;
+    private float currentAlpha;
 
     public void Init()
     {

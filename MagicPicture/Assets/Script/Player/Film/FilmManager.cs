@@ -7,21 +7,21 @@ using UnityEngine.UI;
 public class FilmManager : MonoBehaviour {
 
     [SerializeField] private GameObject guideEffect;
-    [SerializeField] private int   kMaxFilm;
-    [SerializeField] private int   kMaxPhantom;
-    [SerializeField] private float kCoordinateUnit;
-    [SerializeField] private float kPhantomDistance;
-    [SerializeField] private float kScaleThreshold_StoM_per;
-    [SerializeField] private float kScaleThreshold_MtoL_per;
-    [SerializeField] private float kScaleRatio_S;
-    [SerializeField] private float kScaleRatio_M;
-    [SerializeField] private float kScaleRatio_L;
+    [SerializeField] private int maxFilm;
+    [SerializeField] private int maxPhantom;
+    [SerializeField] private float coordinateUnit;
+    [SerializeField] private float phantomDistance;
+    [SerializeField, Range(0.0f, 100.0f)] private float scaleThresholdStoMOfPer;
+    [SerializeField, Range(0.0f, 100.0f)] private float scaleThresholdMtoLOfPer;
+    [SerializeField] private float scaleRatioS;
+    [SerializeField] private float scaleRatioM;
+    [SerializeField] private float scaleRatioL;
     [SerializeField] private float photoCameraRange;
-    [SerializeField, Range(0.0f, 1.0f)] private float alphaSilhouette;
-    [SerializeField, Range(0.0f, 1.0f)] private float alphaPhantom;
+    [SerializeField, Range(0.0f, 1.0f)] private float alphaValOfSilhouette;
+    [SerializeField, Range(0.0f, 1.0f)] private float alphaValOfPhantom;
 
-    private const int filmSpace_x = 100;
-    private const int filmSpace_y = 5000;
+    private const int filmSpaceOfX = 100;
+    private const int filmSpaceOfY = 5000;
 
     public class Film
     {
@@ -33,24 +33,21 @@ public class FilmManager : MonoBehaviour {
         public void SetIndex(int index)
         {
             farawaySpace = new Vector3(
-                filmSpace_x * index,
-                filmSpace_y,
+                filmSpaceOfX * index,
+                filmSpaceOfY,
                 0.0f);
         }
 
-        //private GameObject obj { get; set; }
-        public GameObject obj;
-        public RawImage image;
-        public Vector3 axis;
-        public float offset_y;
-        public float scale;
-
-        private int index;
+        public GameObject Obj { get; set; }
+        public RawImage Image { get; set; }
+        public Vector3 Axis { get; set; }
+        public float OffsetToY { get; set; }
+        public float Scale { get; set; }
         private Vector3 farawaySpace;
 
         public void ResetPos()
         {
-            obj.transform.position = farawaySpace;
+            Obj.transform.position = farawaySpace;
         }
     }
 
@@ -61,35 +58,38 @@ public class FilmManager : MonoBehaviour {
         set { maxDistance = value; }
     }
 
-    private Film[]          films           = null;
-    private GameObject[]    phantoms        = null;
-    private Film            silhouette      = null;
-    private GameObject      player          = null;
-    private GameObject      magicame        = null;
-    private Camera          photoUICamera   = null;
-    private int currentFilmNum    = 0;
-    private int prevFilmNum       = 0;
-    private bool isSilhouetteMode    = false;
+    private Film[] films;
+    private Film CurrentFilm
+    {
+        get { return films[currentFilmNum]; }
+    }
+    private GameObject[] phantoms;
+    private Film silhouette;
+    private GameObject player;
+    private GameObject magicame;
+    private Camera photoUICamera;
+    private int currentFilmNum;
+    private int prevFilmNum;
+    private bool isSilhouetteMode;
 
     void Start()
     {
-        //RawImage img = new RawImage();
-        this.films = new Film[this.kMaxFilm];
-        for(int i = 0; i < this.kMaxFilm ; ++i){
+        this.films = new Film[this.maxFilm];
+        for(int i = 0; i < this.maxFilm ; ++i){
             this.films[i] = new Film(i);
         }
 
-        this.phantoms = new GameObject[kMaxPhantom];
+        this.phantoms = new GameObject[maxPhantom];
 
         player        = GameObject.Find("Player");
         magicame      = player.transform.Find("FPSCamera").gameObject;
         photoUICamera = GameObject.Find("PhotoUICamera").GetComponent<Camera>();
 
         //ほかに書き方あるかも
-        for (int i = 0; i < this.kMaxFilm; ++i)
+        for (int i = 0; i < this.maxFilm; ++i)
         {
             string path = "Canvas/photo/back (" + (i + 1).ToString() + ")/Picture (" + (i + 1).ToString() + ")";
-            films[i].image = this.transform.Find(path).gameObject.GetComponent<RawImage>();
+            films[i].Image = this.transform.Find(path).gameObject.GetComponent<RawImage>();
         }
 
         silhouette = films[currentFilmNum];
@@ -108,21 +108,21 @@ public class FilmManager : MonoBehaviour {
             int influenceNum = this.currentFilmNum - this.prevFilmNum;
             int direction = influenceNum / Math.Abs(influenceNum);
 
-            float halfSize = this.films[this.currentFilmNum].image.GetComponentInParent<RectTransform>().sizeDelta.x / 2;
+            float halfSize = this.films[this.currentFilmNum].Image.GetComponentInParent<RectTransform>().sizeDelta.x / 2;
 
             //縮小、移動
-            this.films[this.prevFilmNum].image.transform.parent.localScale = Vector3.one;
-            this.films[this.prevFilmNum].image.transform.parent.localPosition += new Vector3(halfSize * -direction, 0, 0);
+            this.films[this.prevFilmNum].Image.transform.parent.localScale = Vector3.one;
+            this.films[this.prevFilmNum].Image.transform.parent.localPosition += new Vector3(halfSize * -direction, 0, 0);
 
             //移動
             for (int i = this.prevFilmNum + direction ; i != currentFilmNum; i += direction)
             {
-                this.films[i].image.transform.parent.localPosition += new Vector3(this.films[i].image.GetComponentInParent<RectTransform>().sizeDelta.x * -direction, 0, 0);
+                this.films[i].Image.transform.parent.localPosition += new Vector3(this.films[i].Image.GetComponentInParent<RectTransform>().sizeDelta.x * -direction, 0, 0);
             }
 
             //拡大、移動
-            this.films[this.currentFilmNum].image.transform.parent.localScale = new Vector3(2.0f, 2.0f, 1.0f);
-            this.films[this.currentFilmNum].image.transform.parent.localPosition += new Vector3(halfSize * -direction, 0, 0);
+            this.films[this.currentFilmNum].Image.transform.parent.localScale = new Vector3(2.0f, 2.0f, 1.0f);
+            this.films[this.currentFilmNum].Image.transform.parent.localPosition += new Vector3(halfSize * -direction, 0, 0);
 
             ChangeSilhouette(films[currentFilmNum]);
         }
@@ -136,7 +136,7 @@ public class FilmManager : MonoBehaviour {
             }
         }
 
-        if (films[currentFilmNum].obj != null)
+        if (films[currentFilmNum].Obj != null)
         {
             //SilhouetteModeの変更
             if (Input.GetButtonDown("ForSilhouetteMode"))
@@ -154,15 +154,15 @@ public class FilmManager : MonoBehaviour {
             //写真、オブジェクトの回転
             if (AxisStateManager.GetInstance().GetAxisDown("ForRotatePicture") != 0)
             {
-                films[currentFilmNum].image.transform.Rotate(new Vector3(0.0f, 0.0f, Input.GetAxisRaw("ForRotatePicture") * 90.0f));
-                films[currentFilmNum].obj.transform.Rotate(this.films[currentFilmNum].axis * Input.GetAxisRaw("ForRotatePicture"), 90.0f, Space.Self);
+                films[currentFilmNum].Image.transform.Rotate(new Vector3(0.0f, 0.0f, Input.GetAxisRaw("ForRotatePicture") * 90.0f));
+                films[currentFilmNum].Obj.transform.Rotate(this.films[currentFilmNum].Axis * Input.GetAxisRaw("ForRotatePicture"), 90.0f, Space.Self);
             }
 
             //現像
             if ((Input.GetButtonDown("ForDevelopPhantom") || AxisStateManager.GetInstance().GetAxisDown("ForDevelopPhantom") == 1)
                 && this.isSilhouetteMode)
             {
-                if (silhouette.obj.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
+                if (silhouette.Obj.GetComponent<ObjectAttribute>().CanPhantom) DevelopPhantom();
             }
         }
 
@@ -173,16 +173,16 @@ public class FilmManager : MonoBehaviour {
     {
         SoundManager.GetInstance().Play("SE_PhantomPutOut", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
-        EffectManager.GetInstance().PopUp("appear", this.films[this.currentFilmNum].obj.transform.position);
+        EffectManager.GetInstance().PopUp("appear", this.films[this.currentFilmNum].Obj.transform.position);
 
-        AddPhantom(this.films[this.currentFilmNum].obj);
+        AddPhantom(this.films[this.currentFilmNum].Obj);
 
         //追加時の各設定
         this.phantoms[0].transform.SetParent(null, true);
         this.phantoms[0].GetComponent<Collider>().isTrigger = false;
         this.phantoms[0].GetComponent<Rigidbody>().useGravity = true;
         this.phantoms[0].layer = LayerMask.NameToLayer("Default");
-        this.phantoms[0].GetComponent<Renderer>().material.SetColor("_Color", new Color(1, 1, 1, alphaPhantom));
+        this.phantoms[0].GetComponent<Renderer>().material.SetColor("_Color", new Color(1, 1, 1, alphaValOfPhantom));
         this.phantoms[0].AddComponent<NavMeshObstacle>();
         this.phantoms[0].GetComponent<NavMeshObstacle>().carving = true;
     }
@@ -191,9 +191,9 @@ public class FilmManager : MonoBehaviour {
     //@param 撮影時のrayのスタート位置
     public void Take(RaycastHit filmingObj ,Vector3 rayOrigin)
     {
-        if (this.films[this.currentFilmNum].obj != null)
+        if (this.films[this.currentFilmNum].Obj != null)
         {
-            Destroy(this.films[this.currentFilmNum].obj);
+            Destroy(this.films[this.currentFilmNum].Obj);
         }
 
         Vector3 vector3;
@@ -201,22 +201,22 @@ public class FilmManager : MonoBehaviour {
         //offset,scale,rotの設定
         {
             //offset
-            this.films[this.currentFilmNum].offset_y = filmingObj.point.y - filmingObj.collider.gameObject.transform.position.y;
+            this.films[this.currentFilmNum].OffsetToY = filmingObj.point.y - filmingObj.collider.gameObject.transform.position.y;
 
             //scale
             {
                 float distance = filmingObj.distance;
-                if (distance <= maxDistance * kScaleThreshold_StoM_per * 0.01)
+                if (distance <= maxDistance * scaleThresholdStoMOfPer * 0.01)
                 {
-                    this.films[this.currentFilmNum].scale = kScaleRatio_L;
+                    this.films[this.currentFilmNum].Scale = scaleRatioL;
                 }
-                else if (distance <= maxDistance * kScaleThreshold_MtoL_per * 0.01)
+                else if (distance <= maxDistance * scaleThresholdMtoLOfPer * 0.01)
                 {
-                    this.films[this.currentFilmNum].scale = kScaleRatio_M;
+                    this.films[this.currentFilmNum].Scale = scaleRatioM;
                 }
                 else
                 {
-                    this.films[this.currentFilmNum].scale = kScaleRatio_S;
+                    this.films[this.currentFilmNum].Scale = scaleRatioS;
                 }
             }
 
@@ -232,26 +232,26 @@ public class FilmManager : MonoBehaviour {
 
         //生成
         {
-            this.films[this.currentFilmNum].obj = Instantiate(filmingObj.collider.gameObject);
+            this.films[this.currentFilmNum].Obj = Instantiate(filmingObj.collider.gameObject);
 
             this.films[this.currentFilmNum].ResetPos();
 
-            this.films[this.currentFilmNum].obj.transform.localScale *= this.films[this.currentFilmNum].scale;
+            this.films[this.currentFilmNum].Obj.transform.localScale *= this.films[this.currentFilmNum].Scale;
 
-            this.films[this.currentFilmNum].obj.GetComponent<Collider>().isTrigger = true;
-            this.films[this.currentFilmNum].obj.GetComponent<Rigidbody>().useGravity = false;
-            this.films[this.currentFilmNum].obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            this.films[this.currentFilmNum].obj.layer = LayerMask.NameToLayer("Ignore Raycast");
+            this.films[this.currentFilmNum].Obj.GetComponent<Collider>().isTrigger = true;
+            this.films[this.currentFilmNum].Obj.GetComponent<Rigidbody>().useGravity = false;
+            this.films[this.currentFilmNum].Obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            this.films[this.currentFilmNum].Obj.layer = LayerMask.NameToLayer("Ignore Raycast");
         }
 
         //スクショ
         {
             //カメラの移動
             //photo用カメラ撮影位置
-            Vector3 pos = this.films[currentFilmNum].obj.transform.position;
+            Vector3 pos = this.films[currentFilmNum].Obj.transform.position;
             pos += vector3 * photoCameraRange;
             photoUICamera.transform.position = pos;
-            photoUICamera.transform.LookAt(this.films[currentFilmNum].obj.transform.position);
+            photoUICamera.transform.LookAt(this.films[currentFilmNum].Obj.transform.position);
 
             StartCoroutine("CreatePhoto", vector3);
         }
@@ -261,8 +261,8 @@ public class FilmManager : MonoBehaviour {
     {
         yield return new WaitForEndOfFrame();
 
-        int width = (int)films[this.currentFilmNum].image.rectTransform.rect.width;
-        int height = (int)films[this.currentFilmNum].image.rectTransform.rect.height;
+        int width = (int)films[this.currentFilmNum].Image.rectTransform.rect.width;
+        int height = (int)films[this.currentFilmNum].Image.rectTransform.rect.height;
 
         // アクティブなレンダーテクスチャをキャッシュしておく
         RenderTexture currentRT = RenderTexture.active;
@@ -280,19 +280,19 @@ public class FilmManager : MonoBehaviour {
         photo.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         photo.Apply();
 
-        this.films[this.currentFilmNum].image.texture = photo;
-        this.films[this.currentFilmNum].image.color = Color.white;
-        Material material = this.films[this.currentFilmNum].obj.GetComponent<Renderer>().material;
+        this.films[this.currentFilmNum].Image.texture = photo;
+        this.films[this.currentFilmNum].Image.color = Color.white;
+        Material material = this.films[this.currentFilmNum].Obj.GetComponent<Renderer>().material;
         BlendModeUtils.SetBlendMode(material, BlendModeUtils.Mode.Fade);
-        material.SetColor("_Color", new Color(1, 1, 1, alphaSilhouette));
-        this.films[this.currentFilmNum].obj.transform.SetParent(this.player.transform, true);
-        this.films[this.currentFilmNum].axis = Quaternion.Inverse(Quaternion.Euler(this.films[this.currentFilmNum].obj.transform.eulerAngles)) * vec;
+        material.SetColor("_Color", new Color(1, 1, 1, alphaValOfSilhouette));
+        this.films[this.currentFilmNum].Obj.transform.SetParent(this.player.transform, true);
+        this.films[this.currentFilmNum].Axis = Quaternion.Inverse(Quaternion.Euler(this.films[this.currentFilmNum].Obj.transform.eulerAngles)) * vec;
     }
 
     //@param 変更するオブジェクト
     private void ChangeSilhouette(Film film)
     {
-        if (silhouette.obj != null)
+        if (silhouette.Obj != null)
         {
             silhouette.ResetPos();
         }
@@ -300,7 +300,7 @@ public class FilmManager : MonoBehaviour {
         //変更
         silhouette = film;
 
-        if (silhouette.obj == null)
+        if (silhouette.Obj == null)
         {
             this.isSilhouetteMode = false;
             this.guideEffect.SetActive(false);
@@ -311,18 +311,18 @@ public class FilmManager : MonoBehaviour {
     {
         //各定点に移動
         Vector3 pos =
-        magicame.transform.position + (magicame.transform.forward.normalized * kPhantomDistance);
-        pos.x = ((int)(pos.x / kCoordinateUnit)) * kCoordinateUnit;
-        pos.y -= this.films[this.currentFilmNum].offset_y;
-        pos.z = ((int)(pos.z / kCoordinateUnit)) * kCoordinateUnit;
+        magicame.transform.position + (magicame.transform.forward.normalized * phantomDistance);
+        pos.x = ((int)(pos.x / coordinateUnit)) * coordinateUnit;
+        pos.y -= this.films[this.currentFilmNum].OffsetToY;
+        pos.z = ((int)(pos.z / coordinateUnit)) * coordinateUnit;
 
-        silhouette.obj.transform.position = pos;
+        silhouette.Obj.transform.position = pos;
         guideEffect.transform.position = pos;
     }
 
     private void UpdateCurrentFilmNum()
     {
-        Func<int, int> standardizationFilmNum = nextFilmNum => (nextFilmNum + this.kMaxFilm) % this.kMaxFilm;
+        Func<int, int> standardizationFilmNum = nextFilmNum => (nextFilmNum + this.maxFilm) % this.maxFilm;
         
         if (AxisStateManager.GetInstance().GetAxisDown("HorizontalForChangeFilm") == 1.0f)
         {
@@ -362,7 +362,7 @@ public class FilmManager : MonoBehaviour {
             GameObject tmp; //一時保管
 
             int count;
-            for (count = 0; count < kMaxPhantom; ++count)
+            for (count = 0; count < maxPhantom; ++count)
             {
                 tmp = this.phantoms[count];
                 this.phantoms[count] = next;

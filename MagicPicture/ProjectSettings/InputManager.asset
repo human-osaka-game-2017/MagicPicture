@@ -137,8 +137,8 @@ InputManager:
     m_Name: ForRotatePicture
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: return
-    positiveButton: right shift
+    negativeButton: right shift
+    positiveButton: return
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3

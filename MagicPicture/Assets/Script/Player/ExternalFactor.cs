@@ -81,9 +81,12 @@ public class ExternalFactor : MonoBehaviour {
     // ゲームオーバーへ
     IEnumerator WaitGoGameOver()
     {
-        SoundManager.GetInstance().Play("SE_GameOver", SoundManager.PLAYER_TYPE.NONLOOP, true);
+        if (GameState.state == (int)state.play) {
+            SoundManager.GetInstance().Play("SE_GameOver", SoundManager.PLAYER_TYPE.NONLOOP, true);
+        }
 
         GameState.state = (int)state.death;
+        GameObject.Find("FilmManager").GetComponent<FilmManager>().enabled = false;
 
         // モーション分待ってゲームオーバーへ
         yield return new WaitForSeconds(damageWait);

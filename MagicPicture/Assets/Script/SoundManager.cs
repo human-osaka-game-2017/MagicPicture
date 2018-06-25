@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 class SoundManager
@@ -13,7 +10,7 @@ class SoundManager
         COUNT
     }
 
-    static SoundManager instance = null;
+    static SoundManager instance;
 
     public static SoundManager GetInstance()
     {
@@ -21,12 +18,12 @@ class SoundManager
     }
 
     // サウンド再生のためのゲームオブジェクト
-    GameObject obj = null;
+    private GameObject obj = null;
 
     // 再生プレイヤー
-    AudioSource[] soundPlayers;
+    private AudioSource[] soundPlayers;
 
-    Dictionary<string, AudioClip> soundTable = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> soundTable = new Dictionary<string, AudioClip>();
 
     private SoundManager()
     {

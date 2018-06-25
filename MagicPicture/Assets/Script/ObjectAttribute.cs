@@ -1,21 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ObjectAttribute : MonoBehaviour {
 
     [SerializeField] private bool canTake;
     public bool CanTake
     {
-        get { return (this.canTake && !this.IsTakenObj); }
+        get { return (this.canTake && !this.isTakenObj); }
     }
 
-    private bool isTakenObj = false;
-    public bool IsTakenObj
-    {
-        get { return this.isTakenObj; }
-        //set
-    }
+    private bool isTakenObj;
+    public bool IsTakenObj { get { return isTakenObj; } }
     public void Taken()
     {
         this.isTakenObj = true;
@@ -27,12 +21,12 @@ public class ObjectAttribute : MonoBehaviour {
         get { return this.canPhantom; }
     }
 
-    // Use this for initialization
-    void Start () {
+    void Start ()
+    {
     }
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
     }
 
     private void OnTriggerEnter(Collider other)

@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 class EnemyStateAttack : EnemyStateBase
 {
     //敵を見失ってもしばらくはそこにいるだろうで動く
     //完全に見失うまでのカウント
-    /*[SerializeField]*/ private float lostTime = 3;
+    private float lostTime = 3;
     private bool isMissing = false;
     private Vector3 targetPos;
     private GameObject target;
     private float dashDistance;
-    private float timeElapsed = 0.0f;
+    private float timeElapsed;
     private float dashSpeed;
     private float dashRotSpeed;
     private float defaultSpeed;
@@ -24,9 +20,9 @@ class EnemyStateAttack : EnemyStateBase
     {
         this.dashRotSpeed = dashRotSpeed;
         this.dashSpeed = dashSpeed;
-        this.defaultSpeed = this.navMeshAgent.speed;
-        this.defaultRotSpeed = this.navMeshAgent.angularSpeed;
-        this.target = this.finder.FoundList[0].Obj;
+        this.defaultSpeed = this.NavAgent.speed;
+        this.defaultRotSpeed = this.NavAgent.angularSpeed;
+        this.target = this.Finder.FoundList[0].Obj;
         targetPos = target.transform.position;
     }
 
@@ -67,7 +63,7 @@ class EnemyStateAttack : EnemyStateBase
             targetPos = target.transform.position;
         }
 
-        navMeshAgent.SetDestination(targetPos);
+        this.NavAgent.SetDestination(targetPos);
         //if(navMeshAgent.remainingDistance < this.dashDistance)
         //{
         //    this.navMeshAgent.speed = this.dashSpeed;

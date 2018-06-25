@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FoundData
 {
-    public FoundData(GameObject argObj)
+    public FoundData(GameObject obj)
     {
-        Obj = argObj;
+        this.Obj = obj;
     }
 
     public GameObject Obj { get; private set; }
 
-    private bool isCurrentFound/* { get; private set; }*/ = false;
+    private bool isCurrentFound = false;
     public bool IsCurrentFound()
     {
         return isCurrentFound;

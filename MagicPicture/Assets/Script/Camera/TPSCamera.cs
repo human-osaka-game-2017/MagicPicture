@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using System;
+using UnityEngine;
 
 public class TPSCamera : MonoBehaviour {
 
@@ -27,10 +26,6 @@ public class TPSCamera : MonoBehaviour {
 
     private GameObject player = null;
     private List<Obstacle> prevObstacleList = new List<Obstacle>();
-    private List<Obstacle> PrevObstacleList
-    {
-        get { return prevObstacleList; }
-    }
 
     void Start()
     {

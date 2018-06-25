@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PermeationImage : MonoBehaviour {
@@ -9,7 +7,7 @@ public class PermeationImage : MonoBehaviour {
     [SerializeField] float val;
 
     private RawImage image;
-    private float currentAlpha = 0.0f;
+    private float currentAlpha;
 
     public void Init()
     {

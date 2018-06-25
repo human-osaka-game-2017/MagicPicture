@@ -1,15 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MagiCame : MonoBehaviour
 {
-    [SerializeField] private float kMinDistance;
-    [SerializeField] private float kMaxDistance;
+    [SerializeField] private float minDistance;
+    [SerializeField] private float maxDistance;
 
-    private GameObject player = null;
-    private FilmManager filmManager = null;
-    private PermeationImage img = null;
+    private GameObject player;
+    private FilmManager filmManager;
+    private PermeationImage img;
     private Vector3 rotSpeed;
 
     public void Init()
@@ -26,7 +24,7 @@ public class MagiCame : MonoBehaviour
         rotSpeed.x = this.transform.GetComponentInParent<PlayerCtrl>().rotSpeed;
         this.player = GameObject.Find("Player");
         this.filmManager = GameObject.Find("FilmManager").GetComponent<FilmManager>();
-        GameObject.Find("FilmManager").GetComponent<FilmManager>().MaxDistance = kMaxDistance - kMinDistance;
+        GameObject.Find("FilmManager").GetComponent<FilmManager>().MaxDistance = maxDistance - minDistance;
     }
 
     void Update()
@@ -43,10 +41,10 @@ public class MagiCame : MonoBehaviour
         // Rayが衝突したコライダーの情報を得る
         RaycastHit hitObj;
         if (Physics.Raycast(
-            this.transform.position+(this.transform.forward * this.kMinDistance),
+            this.transform.position+(this.transform.forward * this.minDistance),
             this.transform.forward,
             out hitObj,
-            this.kMaxDistance - this.kMinDistance))
+            this.maxDistance - this.minDistance))
         {
             //シャッターを切られた
             if (Input.GetButtonDown("ForTakePicture"))

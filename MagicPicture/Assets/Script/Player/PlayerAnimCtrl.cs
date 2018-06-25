@@ -6,6 +6,8 @@ public class PlayerAnimCtrl : MonoBehaviour {
 
     [SerializeField] float animFwdSpeed;
     [SerializeField] float animBackSpeed;
+    [SerializeField] float animHrznSpeed;
+
 
     Animator animCtrl;
     float    time2;
@@ -19,17 +21,22 @@ public class PlayerAnimCtrl : MonoBehaviour {
     void Update() {
         
         if (GameState.state == (int)state.play) {
+            
+            float waitVertical = Input.GetAxis("VerticalForMove");
+            float waitHorizon  = Input.GetAxis("HorizontalForMove") * animHrznSpeed;
 
-            float time;
+            if (waitVertical > 0) {
+                animCtrl.speed = animFwdSpeed;
+            }
+            if (waitVertical < 0) {
+                waitVertical *= -1;
+                animCtrl.speed = animBackSpeed;
+            }
+            if (waitHorizon < 0) {
+                waitHorizon *= -1;
+            }
 
-            time2 = time = Input.GetAxis("VerticalForMove");
-
-            if (time > 0) animCtrl.speed = animFwdSpeed;
-            if (time < 0) animCtrl.speed = animBackSpeed;
-
-            if (time2 < 0) time2 *= -1;
-
-            animCtrl.SetFloat("Speed", time2);
+            animCtrl.SetFloat("Speed", waitVertical + waitHorizon);
         }
         else {
             animCtrl.SetFloat("Speed", 0);  // モーションストップ

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BlendModeUtils/* : MonoBehaviour*/
 {
@@ -10,7 +9,6 @@ public class BlendModeUtils/* : MonoBehaviour*/
         Fade,
         Transparent,
     }
-
 
     public static void SetBlendMode(Material material, Mode blendMode)
     {

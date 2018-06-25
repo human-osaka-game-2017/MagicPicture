@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
-using System.IO;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class FilmManager : MonoBehaviour {
 
@@ -43,8 +41,8 @@ public class FilmManager : MonoBehaviour {
         //private GameObject obj { get; set; }
         public GameObject obj;
         public RawImage image;
+        public Vector3 axis;
         public float offset_y;
-        public float rot_y;
         public float scale;
 
         private int index;
@@ -113,19 +111,18 @@ public class FilmManager : MonoBehaviour {
             float halfSize = this.films[this.currentFilmNum].image.GetComponentInParent<RectTransform>().sizeDelta.x / 2;
 
             //縮小、移動
-            //RectTransform prevParentTranceform = this.films[this.prevFilmNum].image.GetComponentInParent<RectTransform>();
             this.films[this.prevFilmNum].image.transform.parent.localScale = Vector3.one;
-            this.films[this.prevFilmNum].image.transform.parent.position += new Vector3(halfSize * -direction, 0, 0);
+            this.films[this.prevFilmNum].image.transform.parent.localPosition += new Vector3(halfSize * -direction, 0, 0);
 
             //移動
             for (int i = this.prevFilmNum + direction ; i != currentFilmNum; i += direction)
             {
-                this.films[i].image.transform.parent.position += new Vector3(this.films[i].image.GetComponentInParent<RectTransform>().sizeDelta.x * -direction, 0, 0);
+                this.films[i].image.transform.parent.localPosition += new Vector3(this.films[i].image.GetComponentInParent<RectTransform>().sizeDelta.x * -direction, 0, 0);
             }
 
             //拡大、移動
             this.films[this.currentFilmNum].image.transform.parent.localScale = new Vector3(2.0f, 2.0f, 1.0f);
-            this.films[this.currentFilmNum].image.transform.parent.position += new Vector3(halfSize * -direction, 0, 0);
+            this.films[this.currentFilmNum].image.transform.parent.localPosition += new Vector3(halfSize * -direction, 0, 0);
 
             ChangeSilhouette(films[currentFilmNum]);
         }
@@ -158,11 +155,7 @@ public class FilmManager : MonoBehaviour {
             if (AxisStateManager.GetInstance().GetAxisDown("ForRotatePicture") != 0)
             {
                 films[currentFilmNum].image.transform.Rotate(new Vector3(0.0f, 0.0f, Input.GetAxisRaw("ForRotatePicture") * 90.0f));
-                Vector3 rot = Vector3.zero;
-                rot.x = Mathf.Cos(films[currentFilmNum].rot_y * Mathf.Deg2Rad);
-                rot.y = 0.0f;
-                rot.z = Mathf.Sin(films[currentFilmNum].rot_y * Mathf.Deg2Rad);
-                films[currentFilmNum].obj.transform.Rotate(rot.normalized * 90.0f * Input.GetAxisRaw("ForRotatePicture"), Space.Self);
+                films[currentFilmNum].obj.transform.Rotate(this.films[currentFilmNum].axis * Input.GetAxisRaw("ForRotatePicture"), 90.0f, Space.Self);
             }
 
             //現像
@@ -203,6 +196,8 @@ public class FilmManager : MonoBehaviour {
             Destroy(this.films[this.currentFilmNum].obj);
         }
 
+        Vector3 vector3;
+
         //offset,scale,rotの設定
         {
             //offset
@@ -225,19 +220,13 @@ public class FilmManager : MonoBehaviour {
                 }
             }
 
-            //rotation
+            //angle
             {
-                Vector2 vec = new Vector2(rayOrigin.x, rayOrigin.z) - new Vector2(filmingObj.collider.gameObject.transform.position.x, filmingObj.collider.gameObject.transform.position.z);
-                Vector2 objFwd = new Vector2(filmingObj.collider.gameObject.transform.forward.x, (filmingObj.collider.gameObject.transform.forward.z));
-                float dot_deg = Vector2.Dot(vec, objFwd) * Mathf.Rad2Deg;
-                float cross = Cal.Cross2D(vec, objFwd);
-                if (cross < 0)
-                {
-                    dot_deg = -dot_deg;
-                }
-                double unitOfDegree = 45;//8等分
-                this.films[this.currentFilmNum].rot_y = Convert.ToSingle((Math.Floor(Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg + dot_deg + (unitOfDegree / 2) / unitOfDegree)) * unitOfDegree);
-
+                Vector2 vec =  new Vector2(rayOrigin.x, rayOrigin.z) - new Vector2(filmingObj.collider.gameObject.transform.position.x, filmingObj.collider.gameObject.transform.position.z);
+                float deg = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+                float unit_deg = 45.0f;//8等分
+                deg = Mathf.Floor((deg + (unit_deg / 2)) / unit_deg) * unit_deg;
+                vector3 = Quaternion.Euler(0.0f, -deg, 0.0f) * Vector3.right;
             }
         }
 
@@ -249,7 +238,6 @@ public class FilmManager : MonoBehaviour {
 
             this.films[this.currentFilmNum].obj.transform.localScale *= this.films[this.currentFilmNum].scale;
 
-            this.films[this.currentFilmNum].obj.transform.SetParent(this.player.transform, true);
             this.films[this.currentFilmNum].obj.GetComponent<Collider>().isTrigger = true;
             this.films[this.currentFilmNum].obj.GetComponent<Rigidbody>().useGravity = false;
             this.films[this.currentFilmNum].obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -260,19 +248,16 @@ public class FilmManager : MonoBehaviour {
         {
             //カメラの移動
             //photo用カメラ撮影位置
-            Vector3 pos = filmingObj.point - rayOrigin;
-            pos.Scale(new Vector3(1, 0, 1));
-            pos.Normalize();
-            pos *= photoCameraRange;
-            pos += this.films[currentFilmNum].obj.transform.position;
+            Vector3 pos = this.films[currentFilmNum].obj.transform.position;
+            pos += vector3 * photoCameraRange;
             photoUICamera.transform.position = pos;
             photoUICamera.transform.LookAt(this.films[currentFilmNum].obj.transform.position);
 
-            StartCoroutine("CreatePhoto");
+            StartCoroutine("CreatePhoto", vector3);
         }
     }
 
-    IEnumerator CreatePhoto()
+    IEnumerator CreatePhoto(Vector3 vec)
     {
         yield return new WaitForEndOfFrame();
 
@@ -300,6 +285,8 @@ public class FilmManager : MonoBehaviour {
         Material material = this.films[this.currentFilmNum].obj.GetComponent<Renderer>().material;
         BlendModeUtils.SetBlendMode(material, BlendModeUtils.Mode.Fade);
         material.SetColor("_Color", new Color(1, 1, 1, alphaSilhouette));
+        this.films[this.currentFilmNum].obj.transform.SetParent(this.player.transform, true);
+        this.films[this.currentFilmNum].axis = Quaternion.Inverse(Quaternion.Euler(this.films[this.currentFilmNum].obj.transform.eulerAngles)) * vec;
     }
 
     //@param 変更するオブジェクト

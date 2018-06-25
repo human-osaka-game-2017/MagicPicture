@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289066792420460}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -125,7 +125,7 @@ MonoBehaviour:
   doorAction: {fileID: 0}
   effect: 0
   effectAction: {fileID: 0}
-  spear: 1
+  spear: 0
   spearAction: {fileID: 0}
   wall: 0
   wallAction: {fileID: 0}

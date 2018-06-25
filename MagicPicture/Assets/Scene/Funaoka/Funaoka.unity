@@ -2193,7 +2193,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1645027611}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -2345,6 +2345,31 @@ Prefab:
     - target: {fileID: 1235516755907714, guid: 675525c2faebc5e4fb1b26ab3deae117, type: 2}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 114814458206986618, guid: 675525c2faebc5e4fb1b26ab3deae117,
+        type: 2}
+      propertyPath: TPS_HorizontalSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114287311686171804, guid: 675525c2faebc5e4fb1b26ab3deae117,
+        type: 2}
+      propertyPath: animHrznSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114814458206986618, guid: 675525c2faebc5e4fb1b26ab3deae117,
+        type: 2}
+      propertyPath: TPS_FwdSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114287311686171804, guid: 675525c2faebc5e4fb1b26ab3deae117,
+        type: 2}
+      propertyPath: animBackSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 54123807681153324, guid: 675525c2faebc5e4fb1b26ab3deae117,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 675525c2faebc5e4fb1b26ab3deae117, type: 2}

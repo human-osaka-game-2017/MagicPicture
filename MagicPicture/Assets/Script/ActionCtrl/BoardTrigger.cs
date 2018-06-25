@@ -20,27 +20,18 @@ public class BoardTrigger : MonoBehaviour {
     // 感圧板を踏んだら
     void OnTriggerStay(Collider col)
     {
-        if (col.gameObject.name == "Player") {
+        // 現像前のobjectに当たってもスルー(layerの2)
+        if (col.gameObject.layer != 2) {
             actionCtrl.Action();
         }
     }
-
-    void OnCollisionEnter(Collision other)
-    {
-        actionCtrl.Action();
-    }
-
+    
     //---------------------
     // 感圧板から離れたら
     void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.name == "Player") {
+        if (col.gameObject.layer != 2) {
             actionCtrl.Reset();
         }
-    }
-
-    void OnCollisionExit(Collision other)
-    {
-        actionCtrl.Reset();
     }
 }

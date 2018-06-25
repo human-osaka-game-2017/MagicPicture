@@ -51,10 +51,10 @@ static class RouteSearch
 
     private class Node
     {
-        public Node(Vector3 argPos)
+        public Node(Vector3 pos)
         {
-            pos = argPos;
-            distance = 0;
+            this.pos = pos;
+            this.distance = 0;
         }
         public Vector3 pos { get; set; }
         public float distance { get; set; }

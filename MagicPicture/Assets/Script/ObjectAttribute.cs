@@ -21,10 +21,12 @@ public class ObjectAttribute : MonoBehaviour {
         get { return this.canPhantom; }
     }
 
-    void Start () {
+    void Start ()
+    {
     }
 	
-	void Update () {
+	void Update ()
+    {
     }
 
     private void OnTriggerEnter(Collider other)

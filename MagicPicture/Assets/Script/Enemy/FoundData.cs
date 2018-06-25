@@ -4,7 +4,7 @@ public class FoundData
 {
     public FoundData(GameObject obj)
     {
-        Obj = obj;
+        this.Obj = obj;
     }
 
     public GameObject Obj { get; private set; }

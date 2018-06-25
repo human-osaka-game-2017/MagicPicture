@@ -23,7 +23,7 @@ public class FilmManager : MonoBehaviour {
     private const int filmSpaceOfX = 100;
     private const int filmSpaceOfY = 5000;
 
-    public class Film
+    private class Film
     {
         public Film(int index)
         {
@@ -289,7 +289,6 @@ public class FilmManager : MonoBehaviour {
         this.films[this.currentFilmNum].Axis = Quaternion.Inverse(Quaternion.Euler(this.films[this.currentFilmNum].Obj.transform.eulerAngles)) * vec;
     }
 
-    //@param 変更するオブジェクト
     private void ChangeSilhouette(Film film)
     {
         if (silhouette.Obj != null)
@@ -345,8 +344,6 @@ public class FilmManager : MonoBehaviour {
         Destroy(phantom);
     }
 
-    //phantomの要素番号0番に追加
-    //@param film
     private void AddPhantom(GameObject film)
     {
         GameObject phantom = Instantiate(

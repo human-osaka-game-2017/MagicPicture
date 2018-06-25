@@ -7,8 +7,8 @@ class EnemyStateSearch : EnemyStateBase
     private Vector3 targetPos;
     private int actionCnt = 0;
 
-    private /*const*/ Vector3 pointSize = new Vector3(5.0f, 0.0f, 5.0f);
-    private /*const*/ int actionNum;
+    private Vector3 pointSize = new Vector3(5.0f, 0.0f, 5.0f);
+    private int actionNum;
 
    public EnemyStateSearch(GameObject obj, Finder finder, int actionNum) : 
         base(obj, finder)

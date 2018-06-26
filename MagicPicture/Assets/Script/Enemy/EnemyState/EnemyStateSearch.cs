@@ -7,10 +7,10 @@ class EnemyStateSearch : EnemyStateBase
     private Vector3 targetPos;
     private int actionCnt = 0;
 
-    private Vector3 pointSize = new Vector3(5.0f, 0.0f, 5.0f);
+    private Vector3 pointSize = new Vector3(1.0f, 1.0f, 1.0f);
     private int actionNum;
 
-   public EnemyStateSearch(GameObject obj, Finder finder, int actionNum) : 
+    public EnemyStateSearch(GameObject obj, Finder finder, int actionNum) : 
         base(obj, finder)
     {
         this.NavAgent = this.Obj.GetComponent<NavMeshAgent>();
@@ -54,15 +54,19 @@ class EnemyStateSearch : EnemyStateBase
         }
 
         this.NavAgent.SetDestination(targetPos);
+        if(this.NavAgent.remainingDistance == 0)
+        {
+            DecidedNextPoint();
+        }
 
         return ret;
     }
 
     private void DecidedNextPoint()
     {
-        targetPos.x = UnityEngine.Random.Range(-6.0f, 6.0f);
+        targetPos.x = UnityEngine.Random.Range(-5.0f, 5.0f);
         targetPos.y = 0.0f;
-        targetPos.z = UnityEngine.Random.Range(-6.0f, 6.0f);
+        targetPos.z = UnityEngine.Random.Range(-5.0f, 5.0f);
         targetPos += this.Obj.transform.position;
     }
 

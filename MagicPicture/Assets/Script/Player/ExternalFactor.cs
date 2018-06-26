@@ -82,7 +82,7 @@ public class ExternalFactor : MonoBehaviour {
     IEnumerator WaitGoGameOver()
     {
         if (GameState.state == (int)state.play) {
-            SoundManager.GetInstance().Play("SE_GameOver", SoundManager.PLAYER_TYPE.NONLOOP, true);
+            //SoundManager.GetInstance().Play("SE_GameOver", SoundManager.PLAYER_TYPE.NONLOOP, true);
         }
 
         GameState.state = (int)state.death;

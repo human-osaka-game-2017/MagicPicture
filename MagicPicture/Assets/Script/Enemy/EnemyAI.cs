@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float dashRotSpeed;
     [SerializeField] private float breakInterval;
     [SerializeField] private int actionNum;
+    [SerializeField] private GameObject target;
 
     public enum STATE
     {
@@ -40,8 +41,12 @@ public class EnemyAI : MonoBehaviour
         this.prevStateId = this.currentStateId;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        this.state.Collision(collision.gameObject);
+        if (other.gameObject == target)
+        {
+            SoundManager.GetInstance().Play("SE_EnemyHit", SoundManager.PLAYER_TYPE.NONLOOP, true);
+        }
+        this.state.Collision(other.gameObject);
     }
 }

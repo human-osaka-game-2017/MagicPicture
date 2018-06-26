@@ -92,7 +92,7 @@ public class FilmManager : MonoBehaviour {
             films[i].Image = this.transform.Find(path).gameObject.GetComponent<RawImage>();
         }
 
-        silhouette = films[currentFilmNum];
+        silhouette = CurrentFilm;
     }
 
     void Update()
@@ -124,7 +124,7 @@ public class FilmManager : MonoBehaviour {
             this.films[this.currentFilmNum].Image.transform.parent.localScale = new Vector3(2.0f, 2.0f, 1.0f);
             this.films[this.currentFilmNum].Image.transform.parent.localPosition += new Vector3(halfSize * -direction, 0, 0);
 
-            ChangeSilhouette(films[currentFilmNum]);
+            ChangeSilhouette(CurrentFilm);
         }
 
         //phantom全消し
@@ -136,14 +136,14 @@ public class FilmManager : MonoBehaviour {
             }
         }
 
-        if (films[currentFilmNum].Obj != null)
+        if (CurrentFilm.Obj != null)
         {
             //SilhouetteModeの変更
             if (Input.GetButtonDown("ForSilhouetteMode"))
             {
                 this.isSilhouetteMode = !this.isSilhouetteMode;
                 this.guideEffect.SetActive(!this.guideEffect.activeSelf);
-                ChangeSilhouette(films[currentFilmNum]);
+                ChangeSilhouette(CurrentFilm);
             }
 
             if (this.isSilhouetteMode)
@@ -154,8 +154,8 @@ public class FilmManager : MonoBehaviour {
             //写真、オブジェクトの回転
             if (AxisStateManager.GetInstance().GetAxisDown("ForRotatePicture") != 0)
             {
-                films[currentFilmNum].Image.transform.Rotate(new Vector3(0.0f, 0.0f, Input.GetAxisRaw("ForRotatePicture") * 90.0f));
-                films[currentFilmNum].Obj.transform.Rotate(this.films[currentFilmNum].Axis * Input.GetAxisRaw("ForRotatePicture"), 90.0f, Space.Self);
+                CurrentFilm.Image.transform.Rotate(new Vector3(0.0f, 0.0f, Input.GetAxisRaw("ForRotatePicture") * -90.0f));
+                CurrentFilm.Obj.transform.Rotate(this.CurrentFilm.Axis * Input.GetAxisRaw("ForRotatePicture"), 90.0f, Space.Self);
             }
 
             //現像
@@ -248,10 +248,10 @@ public class FilmManager : MonoBehaviour {
         {
             //カメラの移動
             //photo用カメラ撮影位置
-            Vector3 pos = this.films[currentFilmNum].Obj.transform.position;
+            Vector3 pos = this.CurrentFilm.Obj.transform.position;
             pos += vector3 * photoCameraRange;
             photoUICamera.transform.position = pos;
-            photoUICamera.transform.LookAt(this.films[currentFilmNum].Obj.transform.position);
+            photoUICamera.transform.LookAt(this.CurrentFilm.Obj.transform.position);
 
             StartCoroutine("CreatePhoto", vector3);
         }
@@ -321,16 +321,16 @@ public class FilmManager : MonoBehaviour {
 
     private void UpdateCurrentFilmNum()
     {
-        Func<int, int> standardizationFilmNum = nextFilmNum => (nextFilmNum + this.maxFilm) % this.maxFilm;
-        
         if (AxisStateManager.GetInstance().GetAxisDown("HorizontalForChangeFilm") == 1.0f)
         {
-            this.currentFilmNum = standardizationFilmNum(--currentFilmNum);
+            --currentFilmNum;
         }
         else if (AxisStateManager.GetInstance().GetAxisDown("HorizontalForChangeFilm") == -1.0f)
         {
-            this.currentFilmNum = standardizationFilmNum(++currentFilmNum);
+            ++currentFilmNum;
         }
+
+        this.currentFilmNum = (this.currentFilmNum + this.maxFilm) % this.maxFilm;
     }
 
     public void DeletePhantom(GameObject phantom)
@@ -353,28 +353,15 @@ public class FilmManager : MonoBehaviour {
 
         phantom.GetComponent<ObjectAttribute>().Taken(); ;
 
-        if (this.phantoms[0] != null)
+        int index = Array.FindLastIndex(this.phantoms, x => x != null);
+        if (index == this.phantoms.Length - 1)
         {
-            GameObject next = phantom; //次に代入するやつ
-            GameObject tmp; //一時保管
-
-            int count;
-            for (count = 0; count < maxPhantom; ++count)
-            {
-                tmp = this.phantoms[count];
-                this.phantoms[count] = next;
-                next = tmp;
-                if (tmp == null)
-                {
-                    break;
-                }
-            }
-
-            DeletePhantom(next);
+            Destroy(this.phantoms[index--]);
         }
-        else
+        for (int i = index; i >= 0; i--)
         {
-            this.phantoms[0] = phantom;
+            this.phantoms[i + 1] = this.phantoms[i];
         }
+        this.phantoms[0] = phantom;
     }
 }

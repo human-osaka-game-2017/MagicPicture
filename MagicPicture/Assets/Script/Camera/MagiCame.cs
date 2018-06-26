@@ -44,7 +44,8 @@ public class MagiCame : MonoBehaviour
             this.transform.position+(this.transform.forward * this.minDistance),
             this.transform.forward,
             out hitObj,
-            this.maxDistance - this.minDistance))
+            this.maxDistance - this.minDistance,
+            ~(LayerMask.GetMask("enemy") | LayerMask.GetMask("Ignore Raycast"))))
         {
             //シャッターを切られた
             if (Input.GetButtonDown("ForTakePicture"))

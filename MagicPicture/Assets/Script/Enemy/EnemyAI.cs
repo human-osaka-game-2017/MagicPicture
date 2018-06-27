@@ -32,13 +32,16 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        this.currentStateId = this.state.Update();
-        if (this.currentStateId != this.prevStateId)
+        if(GameState.state == (int)GameState.STATE.PLAY)
         {
-            this.state = this.factory.Create(currentStateId);
-        }
+            this.currentStateId = this.state.Update();
+            if (this.currentStateId != this.prevStateId)
+            {
+                this.state = this.factory.Create(currentStateId);
+            }
 
-        this.prevStateId = this.currentStateId;
+            this.prevStateId = this.currentStateId;
+        }
     }
 
     private void OnCollisionEnter(Collision other)

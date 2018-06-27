@@ -38,7 +38,7 @@ namespace UnityStandardAssets.CrossPlatformInput
         private void Start()
         {
 #if UNITY_EDITOR
-            if (Application.isPlaying) //if in the editor, need to check if we are playing, as start is also called just after exiting play
+            if (Application.isPlaying) //if in the editor, need to check if we are playing, as start is also called just after exiting PLAY
 #endif
             {
                 UnityEngine.EventSystems.EventSystem system = GameObject.FindObjectOfType<UnityEngine.EventSystems.EventSystem>();

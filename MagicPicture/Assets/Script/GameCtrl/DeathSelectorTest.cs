@@ -44,7 +44,7 @@ public class DeathSelectorTest : MonoBehaviour {
     void GoLoading()
     {
         // GameStateをロードに
-        GameState.SetState((int)state.load);
+        GameState.SetState((int)GameState.STATE.LOAD);
 
         // 再読み込みでsceneリセットかつロード
         SceneManager.LoadScene("MasterMain");

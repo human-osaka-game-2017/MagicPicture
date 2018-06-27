@@ -56,7 +56,7 @@ public class StartSelector : MonoBehaviour {
     void GoLoading()
     {
         // GameStateをロードに
-        GameState.SetState((int)state.load);
+        GameState.SetState((int)GameState.STATE.LOAD);
 
         // 再読み込みでsceneリセットかつロード
         SceneManager.LoadScene("MasterMain");
@@ -65,7 +65,7 @@ public class StartSelector : MonoBehaviour {
     void GoPlay()
     {
         // GameStateをプレイに
-        GameState.SetState((int)state.play);
+        GameState.SetState((int)GameState.STATE.PLAY);
 
         // 再読み込みでsceneリセットかつロード
         SceneManager.LoadScene("MasterMain");

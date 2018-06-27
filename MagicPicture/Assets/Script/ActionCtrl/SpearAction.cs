@@ -29,7 +29,7 @@ public class SpearAction : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (GameState.state == (int)state.play) {
+        if (GameState.state == (int)GameState.STATE.PLAY) {
             if (!stopFlag) {
                 ArrowFlies();
             }

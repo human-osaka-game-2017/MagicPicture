@@ -18,7 +18,7 @@ public class GoTitleButton : MonoBehaviour {
         if (Input.GetButtonDown("ForSilhouetteMode")) {
 
             // stateをtitleに
-            GameState.SetState((int)state.title);
+            GameState.SetState((int)GameState.STATE.TITLE);
 
             SceneManager.LoadScene("MasterTitle");
         }

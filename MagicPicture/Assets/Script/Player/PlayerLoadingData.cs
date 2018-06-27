@@ -11,7 +11,7 @@ public class PlayerLoadingData : MonoBehaviour {
     // Use this for initialization
     void Start () {
         
-        if (GameState.GetState() == (int)state.load) {
+        if (GameState.GetState() == (int)GameState.STATE.LOAD) {
             
             // ロードする要素を呼び出し
             LoadElement();
@@ -28,7 +28,7 @@ public class PlayerLoadingData : MonoBehaviour {
             transform.position = loadPos;
             transform.rotation = loadRot;
             
-            GameState.state = (int)state.play;
+            GameState.state = (int)GameState.STATE.PLAY;
         }
     }
 	

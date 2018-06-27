@@ -16,7 +16,6 @@ public class Pauser : MonoBehaviour
     {
         if (Input.GetButtonDown("ForPause"))
         {
-            this.isPausing = !this.isPausing;
             if (this.isPausing)
             {
                 Resume();
@@ -28,6 +27,15 @@ public class Pauser : MonoBehaviour
                 Pause();
                 img.SetActive(true);
 
+            }
+            this.isPausing = !this.isPausing;
+        }
+
+        if (this.isPausing)
+        {
+            if (Input.GetButtonDown("ForExitGameInPause"))
+            {
+                Application.Quit();
             }
         }
     }

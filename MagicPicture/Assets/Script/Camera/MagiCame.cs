@@ -52,7 +52,10 @@ public class MagiCame : MonoBehaviour
             {
                 img.Init();
 
-                if (hitObj.collider.GetComponent<ObjectAttribute>().CanTake)
+                ObjectAttribute attribute = hitObj.collider.GetComponent<ObjectAttribute>();
+                if (attribute == null) return;
+
+                if (attribute.CanTake == true)
                 {
                     SoundManager.GetInstance().Play("SE_Shutter", SoundManager.PLAYER_TYPE.NONLOOP, true);
 

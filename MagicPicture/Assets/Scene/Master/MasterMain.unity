@@ -1703,14 +1703,14 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 106884159}
-  m_LocalRotation: {x: -0, y: -0.70167285, z: -0, w: 0.7124992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 0.125, z: 2}
   m_LocalScale: {x: 0.35000053, y: 0.125, z: 0.35000053}
   m_Children:
   - {fileID: 710410939}
   m_Father: {fileID: 666937685}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -179.99998, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &106884161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4665,7 +4665,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 246287494}
   m_LocalRotation: {x: 0.0000018099951, y: 0.0000043362375, z: -7.848568e-12, w: 1}
-  m_LocalPosition: {x: -20, y: 0.001, z: 2}
+  m_LocalPosition: {x: -18, y: 0.001, z: 2}
   m_LocalScale: {x: 0.25, y: 0.1, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1333561501}
@@ -7430,7 +7430,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 367357159}
   m_LocalRotation: {x: 0.0000018099951, y: 0.0000043362375, z: -7.848568e-12, w: 1}
-  m_LocalPosition: {x: -24, y: 0.001, z: 2}
+  m_LocalPosition: {x: -22, y: 0.001, z: 2}
   m_LocalScale: {x: 0.25, y: 0.099999994, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1333561501}
@@ -9724,14 +9724,14 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 434547103}
-  m_LocalRotation: {x: -0, y: -0.70167285, z: -0, w: 0.7124992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6, y: 0.125, z: 1}
   m_LocalScale: {x: 0.35000017, y: 0.125, z: 0.35000017}
   m_Children:
   - {fileID: 2069253938}
   m_Father: {fileID: 666937685}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -179.99998, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &434547105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12049,14 +12049,14 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 517387713}
-  m_LocalRotation: {x: -0, y: -0.70167285, z: -0, w: 0.7124992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 0.125, z: 1}
   m_LocalScale: {x: 0.35000017, y: 0.125, z: 0.35000017}
   m_Children:
   - {fileID: 793760436}
   m_Father: {fileID: 666937685}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -179.99998, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &517387715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40084,14 +40084,14 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1673455163}
-  m_LocalRotation: {x: -0, y: -0.70167285, z: -0, w: 0.7124992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6, y: 0.125, z: 2}
   m_LocalScale: {x: 0.35000017, y: 0.125, z: 0.35000017}
   m_Children:
   - {fileID: 1223502427}
   m_Father: {fileID: 666937685}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -179.99998, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1673455165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44429,12 +44429,12 @@ Prefab:
     - target: {fileID: 114689029143876148, guid: 3504d8a28cfae9540962e6e9e1880f15,
         type: 2}
       propertyPath: TPS_FwdSpeed
-      value: 6.4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114689029143876148, guid: 3504d8a28cfae9540962e6e9e1880f15,
         type: 2}
       propertyPath: TPS_BackSpeed
-      value: 1.3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114689029143876148, guid: 3504d8a28cfae9540962e6e9e1880f15,
         type: 2}
@@ -44444,7 +44444,7 @@ Prefab:
     - target: {fileID: 114689029143876148, guid: 3504d8a28cfae9540962e6e9e1880f15,
         type: 2}
       propertyPath: FPS_BackSpeed
-      value: 0.46
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 114689029143876148, guid: 3504d8a28cfae9540962e6e9e1880f15,
         type: 2}
@@ -44521,6 +44521,16 @@ Prefab:
         type: 2}
       propertyPath: TPS_RotSpeed
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 114247138502044338, guid: 3504d8a28cfae9540962e6e9e1880f15,
+        type: 2}
+      propertyPath: animFwdSpeed
+      value: 2.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 114247138502044338, guid: 3504d8a28cfae9540962e6e9e1880f15,
+        type: 2}
+      propertyPath: animBackSpeed
+      value: 0.769
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 45050169830274792, guid: 3504d8a28cfae9540962e6e9e1880f15, type: 2}

@@ -340,19 +340,14 @@ public class FilmManager : MonoBehaviour {
         //エフェクト
         EffectManager.GetInstance().PopUp("disappear", phantom.transform.position);
         //音声
+        SoundManager.GetInstance().Play("SE_PhantomToDisappear", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
         phantom.transform.position = new Vector3(1000, 1000, 1000);
 
-        StartCoroutine(DelayMethod(0.1f, () =>
+        StartCoroutine(Utility.DelayMethod(0.1f, () =>
         {
             Destroy(phantom);
         }));
-    }
-
-    private IEnumerator DelayMethod(float waitTime, Action action)
-    {
-        yield return new WaitForSeconds(waitTime);
-        action();
     }
 
     private void AddPhantom(GameObject film)

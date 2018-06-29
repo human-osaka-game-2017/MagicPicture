@@ -37,6 +37,9 @@ public class ExternalFactor : MonoBehaviour {
         // fallDeathHeightより低い位置まで落ちたら
         if (transform.position.y < fallDeathHeight) {
             StartCoroutine("WaitGoGameOver");
+
+            // 落下止め
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
 
         // PlayerControllerを使わずに段差と落下

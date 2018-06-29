@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class EnemyAI : MonoBehaviour
         if (other.gameObject == target)
         {
             SoundManager.GetInstance().Play("SE_EnemyHit", SoundManager.PLAYER_TYPE.NONLOOP, true);
+            this.GetComponent<NavMeshAgent>().updatePosition = false;
         }
         this.state.Collision(other.gameObject);
     }

@@ -43,10 +43,11 @@ public class TPSCamera : MonoBehaviour {
             this.player.transform.position.z);
         Vector3 vec = (playerPos - this.transform.position);
         Debug.DrawRay(this.transform.position, vec, Color.red);
-        hitColliders = Physics.SphereCastAll(
+        hitColliders = Physics.BoxCastAll(
             this.transform.position,
-            0.3f,
+            new Vector3(0.5f,0.01f,0.01f),
             vec.normalized,
+            this.transform.rotation,
             vec.magnitude,
             ~LayerMask.GetMask("player"));
 

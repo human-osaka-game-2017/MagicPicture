@@ -37,6 +37,9 @@ public class ExternalFactor : MonoBehaviour {
         // fallDeathHeightより低い位置まで落ちたら
         if (transform.position.y < fallDeathHeight) {
             StartCoroutine("WaitGoGameOver");
+
+            // 落下止め
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
 
         // PlayerControllerを使わずに段差と落下
@@ -81,11 +84,11 @@ public class ExternalFactor : MonoBehaviour {
     // ゲームオーバーへ
     IEnumerator WaitGoGameOver()
     {
-        if (GameState.state == (int)state.play) {
+        if (GameState.state == (int)GameState.STATE.PLAY) {
             SoundManager.GetInstance().Play("SE_GameOver", SoundManager.PLAYER_TYPE.NONLOOP, true);
         }
 
-        GameState.state = (int)state.death;
+        GameState.state = (int)GameState.STATE.DEATH;
         GameObject.Find("FilmManager").GetComponent<FilmManager>().enabled = false;
 
         // モーション分待ってゲームオーバーへ
@@ -98,7 +101,7 @@ public class ExternalFactor : MonoBehaviour {
     // ゲームクリアへ
     IEnumerator WaitGoGameClear()
     {
-        GameState.state = (int)state.clear;
+        GameState.state = (int)GameState.STATE.CLEAR;
 
         // モーション分待ってゲームクリアへ
         yield return new WaitForSeconds(clearWait);

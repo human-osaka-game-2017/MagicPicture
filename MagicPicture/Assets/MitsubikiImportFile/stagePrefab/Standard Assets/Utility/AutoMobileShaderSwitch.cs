@@ -125,7 +125,7 @@ namespace UnityStandardAssets.Utility.Inspector
 
                         if (i == -1)
                         {
-                            // draw title labels
+                            // draw TITLE labels
                             EditorGUI.LabelField(rect, titles[n]);
                         }
                         else

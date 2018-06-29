@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: d4017bc58b4309843ba923deb1d45525
+timeCreated: 1529573664
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lobster Two
+  fontNames:
+  - Lobster Two
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 53c4bd917034eb848949de883230731c, type: 3}
+  - {fileID: 12800000, guid: 92f1fa74c80fe884e9614ce00b9d623e, type: 3}
+  - {fileID: 12800000, guid: 70d8e5087a110d44dbded58263d1b270, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

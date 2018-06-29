@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum state
-{
-    title,
-    load,
-    play,
-    death,
-    clear
-}
-
 public class GameState : MonoBehaviour {
+
+    public enum STATE
+    {
+        TITLE,
+        LOAD,
+        PLAY,
+        DEATH,
+        CLEAR
+    }
 
     public bool       debugState;
     public static int state;

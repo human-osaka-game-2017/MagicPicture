@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorAction : MonoBehaviour {
 
+    [SerializeField] SEManager SE;
+
     [SerializeField] GameObject   doorR;
     [SerializeField] GameObject   doorL;
     [SerializeField] GameObject   cantBack;
@@ -29,6 +31,8 @@ public class DoorAction : MonoBehaviour {
     // 開く
     virtual public void Open()
     {
+        SE.Play("SE_Gimmick_DoorOpen");
+        
         float doorPosX = doorR.transform.localPosition.x;
 
         if (!closePanel.closeFlag)
@@ -50,6 +54,8 @@ public class DoorAction : MonoBehaviour {
     // 閉じる
     virtual public void Close()
     {
+        SE.Reuse();
+
         float doorPosX = doorR.transform.localPosition.x;
 
         if (doorPosX > minRange) {

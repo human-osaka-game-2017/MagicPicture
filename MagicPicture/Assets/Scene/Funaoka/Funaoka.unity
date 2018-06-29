@@ -390,6 +390,61 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: maxFilm
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: maxPhantom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: coordinateUnit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: phantomDistance
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: scaleThresholdStoMOfPer
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: scaleThresholdMtoLOfPer
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: scaleRatioS
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: scaleRatioM
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: scaleRatioL
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: alphaValOfSilhouette
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114019369715955688, guid: a49eaa81a6bbd0e42941bdddb8839b8a,
+        type: 2}
+      propertyPath: alphaValOfPhantom
+      value: 0.72
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a49eaa81a6bbd0e42941bdddb8839b8a, type: 2}
   m_IsPrefabParent: 0
@@ -2370,6 +2425,20 @@ Prefab:
         type: 2}
       propertyPath: m_Constraints
       value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121169769358774, guid: 675525c2faebc5e4fb1b26ab3deae117,
+        type: 2}
+      propertyPath: minDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121169769358774, guid: 675525c2faebc5e4fb1b26ab3deae117,
+        type: 2}
+      propertyPath: maxDistance
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235516755907714, guid: 675525c2faebc5e4fb1b26ab3deae117, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 675525c2faebc5e4fb1b26ab3deae117, type: 2}

@@ -340,6 +340,7 @@ public class FilmManager : MonoBehaviour {
         //エフェクト
         EffectManager.GetInstance().PopUp("disappear", phantom.transform.position);
         //音声
+        SoundManager.GetInstance().Play("SE_PhantomToDisappear", SoundManager.PLAYER_TYPE.NONLOOP, true);
 
         phantom.transform.position = new Vector3(1000, 1000, 1000);
 

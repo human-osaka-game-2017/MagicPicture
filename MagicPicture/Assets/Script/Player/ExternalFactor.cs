@@ -85,6 +85,7 @@ public class ExternalFactor : MonoBehaviour {
     IEnumerator WaitGoGameOver()
     {
         if (GameState.state == (int)GameState.STATE.PLAY) {
+            SoundManager.GetInstance().Stop(SoundManager.PLAYER_TYPE.LOOP);
             StartCoroutine(Utility.DelayMethod(damageWait, () => {
                 SoundManager.GetInstance().Play("SE_GameOver", SoundManager.PLAYER_TYPE.NONLOOP, true);
                  }));
@@ -107,7 +108,7 @@ public class ExternalFactor : MonoBehaviour {
 
         // モーション分待ってゲームクリアへ
         yield return new WaitForSeconds(clearWait);
-
+        SoundManager.GetInstance().Stop(SoundManager.PLAYER_TYPE.LOOP);
         SceneManager.LoadScene("MasterClear");
     }
 

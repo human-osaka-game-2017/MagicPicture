@@ -39,7 +39,7 @@ public class TPSCamera : MonoBehaviour {
         RaycastHit[] hitColliders = null;
         Vector3 playerPos = new Vector3(
             this.player.transform.position.x,
-            this.player.transform.position.y + 0.5f,
+            this.player.transform.position.y + 1.0f,
             this.player.transform.position.z);
         Vector3 vec = (playerPos - this.transform.position);
         Debug.DrawRay(this.transform.position, vec, Color.red);
@@ -48,7 +48,7 @@ public class TPSCamera : MonoBehaviour {
             new Vector3(0.5f,0.01f,0.01f),
             vec.normalized,
             this.transform.rotation,
-            vec.magnitude,
+            vec.magnitude * 0.9f,
             ~LayerMask.GetMask("player"));
 
         //このフレームの障害物List作成

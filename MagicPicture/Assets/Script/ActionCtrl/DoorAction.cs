@@ -31,32 +31,33 @@ public class DoorAction : MonoBehaviour {
     // 開く
     virtual public void Open()
     {
-        SE.Play("SE_Gimmick_DoorOpen");
-        
         float doorPosX = doorR.transform.localPosition.x;
 
-        if (!closePanel.closeFlag)
-            
-        if (doorPosX < maxRange) {
-            doorR.transform.Translate(speedVec);
-            doorL.transform.Translate(-speedVec);
-        }
-        else {
-            // 開きすぎた分
-            Adjust(maxRange);
-        }
+        if (!closePanel.closeFlag) {
 
-        // 通れるようにする
-        cantBack.SetActive(false);
+            SE.Play("SE_Gimmick_DoorOpen");
+
+            if (doorPosX < maxRange) {
+                doorR.transform.Translate(speedVec);
+                doorL.transform.Translate(-speedVec);
+            }
+            else {
+                // 開きすぎた分
+                Adjust(maxRange);
+            }
+
+            // 通れるようにする
+            cantBack.SetActive(false);
+        }
     }
 
     //---------
     // 閉じる
     virtual public void Close()
     {
-        SE.Reuse();
-
         float doorPosX = doorR.transform.localPosition.x;
+
+        SE.Reuse();
 
         if (doorPosX > minRange) {
             doorR.transform.Translate(-speedVec);
